@@ -1,9 +1,7 @@
 {
-    "name": "CharacterAbilities",
-    "rootNamespace": "CharacterAbilities",
-    "references": [
-        "GUID:d7e494c8d9fda7a4dac2ee6f26d40b2e"
-    ],
+    "name": "ObjectPoolingAssembly",
+    "rootNamespace": "",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

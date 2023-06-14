@@ -1,8 +1,8 @@
 {
-    "name": "CharacterAbilities",
-    "rootNamespace": "CharacterAbilities",
+    "name": "Projectiles",
+    "rootNamespace": "",
     "references": [
-        "GUID:d7e494c8d9fda7a4dac2ee6f26d40b2e"
+        "GUID:ad4d8eb2a176cb34f8d7fb8fde5c4343"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
