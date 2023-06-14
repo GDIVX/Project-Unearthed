@@ -937,6 +937,10 @@
       <Project>{79E10B64-7DFF-5D47-BBBA-BED28B201444}</Project>
       <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
     </ProjectReference>
+    <ProjectReference Include="Stats.csproj">
+      <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
+      <Name>Stats</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

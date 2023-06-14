@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7835324181591090255}
   - component: {fileID: 7835324181591090254}
   - component: {fileID: 7835324181591090250}
+  - component: {fileID: 378469108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -99,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b51acfb99486c743b68750aa85f69c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6.5
-  accelerationScalar: 0.3
+  movementSpeed: 8
+  accelerationScalar: 0.5
   decelerationScalar: 0.1
   accelerationCurve:
     serializedVersion: 2
@@ -108,8 +109,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -117,8 +118,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -151,9 +152,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxVelocity: 10
-  currentSpeed: 0
+  currentSpeed: 6.2437024
   accelerationTimer: 0
-  decelerationTimer: 0
+  decelerationTimer: 1.3556987
 --- !u!50 &7835324181591090254
 Rigidbody2D:
   serializedVersion: 4
@@ -201,3 +202,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0
+--- !u!114 &378469108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835324181591090252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fc85e81f4150947957e62df3795606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 20
+  _maxValue: 20
+  OnValueChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7835324181591090252}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
