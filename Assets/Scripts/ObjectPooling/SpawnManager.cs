@@ -16,6 +16,7 @@ namespace ObjectPooling
         {
             this.factory = factory;
             T prefab = factory.Create();
+            prefab.gameObject.SetActive(false);
             pool = new ObjectPool<T>(prefab);
 
             if (initialSize > 0)

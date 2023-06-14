@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ObjectPooling\IPoolable.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling\IObjectFactory.cs" />
-    <Compile Include="Assets\Scripts\ObjectPooling\ObjectPoolDictionary.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling\SpawnManager.cs" />
-    <Compile Include="Assets\Scripts\ObjectPooling\GameObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\ObjectPooling\IPoolable.cs" />
+    <Compile Include="Assets\Scripts\ObjectPooling\ObjectPoolDictionary.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\ObjectPooling\GameObjectFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\ObjectPooling\ObjectPoolingAssembly.asmdef" />

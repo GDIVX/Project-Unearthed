@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Projectile\ProjectileSpawner.cs" />
     <Compile Include="Assets\Scripts\Projectile\ProjectileFactory.cs" />
+    <Compile Include="Assets\Scripts\Projectile\ProjectileCollisionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Projectile\Projectiles.asmdef" />
@@ -753,6 +754,10 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="CharacterAbilities.csproj">
+      <Project>{C595FD02-0C9E-592B-DB63-137B5570013A}</Project>
+      <Name>CharacterAbilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

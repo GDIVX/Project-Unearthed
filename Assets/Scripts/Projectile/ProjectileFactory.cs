@@ -17,7 +17,8 @@ namespace Assets.Scripts.Projectile
         public Projectile Create()
         {
             GameObject projectileObject = Object.Instantiate(_prefab.gameObject);
-            Projectile projectile = projectileObject.AddComponent<Projectile>();
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            
             return projectile;
         }
     }

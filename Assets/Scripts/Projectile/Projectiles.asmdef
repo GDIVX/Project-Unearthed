@@ -2,7 +2,8 @@
     "name": "Projectiles",
     "rootNamespace": "",
     "references": [
-        "GUID:ad4d8eb2a176cb34f8d7fb8fde5c4343"
+        "GUID:ad4d8eb2a176cb34f8d7fb8fde5c4343",
+        "GUID:624c1a19e5969fa4e8069945fa6737c6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
