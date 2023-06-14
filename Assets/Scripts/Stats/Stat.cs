@@ -7,8 +7,8 @@ using UnityEngine.Events;
 
 public class Stat : MonoBehaviour
 {
-    [SerializeField] int _value;
-    [SerializeField] int _maxValue;
+    [SerializeField, Min(0)] int _value;
+    [SerializeField, Min(1)] int _maxValue;
 
     public UnityEvent<Stat> OnValueChangeEvent;
 

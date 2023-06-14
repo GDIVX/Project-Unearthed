@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />
@@ -748,6 +749,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Stats.csproj">
+      <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
+      <Name>Stats</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
