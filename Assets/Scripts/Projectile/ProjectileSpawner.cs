@@ -1,5 +1,6 @@
 using Assets.Scripts.Projectile;
 using ObjectPooling;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] Projectile _prefab;
     [SerializeField] int _initialAmmount = 10;
+    [SerializeField] Transform _spawnPoint;
 
 
     SpawnManager<Projectile> projectileSpawnManager;
@@ -21,13 +23,18 @@ public class ProjectileSpawner : MonoBehaviour
         projectileSpawnManager = new SpawnManager<Projectile>(new ProjectileFactory(_prefab), _initialAmmount);
     }
 
-    /// <summary>
-    /// Returns a Projectile object from the pool.
-    /// </summary>
-    /// <returns>A projectile object.</returns>
-    public Projectile Get()
+    [Button]
+    public Projectile Spawn()
     {
-        return projectileSpawnManager.Get();
+        Projectile projectile = projectileSpawnManager.Get();
+
+        //set up the transform of the projectile
+        projectile.transform.position = _spawnPoint.position;
+        projectile.transform.rotation = _spawnPoint.rotation;
+
+        projectile.Spawner = this;
+
+        return projectile;
     }
 
     /// <summary>
