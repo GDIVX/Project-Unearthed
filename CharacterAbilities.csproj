@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
-    <Compile Include="Assets\Scripts\CharacterAbilities\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\Movement.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\Controller.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />

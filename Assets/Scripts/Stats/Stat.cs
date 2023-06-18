@@ -5,27 +5,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Stat : MonoBehaviour
+namespace Assets.Scripts.Stats
 {
-    [SerializeField, Min(0)] int _value;
-    [SerializeField, Min(1)] int _maxValue;
-
-    public UnityEvent<Stat> OnValueChangeEvent;
-
-    public int Value
+    public class Stat : MonoBehaviour
     {
-        get => _value;
-        set
+        [SerializeField, Min(0)] int _value;
+        [SerializeField, Min(1)] int _maxValue;
+
+        public UnityEvent<Stat> OnValueChangeEvent;
+
+        public int Value
         {
-            this._value = Mathf.Clamp(value, 0, _maxValue);
-            OnValueChange();
+            get => _value;
+            set
+            {
+                _value = Mathf.Clamp(value, 0, _maxValue);
+                OnValueChange();
+            }
         }
-    }
 
-    public virtual void OnValueChange()
-    {
-        OnValueChangeEvent?.Invoke(this);
-    }
+        public virtual void OnValueChange()
+        {
+            OnValueChangeEvent?.Invoke(this);
+        }
 
-    public int MaxValue { get => _maxValue; set => _maxValue = value; }
+        public int MaxValue { get => _maxValue; set => _maxValue = value; }
+    }
 }
