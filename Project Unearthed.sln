@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterAbilities", "Chara
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stats", "Stats.csproj", "{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weapon", "Weapon.csproj", "{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3697533F-CC76-72AF-A015-77FAC08168BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{79E10B64-7DFF-5D47-BBBA-BED28B201444}"
@@ -47,6 +49,10 @@ Global
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3697533F-CC76-72AF-A015-77FAC08168BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3697533F-CC76-72AF-A015-77FAC08168BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3697533F-CC76-72AF-A015-77FAC08168BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
