@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponMount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Weapon\Weapon.asmdef" />

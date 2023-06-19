@@ -1,4 +1,4 @@
-using CharacterAbilities.Assets.Scripts.CharacterAbilities;
+using Assets.Scripts.CharacterAbilities;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;

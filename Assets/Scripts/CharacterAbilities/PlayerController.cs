@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace CharacterAbilities.Assets.Scripts.CharacterAbilities
+namespace Assets.Scripts.CharacterAbilities
 {
     public class PlayerController : Controller
     {
@@ -44,6 +44,11 @@ namespace CharacterAbilities.Assets.Scripts.CharacterAbilities
                 onFire?.Invoke();
                 yield return null;
             }
+        }
+
+        public override Vector2 GetAimDirection()
+        {
+            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 }

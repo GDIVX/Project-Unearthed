@@ -1,4 +1,3 @@
-using CharacterAbilities.Assets.Scripts.CharacterAbilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
