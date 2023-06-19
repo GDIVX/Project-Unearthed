@@ -40,7 +40,7 @@ public class RangeWeapon : Weapon
     private void Start()
     {
         CurrentAmmoInClip = _ammoPerClip;
-        perlineCurve = new PerlineCurve(_impulseForce, _impulseForce * 0.5f, Random.value, Random.value);
+        perlineCurve = new PerlineCurve(_impulseAmplitude, 0.1f, Random.value, Random.value);
 
     }
     protected override void Fire()
@@ -75,7 +75,9 @@ public class RangeWeapon : Weapon
         Vector2 direction = transform.TransformDirection(new Vector2(0f, 1f)).normalized;
 
         //use perline noise to add some randomness to the shake
-        Vector2 impuseVelocity = direction * perlineCurve.GetNextValue();
+        Vector2 impuseVelocity = direction * perlineCurve.GetNextValue() * _impulseAmplitude;
+
+        Debug.Log(impuseVelocity + " : " + direction);
 
         //send impulse
         _impulseSource.GenerateImpulseWithVelocity(impuseVelocity);

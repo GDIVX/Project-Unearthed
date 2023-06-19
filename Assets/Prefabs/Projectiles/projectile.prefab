@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7470966c7ca20a4d94786360f2e14a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingVelocity: 0.2
-  _maxVelocity: 10
+  _startingVelocity: 10
+  _maxVelocity: 20
   _accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -74,7 +74,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _accelerationScalar: 3
+  _accelerationScalar: 5
   _lifetime: 5
 --- !u!114 &1796671640249621484
 MonoBehaviour:
@@ -93,6 +93,7 @@ MonoBehaviour:
   collisionTags:
   - Wall
   - Player
+  - Enemy
   OnProjectileHit:
     m_PersistentCalls:
       m_Calls: []
