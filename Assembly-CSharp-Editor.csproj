@@ -933,6 +933,10 @@
       <Project>{C595FD02-0C9E-592B-DB63-137B5570013A}</Project>
       <Name>CharacterAbilities</Name>
     </ProjectReference>
+    <ProjectReference Include="Weapon.csproj">
+      <Project>{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}</Project>
+      <Name>Weapon</Name>
+    </ProjectReference>
     <ProjectReference Include="Projectiles.csproj">
       <Project>{F94D6195-88C7-2719-7184-EC5E896B9D3C}</Project>
       <Name>Projectiles</Name>
@@ -948,10 +952,6 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="Weapon.csproj">
-      <Project>{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}</Project>
-      <Name>Weapon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,6 +9,7 @@ namespace CharacterAbilities.Assets.Scripts.CharacterAbilities
     public abstract class Controller : MonoBehaviour
     {
         public Action onFire;
+        public Action onReload;
 
         /// <summary>
         /// Returns a vector that represents the movement input

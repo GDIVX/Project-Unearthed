@@ -30,6 +30,11 @@ namespace CharacterAbilities.Assets.Scripts.CharacterAbilities
             {
                 isFiring = false;
             }
+
+            if (Input.GetButtonDown("Reload"))
+            {
+                onReload?.Invoke();
+            }
         }
 
         private IEnumerator FireCoroutine()

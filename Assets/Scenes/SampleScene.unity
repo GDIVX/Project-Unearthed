@@ -495,6 +495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4049990725263321422, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+      propertyPath: _initialAmmount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4049990725263321423, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -559,7 +563,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 7835324180047786533}
-  fireRate: 1
+  _fireRate: 6
+  _ammoPerClip: 30
+  _reloadTime: 2
+  _totalAmmo: 60
+  _currentAmmoInClip: 0
 --- !u!1001 &7835324180047786532
 PrefabInstance:
   m_ObjectHideFlags: 0
