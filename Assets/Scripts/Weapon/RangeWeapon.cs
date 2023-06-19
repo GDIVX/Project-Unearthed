@@ -1,14 +1,15 @@
 using Assets.Scripts.CharacterAbilities;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(ProjectileSpawner))]
 public class RangeWeapon : Weapon
 {
     [SerializeField] Controller _controller;
-    [SerializeField] float _fireRate = 2f; // Fire rate in attacks per second
 
     [SerializeField, BoxGroup("Ammo")] int _ammoPerClip;
     [SerializeField, BoxGroup("Ammo")] float _reloadTime;
@@ -18,6 +19,7 @@ public class RangeWeapon : Weapon
 
     private ProjectileSpawner _projectileSpawner;
     private bool _canFire = true;
+    PerlineCurve perlineCurve;
 
     public int TotalAmmo { get => _totalAmmo; set => _totalAmmo = value; }
     public int CurrentAmmoInClip { get => _currentAmmoInClip; set => _currentAmmoInClip = value; }
@@ -38,6 +40,8 @@ public class RangeWeapon : Weapon
     private void Start()
     {
         CurrentAmmoInClip = _ammoPerClip;
+        perlineCurve = new PerlineCurve(_impulseForce, _impulseForce * 0.5f, Random.value, Random.value);
+
     }
     protected override void Fire()
     {
@@ -57,6 +61,24 @@ public class RangeWeapon : Weapon
         _projectileSpawner.Spawn();
         _currentAmmoInClip--;
         StartCoroutine(StartFireCooldown());
+
+        //handle shake
+        if (_impulseSource != null)
+        {
+            Shake();
+        }
+    }
+
+    private void Shake()
+    {
+        //get the direction of the outgoing projectile based on the rotation of the weapon
+        Vector2 direction = transform.TransformDirection(new Vector2(0f, 1f)).normalized;
+
+        //use perline noise to add some randomness to the shake
+        Vector2 impuseVelocity = direction * perlineCurve.GetNextValue();
+
+        //send impulse
+        _impulseSource.GenerateImpulseWithVelocity(impuseVelocity);
     }
 
     private IEnumerator StartFireCooldown()

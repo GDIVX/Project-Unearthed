@@ -3,7 +3,9 @@
     "rootNamespace": "",
     "references": [
         "Projectiles",
-        "CharacterAbilities"
+        "CharacterAbilities",
+        "Cinemachine",
+        "Random"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
