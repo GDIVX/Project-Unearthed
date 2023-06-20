@@ -765,6 +765,10 @@
       <Project>{40337708-E7B8-5F9A-375E-563A60E662E4}</Project>
       <Name>Random</Name>
     </ProjectReference>
+    <ProjectReference Include="Camera.csproj">
+      <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
+      <Name>Camera</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

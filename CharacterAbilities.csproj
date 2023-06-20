@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\Movement.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\Recoil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />

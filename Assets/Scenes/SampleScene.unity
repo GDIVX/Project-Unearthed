@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369570797}
   - component: {fileID: 369570796}
-  - component: {fileID: 369570798}
+  - component: {fileID: 369570799}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -200,7 +200,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &369570798
+--- !u!114 &369570799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,20 +209,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 369570795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Script: {fileID: 11500000, guid: a8f90607fa80fd940a0c21b526852fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ApplyAfter: 0
-  m_ChannelMask: 1
-  m_Gain: 1
-  m_Use2DDistance: 1
-  m_UseCameraSpace: 1
-  m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_Duration: 1
-    m_NoiseOffsets: {x: -480.43884, y: -361.41147, z: 586.52826}
+  defualtCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.0854166
+      outSlope: -2.0854166
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13186812
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.039185815
+      outSlope: -0.039185815
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15934074
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &488088350
 GameObject:
   m_ObjectHideFlags: 3
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 488088351}
   - component: {fileID: 488088353}
   - component: {fileID: 488088352}
+  - component: {fileID: 488088354}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -311,6 +325,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &488088354
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488088350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,13 +717,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4049990724605596281, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+      propertyPath: _controller
+      value: 
+      objectReference: {fileID: 7835324180047786533}
+    - target: {fileID: 4049990724605596281, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+      propertyPath: recoilTarget
+      value: 
+      objectReference: {fileID: 7835324180047786537}
+    - target: {fileID: 4049990724605596281, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+      propertyPath: recoilStreangth
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4049990725263321409, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_Name
       value: Weapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4049990725263321422, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
-      propertyPath: _initialAmmount
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4049990725263321423, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_RootOrder
@@ -700,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4049990725263321423, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4049990725263321423, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -740,85 +779,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
---- !u!1 &4049990724605596280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4049990725263321409, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+--- !u!114 &4049990724605596281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4049990724605596281, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
   m_PrefabInstance: {fileID: 4049990724605596279}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4049990724605596281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4049990724605596280}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88c62d4ad7042ef45a94e7bf87b8be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _impulseSource: {fileID: 4049990724605596284}
-  _impulseForce: 1
-  _impulseAmplitude: 0.1
-  _fireRate: 2
-  _controller: {fileID: 7835324180047786533}
-  _ammoPerClip: 30
-  _reloadTime: 2
-  _totalAmmo: 60
-  _currentAmmoInClip: 0
---- !u!114 &4049990724605596284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4049990724605596280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 1
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.1
-    m_ImpulseType: 0
-    m_DissipationRate: 0.8
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1001 &7835324180047786532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -874,6 +845,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7835324181591090254, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_Mass
+      value: 1.584
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835324181591090254, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835324181591090254, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8004217764842305147, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: _weapon
       value: 
@@ -891,3 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50af7afbed8e45d4d9588463651153ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &7835324180047786537 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7835324181591090254, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+  m_PrefabInstance: {fileID: 7835324180047786532}
+  m_PrefabAsset: {fileID: 0}

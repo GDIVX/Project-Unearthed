@@ -15,6 +15,8 @@ public class RangeWeapon : Weapon
     [SerializeField, BoxGroup("Ammo")] float _reloadTime;
     [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
     [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
+    [SerializeField, BoxGroup("Recoil")] Rigidbody2D recoilTarget; //the rigid body to apply recoil force to
+    [SerializeField, BoxGroup("Recoil")] float recoilStrength;
 
 
     private ProjectileSpawner _projectileSpawner;
@@ -40,7 +42,7 @@ public class RangeWeapon : Weapon
     private void Start()
     {
         CurrentAmmoInClip = _ammoPerClip;
-        perlineCurve = new PerlineCurve(_impulseAmplitude, 0.1f, Random.value, Random.value);
+        perlineCurve = new PerlineCurve(_shakeIntensity, 0.1f, Random.value, Random.value);
 
     }
     protected override void Fire()
@@ -62,25 +64,38 @@ public class RangeWeapon : Weapon
         _currentAmmoInClip--;
         StartCoroutine(StartFireCooldown());
 
+        //handle recoil
+        Recoil();
+
         //handle shake
-        if (_impulseSource != null)
-        {
-            Shake();
-        }
+        Shake();
+
     }
+
+    private void Recoil()
+    {
+        if (recoilTarget == null)
+        {
+            return;
+        }
+
+        // Calculate the recoil direction based on the firing direction or player's aim direction
+        Vector2 aimDirection = _controller.GetAimDirection();
+        Vector2 recoilDirection = -aimDirection.normalized;
+
+        // Apply recoil to the player avatar or character's transform
+        Vector3 recoilForce = new Vector3(recoilDirection.x, recoilDirection.y, 0f) * recoilStrength;
+        recoilTarget.transform.position += recoilForce;
+    }
+
 
     private void Shake()
     {
         //get the direction of the outgoing projectile based on the rotation of the weapon
-        Vector2 direction = transform.TransformDirection(new Vector2(0f, 1f)).normalized;
+        Vector2 direction = _controller.GetAimDirection();
 
-        //use perline noise to add some randomness to the shake
-        Vector2 impuseVelocity = direction * perlineCurve.GetNextValue() * _impulseAmplitude;
-
-        Debug.Log(impuseVelocity + " : " + direction);
-
-        //send impulse
-        _impulseSource.GenerateImpulseWithVelocity(impuseVelocity);
+        //start the shake
+        CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);
     }
 
     private IEnumerator StartFireCooldown()
