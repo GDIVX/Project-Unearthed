@@ -56,6 +56,7 @@ public class WeaponMount : MonoBehaviour
         weapon.transform.parent = _weaponPivot;
         weapon.transform.localPosition = Offset;
         weapon.transform.localRotation = _weaponPivot.rotation;
+        weapon.SetMount(this);
     }
 
     private void Update()

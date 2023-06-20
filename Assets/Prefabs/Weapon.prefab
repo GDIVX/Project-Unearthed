@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4049990725263321423}
   - component: {fileID: 4049990725263321422}
   - component: {fileID: 4049990724605596281}
-  - component: {fileID: 4049990724605596284}
+  - component: {fileID: 4049990724605596285}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -93,18 +93,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c62d4ad7042ef45a94e7bf87b8be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _impulseSource: {fileID: 4049990724605596284}
-  _impulseForce: 1
-  _impulseAmplitude: 0.1
+  _shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.9705882
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: -0.08050133
+      outSlope: -0.08050133
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3598322
+      outWeight: 0.2848784
+    - serializedVersion: 3
+      time: 1
+      value: 0.0062561035
+      inSlope: -0.039185815
+      outSlope: -0.039185815
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15934074
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _shakeIntensity: 1
+  _shakeTime: 0.2
   _fireRate: 2
   _controller: {fileID: 0}
   _ammoPerClip: 30
   _reloadTime: 2
   _totalAmmo: 60
   _currentAmmoInClip: 0
-  recoilTarget: {fileID: 0}
-  recoilStreangth: 1
---- !u!114 &4049990724605596284
+  _recoil: {fileID: 4049990724605596285}
+--- !u!114 &4049990724605596285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,50 +144,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 4049990725263321409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f01f7eb90fd7684ea569caf6e0d436f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 1
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.1
-    m_ImpulseType: 1
-    m_DissipationRate: 0.8
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 5
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+  _recoilStrength: 1
+  _recoildDuration: 1
+  _recoilEaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.0854166
+      outSlope: -2.0854166
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13186812
+    - serializedVersion: 3
+      time: 1
+      value: 0.0062561035
+      inSlope: -0.039185815
+      outSlope: -0.039185815
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15934074
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _controller: {fileID: 0}
 --- !u!1 &4049990725873772686
 GameObject:
   m_ObjectHideFlags: 0

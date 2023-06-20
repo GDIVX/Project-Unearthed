@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponMount.cs" />
     <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Recoil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Weapon\Weapon.asmdef" />
@@ -375,6 +376,12 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

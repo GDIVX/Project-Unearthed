@@ -1,4 +1,6 @@
 using Assets.Scripts.CharacterAbilities;
+using Assets.Scripts.Weapon;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -15,9 +17,8 @@ public class RangeWeapon : Weapon
     [SerializeField, BoxGroup("Ammo")] float _reloadTime;
     [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
     [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
-    [SerializeField, BoxGroup("Recoil")] Rigidbody2D recoilTarget; //the rigid body to apply recoil force to
-    [SerializeField, BoxGroup("Recoil")] float recoilStrength;
 
+    [SerializeField] Recoil _recoil;
 
     private ProjectileSpawner _projectileSpawner;
     private bool _canFire = true;
@@ -45,6 +46,11 @@ public class RangeWeapon : Weapon
         perlineCurve = new PerlineCurve(_shakeIntensity, 0.1f, Random.value, Random.value);
 
     }
+    public override void SetMount(WeaponMount mount)
+    {
+        _mount = mount;
+
+    }
     protected override void Fire()
     {
         if (!_canFire)
@@ -65,28 +71,14 @@ public class RangeWeapon : Weapon
         StartCoroutine(StartFireCooldown());
 
         //handle recoil
-        Recoil();
+        _recoil.ApplyRecoil(_mount.transform);
 
         //handle shake
         Shake();
 
     }
 
-    private void Recoil()
-    {
-        if (recoilTarget == null)
-        {
-            return;
-        }
 
-        // Calculate the recoil direction based on the firing direction or player's aim direction
-        Vector2 aimDirection = _controller.GetAimDirection();
-        Vector2 recoilDirection = -aimDirection.normalized;
-
-        // Apply recoil to the player avatar or character's transform
-        Vector3 recoilForce = new Vector3(recoilDirection.x, recoilDirection.y, 0f) * recoilStrength;
-        recoilTarget.transform.Translate(recoilForce);
-    }
 
 
     private void Shake()
@@ -118,6 +110,5 @@ public class RangeWeapon : Weapon
 
         _canFire = true;
     }
-
 
 }
