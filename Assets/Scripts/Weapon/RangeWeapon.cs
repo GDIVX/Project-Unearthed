@@ -27,6 +27,7 @@ public class RangeWeapon : Weapon
     public int TotalAmmo { get => _totalAmmo; set => _totalAmmo = value; }
     public int CurrentAmmoInClip { get => _currentAmmoInClip; set => _currentAmmoInClip = value; }
 
+    #region AWAKE_AND_START
     private void Awake()
     {
         _projectileSpawner = GetComponent<ProjectileSpawner>();
@@ -45,12 +46,15 @@ public class RangeWeapon : Weapon
         CurrentAmmoInClip = _ammoPerClip;
         perlineCurve = new PerlineCurve(_shakeIntensity, 0.1f, Random.value, Random.value);
 
-    }
+    } 
+    #endregion
     public override void SetMount(WeaponMount mount)
     {
         _mount = mount;
 
     }
+    
+    #region FIRE_AND_RELOAD
     protected override void Fire()
     {
         if (!_canFire)
@@ -78,25 +82,12 @@ public class RangeWeapon : Weapon
 
     }
 
-
-
-
-    private void Shake()
-    {
-        //get the direction of the outgoing projectile based on the rotation of the weapon
-        Vector2 direction = _controller.GetAimDirection();
-
-        //start the shake
-        CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);
-    }
-
     private IEnumerator StartFireCooldown()
     {
         _canFire = false;
         yield return new WaitForSeconds(1f / _fireRate);
         _canFire = true;
     }
-
     private IEnumerator Reload()
     {
         _canFire = false;
@@ -110,5 +101,17 @@ public class RangeWeapon : Weapon
 
         _canFire = true;
     }
+    #endregion
+
+    private void Shake()
+    {
+        //get the direction of the outgoing projectile based on the rotation of the weapon
+        Vector2 direction = _controller.GetAimDirection();
+
+        //start the shake
+        CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);
+    }
+
+
 
 }
