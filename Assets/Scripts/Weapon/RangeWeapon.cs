@@ -85,7 +85,7 @@ public class RangeWeapon : Weapon
 
         // Apply recoil to the player avatar or character's transform
         Vector3 recoilForce = new Vector3(recoilDirection.x, recoilDirection.y, 0f) * recoilStrength;
-        recoilTarget.transform.position += recoilForce;
+        recoilTarget.transform.Translate(recoilForce);
     }
 
 
