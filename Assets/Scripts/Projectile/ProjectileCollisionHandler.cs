@@ -11,7 +11,7 @@ namespace Assets.Scripts.Projectile
 
         public UnityEvent<Projectile> OnProjectileHit;
 
-        public override void OnCollision(Collider2D other)
+        public override void OnCollision(Collider other)
         {
             //can we collide with this object?
             if (collisionTags.Length == 0)

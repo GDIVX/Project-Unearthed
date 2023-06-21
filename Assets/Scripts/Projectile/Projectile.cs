@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Projectile
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour, IPoolable
     {
         [SerializeField] float _startingVelocity = 0f; // Initial speed of the projectile
@@ -13,7 +13,7 @@ namespace Assets.Scripts.Projectile
         [SerializeField] float _accelerationScalar = 1f; // Scalar to control the rate of acceleration
         [SerializeField] float _lifetime = 5f; // Lifetime of the projectile in seconds
 
-        private Rigidbody2D _rigidbody;
+        private Rigidbody _rigidbody;
 
         private float currentSpeed; // Current speed of the projectile
         private float currentAcceleration; // Current acceleration value
@@ -23,11 +23,19 @@ namespace Assets.Scripts.Projectile
 
         public GameObject GameObject => gameObject;
 
-        public ProjectileSpawner Spawner { get => spawner; set => spawner = value; }
+        public ProjectileSpawner Spawner
+        {
+            get => spawner;
+            set
+            {
+                spawner = value;
+                Debug.Log("!");
+            }
+        }
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         public void OnGet()
@@ -74,7 +82,16 @@ namespace Assets.Scripts.Projectile
 
         public void Despawn()
         {
+            if (spawner == null)
+            {
+                Debug.LogError("No spawner assigned to projectile");
+                //Destroy the object
+                Destroy(gameObject);
+                return;
+            }
             // Return the projectile to the pool
+            Debug.Log("!!!");
+
             Spawner.Return(this);
         }
     }
