@@ -46,7 +46,7 @@ namespace Assets.Scripts.CharacterAbilities
             }
         }
 
-        public override Vector3 GetAimDirection()
+        public override Vector3 GetAimPoint()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

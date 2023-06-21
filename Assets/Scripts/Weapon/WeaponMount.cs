@@ -60,11 +60,18 @@ public class WeaponMount : MonoBehaviour
 
     private void Update()
     {
+
         // Perform weapon rotation based on input or target
         // You can implement your own logic here based on your game's requirements
         // For example, you might use input from the player's mouse or joystick to rotate the weapon
 
-        Vector3 aimDirection = _controller.GetAimDirection();
+        Vector3 aimDirection = _controller.GetAimPoint();
+
+        if (aimDirection.sqrMagnitude <= 0.001f)
+        {
+            return;
+        }
+
         Vector3 direction = aimDirection.normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 

@@ -8,19 +8,15 @@ namespace Assets.Scripts.Weapon
 {
     public class Recoil : MonoBehaviour
     {
-
         [SerializeField] float _recoilStrength;
-        [SerializeField] float _recoildDuration;
+        [SerializeField] float _recoilDuration;
         [SerializeField] AnimationCurve _recoilEaseCurve;
         [SerializeField] Controller _controller;
-
         private float _timer;
         private float _timerTotal;
-        private Vector2 _startingForce;
+        private Transform _target;
 
-        Transform _target;
-
-
+        [SerializeField, ReadOnly] private Vector3 _startingForce;
 
         // Update is called once per frame
         void Update()
@@ -33,36 +29,39 @@ namespace Assets.Scripts.Weapon
             _timer -= Time.deltaTime;
 
             float curveTimeValue = 1 - (_timer / _timerTotal);
+            float curveEval = _recoilEaseCurve.Evaluate(curveTimeValue);
 
-            float curveEvul = _recoilEaseCurve.Evaluate(curveTimeValue);
-
-            //shake over time
-            Vector2 currRecoilForce = curveEvul * _startingForce;
-
-            _target.position = (Vector2)_target.position + currRecoilForce * Time.deltaTime;
-
+            // Shake over time
+            Vector3 currRecoilForce = curveEval * _startingForce;
+            _target.localPosition += currRecoilForce * Time.deltaTime;
         }
 
-        public void ApplyRecoil(Transform target)
+        public void ApplyRecoil(Transform target, Vector3 direction)
         {
             if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
+            ResetRecoil();
 
             // Calculate the recoil direction based on the firing direction or player's aim direction
-            Vector2 aimDirection = _controller.GetAimDirection();
-            Vector2 recoilDirection = ((Vector2)target.position - aimDirection).normalized;
+            Vector3 recoilForce = direction * _recoilStrength;
 
-            Vector3 recoilForce = new Vector3(recoilDirection.x, recoilDirection.y, 0f) * _recoilStrength;
+            // Apply recoil
             _startingForce = recoilForce;
-
-
-            // Apply recoil 
             _target = target;
-            _timer = _recoildDuration;
-            _timerTotal = _recoildDuration;
+            _timer = _recoilDuration;
+            _timerTotal = _recoilDuration;
+
         }
+
+        public void ResetRecoil()
+        {
+            _timer = 0f;
+            _timerTotal = 0f;
+            _startingForce = Vector3.zero;
+        }
+
     }
 }

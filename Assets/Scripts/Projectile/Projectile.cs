@@ -29,7 +29,6 @@ namespace Assets.Scripts.Projectile
             set
             {
                 spawner = value;
-                Debug.Log("!");
             }
         }
 
@@ -90,7 +89,6 @@ namespace Assets.Scripts.Projectile
                 return;
             }
             // Return the projectile to the pool
-            Debug.Log("!!!");
 
             Spawner.Return(this);
         }

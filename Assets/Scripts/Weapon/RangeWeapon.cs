@@ -46,14 +46,14 @@ public class RangeWeapon : Weapon
         CurrentAmmoInClip = _ammoPerClip;
         perlineCurve = new PerlineCurve(_shakeIntensity, 0.1f, Random.value, Random.value);
 
-    } 
+    }
     #endregion
     public override void SetMount(WeaponMount mount)
     {
         _mount = mount;
 
     }
-    
+
     #region FIRE_AND_RELOAD
     protected override void Fire()
     {
@@ -75,7 +75,7 @@ public class RangeWeapon : Weapon
         StartCoroutine(StartFireCooldown());
 
         //handle recoil
-        _recoil.ApplyRecoil(_mount.transform);
+        _recoil.ApplyRecoil(_mount.transform, -transform.forward);
 
         //handle shake
         Shake();
@@ -106,7 +106,7 @@ public class RangeWeapon : Weapon
     private void Shake()
     {
         //get the direction of the outgoing projectile based on the rotation of the weapon
-        Vector2 direction = _controller.GetAimDirection();
+        Vector2 direction = _controller.GetAimPoint();
 
         //start the shake
         CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);

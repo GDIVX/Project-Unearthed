@@ -9,7 +9,7 @@ namespace Assets.Scripts.CharacterAbilities
         public Action onFire;
         public Action onReload;
 
-        public abstract Vector3 GetAimDirection();
+        public abstract Vector3 GetAimPoint();
 
         /// <summary>
         /// Returns a vector that represents the movement input
