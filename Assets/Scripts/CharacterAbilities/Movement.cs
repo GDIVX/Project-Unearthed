@@ -75,10 +75,10 @@ namespace Assets.Scripts.CharacterAbilities
             }
 
             // Calculate the movement vector
-            Vector2 movement = inputVector * currentSpeed;
+            Vector3 movement = new Vector3(inputVector.x, 0, inputVector.y) * currentSpeed;
 
             // Apply the movement to the player's position
-            transform.position += (Vector3)movement * Time.deltaTime;
+            transform.localPosition += (Vector3)movement * Time.deltaTime;
         }
     }
 }

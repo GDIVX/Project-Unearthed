@@ -4,13 +4,13 @@ using UnityEngine;
 public class WeaponMount : MonoBehaviour
 {
     [SerializeField] private Transform _weaponPivot;
-    [SerializeField] private Vector2 _offset;
+    [SerializeField] private Vector3 _offset;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Controller _controller;
     [SerializeField] private AnimationCurve _rotationSpeedCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);
     [SerializeField] private float _speedScalar = 1f;
 
-    public Vector2 Offset
+    public Vector3 Offset
     {
         get => _offset;
         set
@@ -53,9 +53,8 @@ public class WeaponMount : MonoBehaviour
     public void MountWeapon(Weapon weapon)
     {
         _weapon = weapon;
-        weapon.transform.parent = _weaponPivot;
+        weapon.transform.SetParent(_weaponPivot);
         weapon.transform.localPosition = Offset;
-        weapon.transform.localRotation = _weaponPivot.rotation;
         weapon.SetMount(this);
     }
 
@@ -65,10 +64,9 @@ public class WeaponMount : MonoBehaviour
         // You can implement your own logic here based on your game's requirements
         // For example, you might use input from the player's mouse or joystick to rotate the weapon
 
-        Vector2 aimDirection = _controller.GetAimDirection();
-        Vector2 direction = aimDirection - (Vector2)_weaponPivot.position;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.AngleAxis(targetAngle, Vector3.forward);
+        Vector3 aimDirection = _controller.GetAimDirection();
+        Vector3 direction = aimDirection.normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 
         // Get the rotation speed based on the animation curve and multiply it by the speed scalar
         float rotationSpeed = _rotationSpeedCurve.Evaluate(Time.time) * _speedScalar;

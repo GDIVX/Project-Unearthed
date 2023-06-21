@@ -46,9 +46,22 @@ namespace Assets.Scripts.CharacterAbilities
             }
         }
 
-        public override Vector2 GetAimDirection()
+        public override Vector3 GetAimDirection()
         {
-            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 aimDirection = hit.point - transform.position;
+                aimDirection.y = 0f; // Optional: Set the y-coordinate to 0 if you want to ignore height differences
+                aimDirection.Normalize();
+                return aimDirection;
+            }
+
+            return Vector3.zero; // Default aim direction if the raycast doesn't hit anything
         }
+
+
     }
 }
