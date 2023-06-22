@@ -2,37 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class InventorySlot
+namespace Assets.Scripts.Inventory
 {
-    [SerializeField] Item item;
-    [SerializeField] int quantity;
-
-    public Item Item { get => item; private set => item = value; }
-    public int Quantity { get => quantity; set => SetQuantity(value); }
-
-    public InventorySlot(Item item, int quantity)
+    [System.Serializable]
+    public class InventorySlot
     {
-        this.Item = item;
-        this.Quantity = quantity;
-    }
+        [SerializeField] Item item;
+        [SerializeField] int quantity;
 
-    private void SetQuantity(int amount)
-    {
-        //Deal with overflow
-        if (amount > item.ItemMaxAmount)
+        public Item Item { get => item; set => item = value; }
+        public int Quantity { get => quantity; set => SetQuantity(value); }
+
+        public InventorySlot(Item item, int quantity)
         {
-            quantity = item.ItemMaxAmount;
-            return;
+            Item = item;
+            Quantity = quantity;
         }
 
-        //Deal with underflow
-        if (amount < 0)
+        private void SetQuantity(int amount)
         {
-            quantity = 0;
-            return;
-        }
+            //Deal with overflow
+            if (amount > item.ItemMaxAmount)
+            {
+                quantity = item.ItemMaxAmount;
+                return;
+            }
 
-        quantity = amount;
+            //Deal with underflow
+            if (amount < 0)
+            {
+                quantity = 0;
+                return;
+            }
+
+            quantity = amount;
+        }
     }
 }

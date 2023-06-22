@@ -1,97 +1,126 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[System.Serializable]
-public class Inventory : MonoBehaviour
+namespace Assets.Scripts.Inventory
 {
-    [SerializeField, HideInInspector]
-    private List<InventorySlot> inventorySlots;
-
-    public List<InventorySlot> InventorySlots { get => inventorySlots; }
-
-    public Inventory()
+    [System.Serializable]
+    public class Inventory : MonoBehaviour
     {
-        inventorySlots = new List<InventorySlot>();
-    }
 
-    [Button]
-    public bool AddItem(Item item, int quantity)
-    {
-        if (item.ItemMaxAmount <= 1)
+        [SerializeField] private List<InventorySlot> inventorySlots;
+
+        public UnityEvent<Inventory> OnInventoryChanged;
+        public UnityEvent<Inventory> OnInventoryFull;
+
+        public List<InventorySlot> InventorySlots { get => inventorySlots; }
+
+        public Inventory()
         {
-            return AddItemToEmptySlot(item, quantity);
+            inventorySlots = new List<InventorySlot>();
         }
-        else
-        {
-            return StackItemInExistingSlots(item, quantity);
-        }
-    }
 
-    private bool AddItemToEmptySlot(Item item, int quantity)
-    {
-        inventorySlots.Add(new InventorySlot(item, quantity));
-        return true;
-    }
-
-    private bool StackItemInExistingSlots(Item item, int quantity)
-    {
-        foreach (InventorySlot slot in inventorySlots)
+        [Button]
+        public bool AddItem(Item item, int quantity)
         {
-            if (slot.Item == item)
+            if (item.ItemMaxAmount <= 1)
             {
-                int remainingSpace = item.ItemMaxAmount - slot.Quantity;
+                return AddItemToEmptySlot(item, quantity);
+            }
+            else
+            {
+                return StackItemInExistingSlots(item, quantity);
+            }
+        }
 
-                if (remainingSpace > 0)
+        private bool AddItemToEmptySlot(Item item, int quantity)
+        {
+            bool slotFound = false;
+
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.Item == null)
                 {
-                    int quantityToAdd = Mathf.Min(quantity, remainingSpace);
-                    slot.Quantity += quantityToAdd;
-                    quantity -= quantityToAdd;
+                    slot.Item = item;
+                    slot.Quantity = quantity;
+                    slotFound = true;
+                    break;
+                }
+            }
 
-                    if (quantity == 0)
+            if (!slotFound)
+            {
+                // Invoke an event for no empty slot found
+                OnInventoryFull?.Invoke(this);
+                return false;
+            }
+
+            OnInventoryChanged?.Invoke(this);
+            return true;
+        }
+
+        private bool StackItemInExistingSlots(Item item, int quantity)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.Item == item)
+                {
+                    int remainingSpace = item.ItemMaxAmount - slot.Quantity;
+
+                    if (remainingSpace > 0)
                     {
-                        return true; // Added all items to existing slots
+                        int quantityToAdd = Mathf.Min(quantity, remainingSpace);
+                        slot.Quantity += quantityToAdd;
+                        quantity -= quantityToAdd;
+
+                        if (quantity == 0)
+                        {
+                            OnInventoryChanged?.Invoke(this);
+                            return true; // Added all items to existing slots
+                        }
                     }
                 }
             }
+
+            return AddItemToEmptySlot(item, quantity); // Add remaining items to empty slots
         }
 
-        return AddItemToEmptySlot(item, quantity); // Add remaining items to empty slots
-    }
-
-    [Button]
-    public bool RemoveItem(Item item, int quantity)
-    {
-        for (int i = inventorySlots.Count - 1; i >= 0; i--)
+        [Button]
+        public bool RemoveItem(Item item, int quantity)
         {
-            InventorySlot slot = inventorySlots[i];
-
-            if (slot.Item == item)
+            for (int i = inventorySlots.Count - 1; i >= 0; i--)
             {
-                if (slot.Quantity > quantity)
+                InventorySlot slot = inventorySlots[i];
+
+                if (slot.Item == item)
                 {
-                    slot.Quantity -= quantity;
-                    return true;
-                }
-                else
-                {
-                    inventorySlots.RemoveAt(i);
-                    return true;
+                    if (slot.Quantity > quantity)
+                    {
+                        slot.Quantity -= quantity;
+                        return true;
+                    }
+                    else
+                    {
+                        inventorySlots.RemoveAt(i);
+                        OnInventoryChanged?.Invoke(this);
+                        return true;
+                    }
                 }
             }
+
+            return false; // Item not found in the inventory
         }
 
-        return false; // Item not found in the inventory
-    }
-
-    [Button]
-    public InventorySlot GetInventorySlot(int index)
-    {
-        if (index >= 0 && index < inventorySlots.Count)
+        [Button]
+        public InventorySlot GetInventorySlot(int index)
         {
-            return inventorySlots[index];
-        }
+            if (index >= 0 && index < inventorySlots.Count)
+            {
+                return inventorySlots[index];
+            }
 
-        return null; // Invalid index
+            return null; // Invalid index
+        }
     }
 }

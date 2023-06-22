@@ -899,6 +899,10 @@
       <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
       <Name>Stats</Name>
     </ProjectReference>
+    <ProjectReference Include="Inventory.csproj">
+      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
+      <Name>Inventory</Name>
+    </ProjectReference>
     <ProjectReference Include="Random.csproj">
       <Project>{40337708-E7B8-5F9A-375E-563A60E662E4}</Project>
       <Name>Random</Name>
@@ -906,10 +910,6 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="Inventory.csproj">
-      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
-      <Name>Inventory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

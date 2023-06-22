@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory.csproj", "{686D1676-4DBE-026F-5A17-24E1BF4865A3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectiles", "Projectiles.csproj", "{F94D6195-88C7-2719-7184-EC5E896B9D3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera", "Camera.csproj", "{3A54D67C-AC30-79B7-7F66-74E53254C8E0}"
@@ -19,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterAbilities", "Chara
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stats", "Stats.csproj", "{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory.csproj", "{686D1676-4DBE-026F-5A17-24E1BF4865A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{79E10B64-7DFF-5D47-BBBA-BED28B201444}"
 EndProject
 Global
@@ -29,6 +29,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F94D6195-88C7-2719-7184-EC5E896B9D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F94D6195-88C7-2719-7184-EC5E896B9D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F94D6195-88C7-2719-7184-EC5E896B9D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,10 +69,6 @@ Global
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{686D1676-4DBE-026F-5A17-24E1BF4865A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Release|Any CPU.ActiveCfg = Release|Any CPU
