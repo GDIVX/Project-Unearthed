@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Inventory
 
         [SerializeField] private List<InventorySlot> inventorySlots;
 
-        public UnityEvent<Inventory> OnInventoryChanged;
+        public UnityEvent<Inventory, Item, int> OnInventoryChanged;
         public UnityEvent<Inventory> OnInventoryFull;
 
         public List<InventorySlot> InventorySlots { get => inventorySlots; }
@@ -21,8 +22,14 @@ namespace Assets.Scripts.Inventory
             inventorySlots = new List<InventorySlot>();
         }
 
+        /// <summary>
+        /// Adds an item to the inventory
+        /// </summary>
+        /// <param name="item"> The item to add</param>
+        /// <param name="quantity"> The ammount</param>
+        /// <returns>The ammount that was sucssufuly added</returns>
         [Button]
-        public bool AddItem(Item item, int quantity)
+        public int AddItem(Item item, int quantity)
         {
             if (item.ItemMaxAmount <= 1)
             {
@@ -33,8 +40,12 @@ namespace Assets.Scripts.Inventory
                 return StackItemInExistingSlots(item, quantity);
             }
         }
+        internal int AddItem(InventorySlot content)
+        {
+            return AddItem(content.Item, content.Quantity);
+        }
 
-        private bool AddItemToEmptySlot(Item item, int quantity)
+        private int AddItemToEmptySlot(Item item, int quantity)
         {
             bool slotFound = false;
 
@@ -53,15 +64,17 @@ namespace Assets.Scripts.Inventory
             {
                 // Invoke an event for no empty slot found
                 OnInventoryFull?.Invoke(this);
-                return false;
+                return 0;
             }
 
-            OnInventoryChanged?.Invoke(this);
-            return true;
+            //We added all of the items
+            OnInventoryChanged?.Invoke(this, item, quantity);
+            return quantity;
         }
 
-        private bool StackItemInExistingSlots(Item item, int quantity)
+        private int StackItemInExistingSlots(Item item, int quantity)
         {
+            int remainingQuantity = quantity;
             foreach (InventorySlot slot in inventorySlots)
             {
                 if (slot.Item == item)
@@ -72,18 +85,19 @@ namespace Assets.Scripts.Inventory
                     {
                         int quantityToAdd = Mathf.Min(quantity, remainingSpace);
                         slot.Quantity += quantityToAdd;
-                        quantity -= quantityToAdd;
+                        remainingQuantity -= quantityToAdd;
 
                         if (quantity == 0)
                         {
-                            OnInventoryChanged?.Invoke(this);
-                            return true; // Added all items to existing slots
+                            OnInventoryChanged?.Invoke(this, item, quantityToAdd);
+                            return quantity; // Added all items to existing slots
                         }
                     }
                 }
             }
-
-            return AddItemToEmptySlot(item, quantity); // Add remaining items to empty slots
+            // Add remaining items to empty slots
+            //Return the remaining items we can add and those we already did
+            return AddItemToEmptySlot(item, remainingQuantity) + (quantity - remainingQuantity);
         }
 
         [Button]
@@ -103,7 +117,7 @@ namespace Assets.Scripts.Inventory
                     else
                     {
                         inventorySlots.RemoveAt(i);
-                        OnInventoryChanged?.Invoke(this);
+                        OnInventoryChanged?.Invoke(this, item, -quantity);
                         return true;
                     }
                 }
@@ -122,5 +136,6 @@ namespace Assets.Scripts.Inventory
 
             return null; // Invalid index
         }
+
     }
 }

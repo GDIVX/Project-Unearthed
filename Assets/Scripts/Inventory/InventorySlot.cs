@@ -32,6 +32,7 @@ namespace Assets.Scripts.Inventory
             if (amount < 0)
             {
                 quantity = 0;
+                item = null;
                 return;
             }
 
