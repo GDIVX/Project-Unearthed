@@ -18,6 +18,9 @@ public class RangeWeapon : Weapon
     [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
     [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
 
+    [SerializeField, BoxGroup("Accuracy"), Range(0, 1)] float _accuracy;
+    [SerializeField, BoxGroup("Accuracy"), Min(1)] float _spread;
+
     [SerializeField] Recoil _recoil;
 
     private ProjectileSpawner _projectileSpawner;
@@ -44,7 +47,7 @@ public class RangeWeapon : Weapon
     private void Start()
     {
         CurrentAmmoInClip = _ammoPerClip;
-        perlineCurve = new PerlineCurve(_shakeIntensity, 0.1f, Random.value, Random.value);
+        perlineCurve = new PerlineCurve(1 - _accuracy, 0.1f, Random.value, Random.value);
 
     }
     #endregion
@@ -68,9 +71,11 @@ public class RangeWeapon : Weapon
             return;
         }
 
+        //Generate offset base on accuracy
+        Vector3 offset = Vector3.zero;
+        offset.y = perlineCurve.GetNextValue() * _spread;
 
-
-        _projectileSpawner.Spawn();
+        _projectileSpawner.Spawn(offset);
         _currentAmmoInClip--;
         StartCoroutine(StartFireCooldown());
 

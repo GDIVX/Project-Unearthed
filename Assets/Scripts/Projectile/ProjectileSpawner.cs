@@ -24,13 +24,13 @@ public class ProjectileSpawner : MonoBehaviour
     }
 
     [Button]
-    public Projectile Spawn()
+    public Projectile Spawn(Vector3 offset = default)
     {
         Projectile projectile = projectileSpawnManager.Get();
 
         //set up the transform of the projectile
         projectile.transform.position = _spawnPoint.position;
-        projectile.transform.rotation = _spawnPoint.rotation;
+        projectile.transform.rotation = Quaternion.Euler(_spawnPoint.rotation.eulerAngles + offset);
 
         projectile.Spawner = this;
 
