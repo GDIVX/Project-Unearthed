@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Dirt
   itemDescription: A useless pile of worm food
   itemSprite: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
-  itemMaxAmount: 50
+  itemMaxAmount: 35

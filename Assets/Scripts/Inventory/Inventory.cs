@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Inventory
+namespace Assets.Scripts.InventorySystem
 {
     [System.Serializable]
     public class Inventory : MonoBehaviour
@@ -45,6 +45,68 @@ namespace Assets.Scripts.Inventory
             return AddItem(content.Item, content.Quantity);
         }
 
+        public bool CanAdd(Item item, int quantity)
+        {
+            if (item.ItemMaxAmount <= 1)
+            {
+                foreach (InventorySlot slot in inventorySlots)
+                {
+                    if (slot.Item == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                foreach (InventorySlot slot in inventorySlots)
+                {
+                    if (slot.Item == item && slot.Quantity + quantity <= item.ItemMaxAmount)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        [Button]
+        public bool RemoveItem(Item item, int quantity)
+        {
+            for (int i = inventorySlots.Count - 1; i >= 0; i--)
+            {
+                InventorySlot slot = inventorySlots[i];
+
+                if (slot.Item == item)
+                {
+                    if (slot.Quantity > quantity)
+                    {
+                        slot.Quantity -= quantity;
+                        return true;
+                    }
+                    else
+                    {
+                        inventorySlots.RemoveAt(i);
+                        OnInventoryChanged?.Invoke(this, item, -quantity);
+                        return true;
+                    }
+                }
+            }
+
+            return false; // Item not found in the inventory
+        }
+
+        [Button]
+        public InventorySlot GetInventorySlot(int index)
+        {
+            if (index >= 0 && index < inventorySlots.Count)
+            {
+                return inventorySlots[index];
+            }
+
+            return null; // Invalid index
+        }
         private int AddItemToEmptySlot(Item item, int quantity)
         {
             bool slotFound = false;
@@ -98,43 +160,6 @@ namespace Assets.Scripts.Inventory
             // Add remaining items to empty slots
             //Return the remaining items we can add and those we already did
             return AddItemToEmptySlot(item, remainingQuantity) + (quantity - remainingQuantity);
-        }
-
-        [Button]
-        public bool RemoveItem(Item item, int quantity)
-        {
-            for (int i = inventorySlots.Count - 1; i >= 0; i--)
-            {
-                InventorySlot slot = inventorySlots[i];
-
-                if (slot.Item == item)
-                {
-                    if (slot.Quantity > quantity)
-                    {
-                        slot.Quantity -= quantity;
-                        return true;
-                    }
-                    else
-                    {
-                        inventorySlots.RemoveAt(i);
-                        OnInventoryChanged?.Invoke(this, item, -quantity);
-                        return true;
-                    }
-                }
-            }
-
-            return false; // Item not found in the inventory
-        }
-
-        [Button]
-        public InventorySlot GetInventorySlot(int index)
-        {
-            if (index >= 0 && index < inventorySlots.Count)
-            {
-                return inventorySlots[index];
-            }
-
-            return null; // Invalid index
         }
 
     }

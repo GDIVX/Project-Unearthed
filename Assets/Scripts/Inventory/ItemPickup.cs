@@ -4,14 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Inventory
+namespace Assets.Scripts.InventorySystem
 {
 
     /// <summary>
     /// This class is used to pick up items in the world.
     /// </summary>
     [RequireComponent(typeof(Collider))]
-    public class ItemPickup : MonoBehaviour
+    public class ItemPickup : MonoBehaviour, IPickup
     {
         [SerializeField] InventorySlot content;
 
@@ -97,11 +97,6 @@ namespace Assets.Scripts.Inventory
             triggerCollider.isTrigger = true;
             triggerCollider.size = new(0.5f, 0.5f, 0.5f);
 
-            BoxCollider Collider = itemPickupGameObject.AddComponent<BoxCollider>();
-            Collider.size = new(0.5f, 0.5f, 0.5f);
-
-            //add rigidbody
-            itemPickupGameObject.AddComponent<Rigidbody>();
 
             ItemPickup itemPickup = itemPickupGameObject.AddComponent<ItemPickup>();
             itemPickup.Content = new(item, stackSize);
@@ -109,6 +104,11 @@ namespace Assets.Scripts.Inventory
             itemPickupGameObject.transform.position = position;
 
             return itemPickup;
+        }
+
+        public bool CanPickup(Inventory inventory)
+        {
+            return inventory.CanAdd(content.Item, content.Quantity);
         }
     }
 }

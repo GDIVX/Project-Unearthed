@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\Movement.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\PickupPull.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />
@@ -763,6 +764,10 @@
     <ProjectReference Include="Stats.csproj">
       <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
       <Name>Stats</Name>
+    </ProjectReference>
+    <ProjectReference Include="Inventory.csproj">
+      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
+      <Name>Inventory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

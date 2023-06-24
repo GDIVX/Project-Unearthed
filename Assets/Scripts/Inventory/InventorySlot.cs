@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Inventory
+namespace Assets.Scripts.InventorySystem
 {
     [System.Serializable]
     public class InventorySlot
