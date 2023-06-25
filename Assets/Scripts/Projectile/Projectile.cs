@@ -1,5 +1,7 @@
 using ObjectPooling;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectile
@@ -17,7 +19,6 @@ namespace Assets.Scripts.Projectile
 
         private float currentSpeed; // Current speed of the projectile
         private float currentAcceleration; // Current acceleration value
-        private float despawnTimer; // Timer to track the projectile's lifetime
 
         ProjectileSpawner spawner;
 
@@ -37,19 +38,26 @@ namespace Assets.Scripts.Projectile
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void OnEnable()
+        {
+
+            //Start counting to despawn
+            StartCoroutine(DespawnTimer());
+        }
+
         public void OnGet()
         {
             currentSpeed = _startingVelocity;
             currentAcceleration = 0f;
-            despawnTimer = 0f;
+
         }
+
 
         public void OnReturn()
         {
             // Reset the projectile's properties
             currentSpeed = 0f;
             currentAcceleration = 0f;
-            despawnTimer = 0f;
             _rigidbody.velocity = Vector2.zero;
         }
 
@@ -68,15 +76,7 @@ namespace Assets.Scripts.Projectile
             // Apply the velocity to the Rigidbody2D component
             _rigidbody.velocity = transform.up * currentSpeed;
 
-            // Increment the despawn timer
-            despawnTimer += Time.fixedDeltaTime;
 
-            // Check if the despawn timer has exceeded the lifetime
-            if (despawnTimer >= _lifetime)
-            {
-                // Despawn the projectile
-                Despawn();
-            }
         }
 
         public void Despawn()
@@ -91,6 +91,12 @@ namespace Assets.Scripts.Projectile
             // Return the projectile to the pool
 
             Spawner.Return(this);
+        }
+        private IEnumerator DespawnTimer()
+        {
+            yield return new WaitForSeconds(_lifetime);
+
+            Despawn();
         }
     }
 }
