@@ -6,28 +6,36 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.InventorySystem
 {
+    /// <summary>
+    /// Represents an inventory system for collecting and managing items.
+    /// </summary>
     [System.Serializable]
     public class Inventory : MonoBehaviour
     {
-
         [SerializeField] private List<InventorySlot> inventorySlots;
 
         public UnityEvent<Inventory, Item, int> OnInventoryChanged;
         public UnityEvent<Inventory> OnInventoryFull;
 
+        /// <summary>
+        /// Gets the list of inventory slots.
+        /// </summary>
         public List<InventorySlot> InventorySlots { get => inventorySlots; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Inventory"/> class.
+        /// </summary>
         public Inventory()
         {
             inventorySlots = new List<InventorySlot>();
         }
 
         /// <summary>
-        /// Adds an item to the inventory
+        /// Adds an item and its quantity to the inventory.
         /// </summary>
-        /// <param name="item"> The item to add</param>
-        /// <param name="quantity"> The ammount</param>
-        /// <returns>The ammount that was sucssufuly added</returns>
+        /// <param name="item">The item to add.</param>
+        /// <param name="quantity">The quantity to add.</param>
+        /// <returns>The amount that was successfully added.</returns>
         [Button]
         public int AddItem(Item item, int quantity)
         {
@@ -40,11 +48,23 @@ namespace Assets.Scripts.InventorySystem
                 return StackItemInExistingSlots(item, quantity);
             }
         }
+
+        /// <summary>
+        /// Adds an item from an inventory slot to the inventory.
+        /// </summary>
+        /// <param name="content">The inventory slot to add.</param>
+        /// <returns>The amount that was successfully added.</returns>
         internal int AddItem(InventorySlot content)
         {
             return AddItem(content.Item, content.Quantity);
         }
 
+        /// <summary>
+        /// Determines if an item can be added to the inventory.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <param name="quantity">The quantity to add.</param>
+        /// <returns>True if the item can be added, false otherwise.</returns>
         public bool CanAdd(Item item, int quantity)
         {
             if (item.ItemMaxAmount <= 1)
@@ -70,7 +90,12 @@ namespace Assets.Scripts.InventorySystem
             return false;
         }
 
-
+        /// <summary>
+        /// Removes an item and its quantity from the inventory.
+        /// </summary>
+        /// <param name="item">The item to remove.</param>
+        /// <param name="quantity">The quantity to remove.</param>
+        /// <returns>True if the item was successfully removed, false otherwise.</returns>
         [Button]
         public bool RemoveItem(Item item, int quantity)
         {
@@ -97,6 +122,11 @@ namespace Assets.Scripts.InventorySystem
             return false; // Item not found in the inventory
         }
 
+        /// <summary>
+        /// Gets the inventory slot at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the inventory slot.</param>
+        /// <returns>The inventory slot at the specified index.</returns>
         [Button]
         public InventorySlot GetInventorySlot(int index)
         {
@@ -107,6 +137,7 @@ namespace Assets.Scripts.InventorySystem
 
             return null; // Invalid index
         }
+
         private int AddItemToEmptySlot(Item item, int quantity)
         {
             bool slotFound = false;

@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(ProjectileSpawner))]
 public class RangeWeapon : Weapon
 {
     [SerializeField] Controller _controller;
@@ -18,14 +17,13 @@ public class RangeWeapon : Weapon
     [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
     [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
 
-    [SerializeField, BoxGroup("Accuracy"), Range(0, 1)] float _accuracy;
-    [SerializeField, BoxGroup("Accuracy"), Min(1)] float _spread;
+    [SerializeField, BoxGroup("Accuracy") ] Vector2 _accuracyRange;
+    [SerializeField, BoxGroup("Accuracy")] AnimationCurve _accuracyCurve; // Curve to control the accuracy distribution
 
     [SerializeField] Recoil _recoil;
+    [SerializeField, ReadOnly] List<ProjectileSpawner> _projectileSpawners = new List<ProjectileSpawner>();
 
-    private ProjectileSpawner _projectileSpawner;
-    private bool _canFire = true;
-    PerlineCurve perlineCurve;
+    bool _canFire = true;
 
     public int TotalAmmo { get => _totalAmmo; set => _totalAmmo = value; }
     public int CurrentAmmoInClip { get => _currentAmmoInClip; set => _currentAmmoInClip = value; }
@@ -33,7 +31,7 @@ public class RangeWeapon : Weapon
     #region AWAKE_AND_START
     private void Awake()
     {
-        _projectileSpawner = GetComponent<ProjectileSpawner>();
+        _projectileSpawners = new List<ProjectileSpawner>(GetComponentsInChildren<ProjectileSpawner>());
 
         if (_controller == null)
         {
@@ -47,7 +45,6 @@ public class RangeWeapon : Weapon
     private void Start()
     {
         CurrentAmmoInClip = _ammoPerClip;
-        perlineCurve = new PerlineCurve(1 - _accuracy, 0.1f, Random.value, Random.value);
 
     }
     #endregion
@@ -71,12 +68,10 @@ public class RangeWeapon : Weapon
             return;
         }
 
-        //Generate offset base on accuracy
-        Vector3 offset = Vector3.zero;
-        offset.y = perlineCurve.GetNextValue() * _spread;
-
-        _projectileSpawner.Spawn(offset);
-        _currentAmmoInClip--;
+        foreach (ProjectileSpawner spawner in _projectileSpawners)
+        {
+            FireProjectiles(spawner);
+        }
         StartCoroutine(StartFireCooldown());
 
         //handle recoil
@@ -85,6 +80,26 @@ public class RangeWeapon : Weapon
         //handle shake
         Shake();
 
+    }
+
+    private void FireProjectiles(ProjectileSpawner spawner)
+    {
+        // Do not spawn a projectile if the clip is empty
+        if (CurrentAmmoInClip <= 0)
+        {
+            return;
+        }
+
+        // Generate a random accuracy value within the specified range based on the accuracy curve
+        float randomValue = Random.value;
+        float accuracy = Mathf.Lerp(_accuracyRange.x, _accuracyRange.y, _accuracyCurve.Evaluate(randomValue));
+
+        // Generate offset based on the accuracy
+        Vector3 offset = Vector3.zero;
+        offset.y = Random.Range(-accuracy, accuracy);
+
+        spawner.Spawn(offset);
+        _currentAmmoInClip--;
     }
 
     private IEnumerator StartFireCooldown()

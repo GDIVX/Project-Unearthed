@@ -1,4 +1,6 @@
 using Assets.Scripts.CharacterAbilities;
+using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 public class WeaponMount : MonoBehaviour
@@ -50,12 +52,24 @@ public class WeaponMount : MonoBehaviour
         }
     }
 
+    [Button]
     public void MountWeapon(Weapon weapon)
     {
+        if (_weapon != null)
+            Unmount(_weapon);
+
         _weapon = weapon;
         weapon.transform.SetParent(_weaponPivot);
         weapon.transform.localPosition = Offset;
         weapon.SetMount(this);
+
+    }
+
+    private void Unmount(Weapon weapon)
+    {
+        _weapon = null;
+        weapon.transform.SetParent(null);
+        weapon.SetMount(null);
     }
 
     private void Update()
