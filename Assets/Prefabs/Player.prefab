@@ -396,7 +396,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -425,27 +425,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.89239913
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.23911765
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.3696438
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.09904577
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3737334909678565295, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

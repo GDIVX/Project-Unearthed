@@ -380,12 +380,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -3.4071221
-      outSlope: -3.4071221
+      inSlope: -2.0854166
+      outSlope: -2.0854166
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.0875
+      outWeight: 0.13186812
     - serializedVersion: 3
       time: 1
       value: 0.0062561035
@@ -398,7 +398,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _controller: {fileID: 0}
+  _recoilTarget: {fileID: 0}
   _startingForce: {x: 0, y: 0, z: 0}
 --- !u!65 &1949449905398117230
 BoxCollider:
@@ -411,5 +411,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.15}

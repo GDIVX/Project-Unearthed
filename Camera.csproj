@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\Camera\Perspective.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Camera\Camera.asmdef" />

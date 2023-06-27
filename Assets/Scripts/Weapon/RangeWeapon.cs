@@ -17,7 +17,7 @@ public class RangeWeapon : Weapon
     [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
     [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
 
-    [SerializeField, BoxGroup("Accuracy") ] Vector2 _accuracyRange;
+    [SerializeField, BoxGroup("Accuracy")] Vector2 _accuracyRange;
     [SerializeField, BoxGroup("Accuracy")] AnimationCurve _accuracyCurve; // Curve to control the accuracy distribution
 
     [SerializeField] Recoil _recoil;
@@ -75,7 +75,7 @@ public class RangeWeapon : Weapon
         StartCoroutine(StartFireCooldown());
 
         //handle recoil
-        _recoil.ApplyRecoil(_mount.transform, -transform.forward);
+        _recoil.ApplyRecoil(transform.forward);
 
         //handle shake
         Shake();
@@ -84,6 +84,10 @@ public class RangeWeapon : Weapon
 
     private void FireProjectiles(ProjectileSpawner spawner)
     {
+        if (spawner is null)
+        {
+            throw new ArgumentNullException(nameof(spawner));
+        }
         // Do not spawn a projectile if the clip is empty
         if (CurrentAmmoInClip <= 0)
         {
@@ -126,7 +130,7 @@ public class RangeWeapon : Weapon
     private void Shake()
     {
         //get the direction of the outgoing projectile based on the rotation of the weapon
-        Vector2 direction = _controller.GetAimPoint();
+        Vector3 direction = _controller.GetAimPoint();
 
         //start the shake
         CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);

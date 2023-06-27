@@ -16,7 +16,7 @@ namespace Assets.Scripts.CharacterAbilities
             Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
 
             // Define the rotation angle for isometric perspective (45 degrees)
-            float rotationAngle = 45f;
+            float rotationAngle = Perspective.Instance.CurrentPerspective.y;
 
             // Convert the rotation angle to radians
             float rotationAngleRad = rotationAngle * Mathf.Deg2Rad;

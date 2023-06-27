@@ -11,10 +11,9 @@ namespace Assets.Scripts.Weapon
         [SerializeField] float _recoilStrength;
         [SerializeField] float _recoilDuration;
         [SerializeField] AnimationCurve _recoilEaseCurve;
-        [SerializeField] Controller _controller;
+        [SerializeField] Transform _recoilTarget;
         private float _timer;
         private float _timerTotal;
-        private Transform _target;
 
         [SerializeField, ReadOnly] private Vector3 _startingForce;
 
@@ -33,24 +32,23 @@ namespace Assets.Scripts.Weapon
 
             // Shake over time
             Vector3 currRecoilForce = curveEval * _startingForce;
-            _target.localPosition += currRecoilForce * Time.deltaTime;
+            _recoilTarget.localPosition += currRecoilForce * Time.deltaTime;
         }
 
-        public void ApplyRecoil(Transform target, Vector3 direction)
+        public void ApplyRecoil(Vector3 direction)
         {
-            if (target is null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
+
 
             ResetRecoil();
 
+            //project the direction to the xz plane
+            direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
+
             // Calculate the recoil direction based on the firing direction or player's aim direction
-            Vector3 recoilForce = direction * _recoilStrength;
+            Vector3 recoilForce = -direction * _recoilStrength;
 
             // Apply recoil
             _startingForce = recoilForce;
-            _target = target;
             _timer = _recoilDuration;
             _timerTotal = _recoilDuration;
 
