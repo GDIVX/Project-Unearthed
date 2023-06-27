@@ -15,8 +15,21 @@ namespace Assets.Scripts.CharacterAbilities
             // Create the input vector
             Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
 
-            return inputVector;
+            // Define the rotation angle for isometric perspective (45 degrees)
+            float rotationAngle = 45f;
+
+            // Convert the rotation angle to radians
+            float rotationAngleRad = rotationAngle * Mathf.Deg2Rad;
+
+            // Create a rotation matrix using the rotation angle
+            Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.Euler(0f, 0f, -rotationAngle));
+
+            // Rotate the input vector using the rotation matrix
+            Vector2 rotatedInputVector = rotationMatrix * inputVector;
+
+            return rotatedInputVector;
         }
+
 
 
         private void Update()
