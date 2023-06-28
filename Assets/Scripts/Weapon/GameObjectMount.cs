@@ -2,6 +2,7 @@ using Assets.Scripts.CharacterAbilities;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Weapon
 {
@@ -13,12 +14,12 @@ namespace Assets.Scripts.Weapon
     {
         [SerializeField] private Transform _pivot;
         [SerializeField] private Vector3 _offset;
-        [SerializeField] private Controller _controller;
         [SerializeField] private AnimationCurve _rotationSpeedCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);
         [SerializeField] private float _speedScalar = 1f;
-
         [SerializeField] private GameObject _mountedObject;
 
+
+        [Inject] private IController _controller;
         public Vector3 Offset
         {
             get => _offset;
@@ -29,7 +30,7 @@ namespace Assets.Scripts.Weapon
         }
 
         public GameObject MountedObject { get => _mountedObject; private set => _mountedObject = value; }
-        public Controller Controller { get => _controller; protected set => _controller = value; }
+        public IController Controller { get => _controller; protected set => _controller = value; }
 
         private void Awake()
         {
@@ -46,6 +47,7 @@ namespace Assets.Scripts.Weapon
                 Mount(MountedObject);
             }
         }
+
 
         [Button]
         public virtual void Mount(GameObject other)

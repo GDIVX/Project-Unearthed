@@ -1,11 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.CharacterAbilities
 {
     public class Movement : MonoBehaviour
     {
-        [SerializeField] Controller controller;
 
         [SerializeField] float movementSpeed = 5f;                 // Adjust the movement speed as per your needs
         [SerializeField, Min(0.1f)] float accelerationScalar = 1f;            // Adjust the acceleration scalar as per your needs
@@ -18,6 +18,7 @@ namespace Assets.Scripts.CharacterAbilities
         [SerializeField, ReadOnly] float accelerationTimer = 0f;
         [SerializeField, ReadOnly] float decelerationTimer = 0f;
 
+        [Inject] IController controller;
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float AccelerationScalar { get => accelerationScalar; set => accelerationScalar = value; }
         public float DecelerationScalar { get => decelerationScalar; set => decelerationScalar = value; }

@@ -42,7 +42,7 @@ namespace Assets.Scripts.Weapon
             StartCoroutine(Reload(0));
         }
 
-        public override void SetOwner(Controller controller)
+        public override void SetOwner(IController controller)
         {
             base.SetOwner(controller);
 
@@ -50,12 +50,12 @@ namespace Assets.Scripts.Weapon
             _controller.onReload += () => StartCoroutine(Reload(_reloadTime));
 
             //Set Recoil target
-            _recoil.RecoilTarget = controller.transform;
+            _recoil.RecoilTarget = controller.GameObject.transform;
 
             // Set Ammo Tracker
             if (_ammoTracker == null)
             {
-                _ammoTracker = controller.GetComponentInChildren<IAmmoTracker>();
+                _ammoTracker = controller.GameObject.GetComponentInChildren<IAmmoTracker>();
             }
         }
 

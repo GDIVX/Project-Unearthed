@@ -8,7 +8,7 @@ namespace Assets.Scripts.Weapon
 {
     public abstract class Weapon : MonoBehaviour
     {
-        [SerializeField] protected Controller _controller;
+        [SerializeField] protected IController _controller;
 
         [SerializeField, BoxGroup("Camera Shake")] protected AnimationCurve _shakeCurve;
         [SerializeField, BoxGroup("Camera Shake")] protected float _shakeIntensity = 0.2f;
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Weapon
 
         protected abstract void Fire();
 
-        public virtual void SetOwner(Controller controller)
+        public virtual void SetOwner(IController controller)
         {
             _controller = controller;
         }

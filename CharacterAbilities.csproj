@@ -56,11 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CharacterAbilities\Controller.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\IController.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\Movement.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PickupPull.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\CharacterInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />
@@ -796,6 +797,10 @@
     <ProjectReference Include="Camera.csproj">
       <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
       <Name>Camera</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{6FB59247-DAE2-60B0-948D-321AFC9EACE5}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
