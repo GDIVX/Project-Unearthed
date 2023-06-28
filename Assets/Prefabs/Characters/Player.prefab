@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 374912346}
   - component: {fileID: 374912347}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 1596506650}
   - component: {fileID: 1596506652}
   - component: {fileID: 1596506651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pickup Pull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684612749}
   - component: {fileID: 1684612750}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7839004303491820289}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Weapon Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 8418188474337938403}
   - component: {fileID: 1453998029993772481}
   - component: {fileID: 1686629670}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,6 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50af7afbed8e45d4d9588463651153ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mousePositionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7835324181591090255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +475,10 @@ PrefabInstance:
     - target: {fileID: 8282231109586267443, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
       propertyPath: m_Name
       value: 2D Player Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282231109586267443, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f44735fa56e2054fa8ca3945797c9fb, type: 3}

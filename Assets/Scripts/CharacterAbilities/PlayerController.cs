@@ -5,6 +5,7 @@ namespace Assets.Scripts.CharacterAbilities
 {
     public class PlayerController : Controller
     {
+        [SerializeField] LayerMask _mousePositionLayerMask;
         private bool isFiring;
         public override Vector2 GetMovementVector()
         {
@@ -64,8 +65,9 @@ namespace Assets.Scripts.CharacterAbilities
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100f, _mousePositionLayerMask))
             {
+
                 Vector3 aimDirection = hit.point - transform.position;
                 aimDirection.y = 0f; // Optional: Set the y-coordinate to 0 if you want to ignore height differences
                 aimDirection.Normalize();
