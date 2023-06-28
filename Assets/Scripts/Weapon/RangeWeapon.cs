@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Weapon
@@ -12,9 +13,8 @@ namespace Assets.Scripts.Weapon
     public class RangeWeapon : Weapon
     {
 
-        [SerializeField, BoxGroup("Ammo")] int _ammoPerClip;
         [SerializeField, BoxGroup("Ammo")] float _reloadTime;
-        [SerializeField, BoxGroup("Ammo")] int _totalAmmo;
+        [SerializeField, BoxGroup("Ammo")] int _ammoPerClip;
         [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
 
         [SerializeField, BoxGroup("Accuracy")] Vector2 _accuracyRange;
@@ -24,36 +24,39 @@ namespace Assets.Scripts.Weapon
         [SerializeField, ReadOnly] List<ProjectileSpawner> _projectileSpawners = new List<ProjectileSpawner>();
 
         bool _canFire = true;
+        IAmmoTracker _ammoTracker;
 
-        public int TotalAmmo { get => _totalAmmo; set => _totalAmmo = value; }
-        public int CurrentAmmoInClip { get => _currentAmmoInClip; set => _currentAmmoInClip = value; }
+        public int CurrentAmmoInClip { get => _currentAmmoInClip; private set => _currentAmmoInClip = value; }
+
 
         #region Setup
         private void Awake()
         {
             _projectileSpawners = new List<ProjectileSpawner>(GetComponentsInChildren<ProjectileSpawner>());
 
-            if (_controller == null)
-            {
-                _controller = GetComponentInParent<Controller>();
-            }
-
-            _controller.onFire += Fire;
-            _controller.onReload += () => StartCoroutine(Reload());
         }
 
         private void Start()
         {
-            CurrentAmmoInClip = _ammoPerClip;
-
+            //Fast reload
+            StartCoroutine(Reload(0));
         }
 
         public override void SetOwner(Controller controller)
         {
             base.SetOwner(controller);
 
+            _controller.onFire += Fire;
+            _controller.onReload += () => StartCoroutine(Reload(_reloadTime));
+
             //Set Recoil target
             _recoil.RecoilTarget = controller.transform;
+
+            // Set Ammo Tracker
+            if (_ammoTracker == null)
+            {
+                _ammoTracker = controller.GetComponentInChildren<IAmmoTracker>();
+            }
         }
 
         #endregion
@@ -74,7 +77,7 @@ namespace Assets.Scripts.Weapon
 
             if (CurrentAmmoInClip <= 0)
             {
-                StartCoroutine(Reload());
+                StartCoroutine(Reload(_reloadTime));
                 return;
             }
 
@@ -113,7 +116,7 @@ namespace Assets.Scripts.Weapon
             offset.y = Random.Range(-accuracy, accuracy);
 
             spawner.Spawn(offset);
-            _currentAmmoInClip--;
+            CurrentAmmoInClip--;
         }
 
         private IEnumerator StartFireCooldown()
@@ -124,16 +127,16 @@ namespace Assets.Scripts.Weapon
             yield return new WaitForSeconds(1f / _fireRate);
             _canFire = true;
         }
-        private IEnumerator Reload()
+        private IEnumerator Reload(float time)
         {
             _canFire = false;
-            yield return new WaitForSeconds(_reloadTime);
+            yield return new WaitForSeconds(time);
 
-            int ammoToAddToClip = _ammoPerClip - _currentAmmoInClip;
-            int ammoToDeductFromTotal = Mathf.Min(ammoToAddToClip, _totalAmmo);
+            int ammoToAddToClip = _ammoPerClip - CurrentAmmoInClip;
+            int ammoToDeductFromTotal = Mathf.Min(ammoToAddToClip, _ammoTracker.GetAmmoCount());
 
             CurrentAmmoInClip += ammoToDeductFromTotal;
-            _totalAmmo -= ammoToDeductFromTotal;
+            _ammoTracker.AddAmmo(-ammoToDeductFromTotal);
 
             _canFire = true;
         }

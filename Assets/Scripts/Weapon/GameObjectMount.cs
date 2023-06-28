@@ -17,7 +17,7 @@ namespace Assets.Scripts.Weapon
         [SerializeField] private AnimationCurve _rotationSpeedCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);
         [SerializeField] private float _speedScalar = 1f;
 
-        [SerializeField, ReadOnly] private GameObject _mountedObject;
+        [SerializeField] private GameObject _mountedObject;
 
         public Vector3 Offset
         {
