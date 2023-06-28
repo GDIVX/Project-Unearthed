@@ -201,9 +201,9 @@ GameObject:
   - component: {fileID: 7835324181591090249}
   - component: {fileID: 2447301770119762294}
   - component: {fileID: 7835324181591090255}
-  - component: {fileID: 8004217764842305147}
   - component: {fileID: 378469108}
   - component: {fileID: 8418188474337938403}
+  - component: {fileID: 1453998029993772481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -310,47 +310,6 @@ MonoBehaviour:
   currentSpeed: 6.2437024
   accelerationTimer: 0
   decelerationTimer: 1.3556987
---- !u!114 &8004217764842305147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7835324181591090252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe6998758e2ae940ba2ba7eae0e3681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponPivot: {fileID: 7839004303491820289}
-  _offset: {x: 0, y: 0, z: 0.5}
-  _weapon: {fileID: 0}
-  _controller: {fileID: 2447301770119762294}
-  _rotationSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 5.8112874
-      outSlope: 5.8112874
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.05625
-    - serializedVersion: 3
-      time: 1
-      value: 1.0130577
-      inSlope: -0.9926727
-      outSlope: -0.9926727
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.19375002
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _speedScalar: 8
 --- !u!114 &378469108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +359,47 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1453998029993772481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835324181591090252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27cf199a71e5642bfe3fe87625c7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pivot: {fileID: 7839004303491820289}
+  _offset: {x: 0, y: 0, z: 0.5}
+  _controller: {fileID: 2447301770119762294}
+  _rotationSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _speedScalar: 5
+  _mountedObject: {fileID: 0}
 --- !u!1001 &1238652419031190600
 PrefabInstance:
   m_ObjectHideFlags: 0

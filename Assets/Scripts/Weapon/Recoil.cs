@@ -17,6 +17,8 @@ namespace Assets.Scripts.Weapon
 
         [SerializeField, ReadOnly] private Vector3 _startingForce;
 
+        public Transform RecoilTarget { get => _recoilTarget; set => _recoilTarget = value; }
+
         // Update is called once per frame
         void Update()
         {
@@ -32,7 +34,7 @@ namespace Assets.Scripts.Weapon
 
             // Shake over time
             Vector3 currRecoilForce = curveEval * _startingForce;
-            _recoilTarget.localPosition += currRecoilForce * Time.deltaTime;
+            RecoilTarget.localPosition += currRecoilForce * Time.deltaTime;
         }
 
         public void ApplyRecoil(Vector3 direction)
