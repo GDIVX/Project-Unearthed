@@ -48,11 +48,6 @@ public class RangeWeapon : Weapon
 
     }
     #endregion
-    public override void SetMount(WeaponMount mount)
-    {
-        _mount = mount;
-
-    }
 
     #region FIRE_AND_RELOAD
     protected override void Fire()

@@ -3,14 +3,18 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-public class WeaponMount : MonoBehaviour
+/// <summary>
+/// This class is used to mount a GameObject to a pivot point and rotate it around a target.
+/// </summary>
+public class GameObjectMount : MonoBehaviour
 {
-    [SerializeField] private Transform _weaponPivot;
+    [SerializeField] private Transform _pivot;
     [SerializeField] private Vector3 _offset;
-    [SerializeField] private Weapon _weapon;
     [SerializeField] private Controller _controller;
     [SerializeField] private AnimationCurve _rotationSpeedCurve = AnimationCurve.Linear(0f, 1f, 1f, 1f);
     [SerializeField] private float _speedScalar = 1f;
+
+    [SerializeField] private GameObject _mountedObject;
 
     public Vector3 Offset
     {
@@ -18,58 +22,42 @@ public class WeaponMount : MonoBehaviour
         set
         {
             _offset = value;
-            MountWeapon(Weapon);
         }
     }
 
-    public Weapon Weapon
-    {
-        get => _weapon;
-        set
-        {
-            MountWeapon(value);
-        }
-    }
 
     private void Awake()
     {
-        if (_weaponPivot == null)
+        if (_pivot == null)
         {
-            _weaponPivot = transform;
-        }
-
-        if (Weapon == null)
-        {
-            Weapon = GetComponent<Weapon>();
+            _pivot = transform;
         }
     }
 
     private void Start()
     {
-        if (Weapon != null)
+        if (_mountedObject != null)
         {
-            MountWeapon(Weapon);
+            Mount(_mountedObject);
         }
     }
 
     [Button]
-    public void MountWeapon(Weapon weapon)
+    public void Mount(GameObject other)
     {
-        if (_weapon != null)
-            Unmount(_weapon);
+        if (_mountedObject != null)
+            Unmount(_mountedObject);
 
-        _weapon = weapon;
-        weapon.transform.SetParent(_weaponPivot);
-        weapon.transform.localPosition = Offset;
-        weapon.SetMount(this);
+        _mountedObject = other;
+        other.transform.SetParent(_pivot);
+        other.transform.localPosition = Offset;
 
     }
 
-    private void Unmount(Weapon weapon)
+    private void Unmount(GameObject other)
     {
-        _weapon = null;
-        weapon.transform.SetParent(null);
-        weapon.SetMount(null);
+        _mountedObject = null;
+        other.transform.SetParent(null);
     }
 
     private void Update()
@@ -93,6 +81,6 @@ public class WeaponMount : MonoBehaviour
         float rotationSpeed = _rotationSpeedCurve.Evaluate(Time.time) * _speedScalar;
 
         // Rotate towards the target rotation with the specified rotation speed
-        _weaponPivot.rotation = Quaternion.Lerp(_weaponPivot.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        _pivot.rotation = Quaternion.Lerp(_pivot.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 }
