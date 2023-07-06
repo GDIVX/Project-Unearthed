@@ -64,3 +64,5 @@ sysinfo.txt
 *.unityproj
 *.unity3d
 *_Data/
+.vs/Project Unearthed/FileContentIndex/44d3d06d-9c9f-4d4c-b2bd-f92c5694ef1d.vsidx
+*.vsidx
