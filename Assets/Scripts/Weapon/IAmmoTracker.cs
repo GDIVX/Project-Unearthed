@@ -1,15 +1,7 @@
+using Assets.Scripts.InventorySystem;
+
 public interface IAmmoTracker
 {
-    int GetAmmoCount(AmmoType type);
-    void AddAmmo(int amount, AmmoType type);
-}
-
-
-public enum AmmoType
-{
-    All,
-    Pistol,
-    Shotgun,
-    Rifle,
-    Rocket,
+    int GetAmmoCount(Item ammoType);
+    void AddAmmo(int amount, Item type);
 }

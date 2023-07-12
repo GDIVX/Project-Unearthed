@@ -14,7 +14,7 @@ namespace Assets.Scripts.InventorySystem
     {
         [SerializeField] private List<InventorySlot> inventorySlots;
 
-        public UnityEvent<Inventory, Item, int> OnInventoryChanged;
+        public UnityEvent<Inventory, Item, int> OnItemQuantityChanged;
         public UnityEvent<Inventory> OnInventoryFull;
 
         /// <summary>
@@ -29,6 +29,16 @@ namespace Assets.Scripts.InventorySystem
         {
             inventorySlots = new List<InventorySlot>();
         }
+
+        [Button]
+        public void AddEmptySlots(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                InventorySlots.Add(null);
+            }
+        }
+
 
         /// <summary>
         /// Adds an item and its quantity to the inventory.
@@ -113,7 +123,7 @@ namespace Assets.Scripts.InventorySystem
                     else
                     {
                         inventorySlots.RemoveAt(i);
-                        OnInventoryChanged?.Invoke(this, item, -quantity);
+                        OnItemQuantityChanged?.Invoke(this, item, -quantity);
                         return true;
                     }
                 }
@@ -138,6 +148,63 @@ namespace Assets.Scripts.InventorySystem
             return null; // Invalid index
         }
 
+        [Button]
+        public void Clear()
+        {
+            inventorySlots.Clear();
+        }
+
+        [Button]
+        public void SortByType()
+        {
+            inventorySlots.Sort((x, y) => x.Item.ItemName.CompareTo(y.Item.ItemName));
+        }
+
+        [Button]
+        public Item GetItem(Item item)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.Item == item)
+                {
+                    return slot.Item;
+                }
+            }
+
+            return null;
+        }
+
+        [Button]
+        public Item GetItem(string name)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.Item.ItemName == name)
+                {
+                    return slot.Item;
+                }
+            }
+
+            return null;
+        }
+
+        [Button]
+        public int Count(Item item)
+        {
+            int res = 0;
+
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.Item == item)
+                {
+                    res += slot.Quantity;
+                }
+            }
+
+            return res;
+        }
+
+
         private int AddItemToEmptySlot(Item item, int quantity)
         {
             bool slotFound = false;
@@ -161,7 +228,7 @@ namespace Assets.Scripts.InventorySystem
             }
 
             //We added all of the items
-            OnInventoryChanged?.Invoke(this, item, quantity);
+            OnItemQuantityChanged?.Invoke(this, item, quantity);
             return quantity;
         }
 
@@ -182,7 +249,7 @@ namespace Assets.Scripts.InventorySystem
 
                         if (quantity == 0)
                         {
-                            OnInventoryChanged?.Invoke(this, item, quantityToAdd);
+                            OnItemQuantityChanged?.Invoke(this, item, quantityToAdd);
                             return quantity; // Added all items to existing slots
                         }
                     }

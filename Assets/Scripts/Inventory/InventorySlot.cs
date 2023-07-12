@@ -29,7 +29,7 @@ namespace Assets.Scripts.InventorySystem
             }
 
             //Deal with underflow
-            if (amount < 0)
+            if (amount <= 0)
             {
                 quantity = 0;
                 item = null;

@@ -1,4 +1,5 @@
 using Assets.Scripts.CharacterAbilities;
+using Assets.Scripts.InventorySystem;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Weapon
         [SerializeField, BoxGroup("Ammo")] float _reloadTime;
         [SerializeField, BoxGroup("Ammo")] int _ammoPerClip;
         [SerializeField, BoxGroup("Ammo"), ReadOnly] int _currentAmmoInClip;
-        [SerializeField, BoxGroup("Ammo")] AmmoType _ammoType;
+        [SerializeField, BoxGroup("Ammo")] Item _ammoType; // If the weapon uses inventory, this item will be used to track the ammo count
 
         [SerializeField, BoxGroup("Accuracy")] Vector2 _accuracyRange;
         [SerializeField, BoxGroup("Accuracy")] AnimationCurve _accuracyCurve; // Curve to control the accuracy distribution

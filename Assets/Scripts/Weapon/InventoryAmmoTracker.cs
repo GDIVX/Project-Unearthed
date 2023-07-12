@@ -7,19 +7,23 @@ using UnityEngine;
 public class InventoryAmmoTracker : MonoBehaviour, IAmmoTracker
 {
     [SerializeField] Inventory _inventory;
+
     private void Start()
     {
         _inventory ??= GetComponent<Inventory>();
     }
 
-
-    public int GetAmmoCount(AmmoType type)
+    public void AddAmmo(int amount, Item ammoType)
     {
-        throw new System.NotImplementedException();
+
+        //Update the inventory
+        _inventory.AddItem(ammoType, amount);
     }
 
-    public void AddAmmo(int amount, AmmoType type)
+    public int GetAmmoCount(Item ammoType)
     {
-        throw new System.NotImplementedException();
+
+        return _inventory.Count(ammoType);
     }
+
 }
