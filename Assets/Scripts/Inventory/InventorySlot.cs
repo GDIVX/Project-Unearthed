@@ -16,27 +16,45 @@ namespace Assets.Scripts.InventorySystem
         public InventorySlot(Item item, int quantity)
         {
             Item = item;
-            Quantity = quantity;
+            Quantity = Item == null ? 0 : quantity;
         }
+
 
         private void SetQuantity(int amount)
         {
-            //Deal with overflow
-            if (amount > item.ItemMaxAmount)
+            if (Item == null)
+            {
+                quantity = 0;
+                return;
+            }
+
+            // Deal with negative maximum amount
+            if (Item.ItemMaxAmount < 0)
+            {
+                quantity = 0;
+                Item = null;
+                return;
+            }
+
+            // Deal with overflow
+            if (amount > Item.ItemMaxAmount)
             {
                 quantity = item.ItemMaxAmount;
                 return;
             }
 
-            //Deal with underflow
+            // Deal with underflow
             if (amount <= 0)
             {
                 quantity = 0;
-                item = null;
+                Item = null;
                 return;
             }
 
             quantity = amount;
         }
+
+
+
     }
 }

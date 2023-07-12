@@ -60,10 +60,10 @@
     <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\AmmoTracker.cs" />
     <Compile Include="Assets\Scripts\Weapon\IAmmoTracker.cs" />
+    <Compile Include="Assets\Scripts\Weapon\InventoryAmmoTracker.cs" />
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEquipper.cs" />
     <Compile Include="Assets\Scripts\Weapon\Recoil.cs" />
-    <Compile Include="Assets\Scripts\Weapon\InventoryAmmoTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Weapon\Weapon.asmdef" />
