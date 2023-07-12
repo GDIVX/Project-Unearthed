@@ -6,7 +6,8 @@
         "CharacterAbilities",
         "Cinemachine",
         "Random",
-        "Camera"
+        "Camera",
+        "Inventory"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

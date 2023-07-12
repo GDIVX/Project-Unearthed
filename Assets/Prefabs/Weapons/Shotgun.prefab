@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c62d4ad7042ef45a94e7bf87b8be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
   _shakeCurve:
     serializedVersion: 2
     m_Curve:
@@ -310,11 +309,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   _shakeIntensity: 0.7
   _shakeTime: 0.3
-  _fireRate: 3
-  _reloadTime: 0.5
+  _fireRate: 2
+  _reloadTime: 1
   _ammoPerClip: 30
   _currentAmmoInClip: 0
-  _accuracyRange: {x: -25, y: 25}
+  _ammoType: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+  _accuracyRange: {x: 0, y: 15}
   _accuracyCurve:
     serializedVersion: 2
     m_Curve:
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f01f7eb90fd7684ea569caf6e0d436f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoilStrength: 0.5
+  _recoilStrength: 4
   _recoilDuration: 0.4
   _recoilEaseCurve:
     serializedVersion: 2
