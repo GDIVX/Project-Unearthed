@@ -25,18 +25,20 @@ namespace Assets.Scripts.CharacterAbilities
         public AnimationCurve AccelerationCurve { get => accelerationCurve; set => accelerationCurve = value; }
         public AnimationCurve DecelerationCurve { get => decelerationCurve; set => decelerationCurve = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
+        public float CurrentSpeed { get => currentSpeed; private set => currentSpeed = value; }
+        public IController Controller { get => controller; set => controller = value; }
 
         private void Update()
         {
             //if there is no controller throw error and return
-            if (controller == null)
+            if (Controller == null)
             {
                 Debug.LogError("No controller assigned to movement");
                 return;
             }
 
             //Read movement input from controller
-            Vector2 inputVector = controller.GetMovementVector();
+            Vector2 inputVector = Controller.GetMovementVector();
 
             // Check if input vector magnitude is greater than 1 and normalize it
             if (inputVector.magnitude > 1f)
@@ -64,19 +66,19 @@ namespace Assets.Scripts.CharacterAbilities
             float decelerationValue = DecelerationCurve.Evaluate(decelerationTimer) * DecelerationScalar;
 
             // Smoothly adjust the current speed towards the target speed
-            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, accelerationValue * Time.deltaTime / (accelerationValue + decelerationValue));
+            CurrentSpeed = Mathf.Lerp(CurrentSpeed, targetSpeed, accelerationValue * Time.deltaTime / (accelerationValue + decelerationValue));
 
             // Limit the current speed to the maximum velocity
-            currentSpeed = Mathf.Clamp(currentSpeed, 0f, MaxVelocity);
+            CurrentSpeed = Mathf.Clamp(CurrentSpeed, 0f, MaxVelocity);
 
-            if (currentSpeed == float.NaN)
+            if (CurrentSpeed == float.NaN)
             {
                 Debug.LogWarning("Current speed is Nan");
                 return;
             }
 
             // Calculate the movement vector
-            Vector3 movement = new Vector3(inputVector.x, 0, inputVector.y) * currentSpeed;
+            Vector3 movement = new Vector3(inputVector.x, 0, inputVector.y) * CurrentSpeed;
 
             // Apply the movement to the player's position
             transform.localPosition += (Vector3)movement * Time.deltaTime;
