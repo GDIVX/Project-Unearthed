@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\AmmoTracker.cs" />
     <Compile Include="Assets\Scripts\Weapon\IAmmoTracker.cs" />
+    <Compile Include="Assets\Scripts\Weapon\InventoryAmmoTracker.cs" />
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEquipper.cs" />
     <Compile Include="Assets\Scripts\Weapon\Recoil.cs" />
@@ -811,6 +812,10 @@
     <ProjectReference Include="Camera.csproj">
       <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
       <Name>Camera</Name>
+    </ProjectReference>
+    <ProjectReference Include="Inventory.csproj">
+      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
+      <Name>Inventory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,7 @@
+using Assets.Scripts.InventorySystem;
+
 public interface IAmmoTracker
 {
-    int GetAmmoCount();
-    void AddAmmo(int amount);
+    int GetAmmoCount(Item ammoType);
+    void AddAmmo(int amount, Item type);
 }
