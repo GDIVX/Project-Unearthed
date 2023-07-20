@@ -954,6 +954,10 @@
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="AI.csproj">
+      <Project>{99AF982B-B9AA-8AF6-C47D-943510703F9E}</Project>
+      <Name>AI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
