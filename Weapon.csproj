@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}</ProjectGuid>
+    <ProjectGuid>{D9A7E481-7452-ECD3-8FC9-1CE84F996E95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Weapon</AssemblyName>
@@ -53,7 +53,7 @@
     <UnityVersion>2021.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Weapon\GameObjectMount.cs" />
@@ -320,9 +320,6 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -406,12 +403,6 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -797,19 +788,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Projectiles.csproj">
-      <Project>{F94D6195-88C7-2719-7184-EC5E896B9D3C}</Project>
+      <Project>{C1268DBE-51FA-C3FC-F3B5-03F3EA09B115}</Project>
       <Name>Projectiles</Name>
     </ProjectReference>
     <ProjectReference Include="CharacterAbilities.csproj">
-      <Project>{C595FD02-0C9E-592B-DB63-137B5570013A}</Project>
+      <Project>{3CB93D02-C576-F688-D010-334095FF4E7B}</Project>
       <Name>CharacterAbilities</Name>
     </ProjectReference>
     <ProjectReference Include="Random.csproj">
-      <Project>{40337708-E7B8-5F9A-375E-563A60E662E4}</Project>
+      <Project>{C3650C8D-406F-A1A3-3105-30FFBCED4619}</Project>
       <Name>Random</Name>
     </ProjectReference>
     <ProjectReference Include="Camera.csproj">
-      <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
+      <Project>{C0E7880C-D06E-BF89-7DA7-86138A256BA7}</Project>
       <Name>Camera</Name>
     </ProjectReference>
   </ItemGroup>
