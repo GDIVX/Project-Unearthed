@@ -36,5 +36,15 @@ namespace Assets.Scripts.InventorySystem
             newItem.itemMaxAmount = itemMaxAmount;
             return newItem;
         }
+
+        /// <summary>
+        /// Create a mock item with the given max amount. used for testing.
+        /// </summary>
+        /// <param name="maxAmount"></param>
+        /// <returns></returns>
+        public static Item Mock(int maxAmount)
+        {
+            return CreateItem("Mock Item", "Mock Description", null, maxAmount);
+        }
     }
 }
