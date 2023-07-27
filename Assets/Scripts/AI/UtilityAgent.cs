@@ -6,12 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class UtilityAgent : MonoBehaviour, IController
+public class UtilityAgent : MonoBehaviour, IController
 {
     [SerializeField] List<UtilityAction> _actions;
     [SerializeField] List<Need> _needs;
 
     public GameObject GameObject => gameObject;
+
+    public List<UtilityAction> Actions { get => _actions; set => _actions = value; }
+    public List<Need> Needs { get => _needs; set => _needs = value; }
 
     public event Action onFire;
     public event Action onReload;
@@ -41,50 +44,68 @@ public abstract class UtilityAgent : MonoBehaviour, IController
         ExecuteAction();
     }
 
-    public void ExecuteAction()
+
+
+    private void ExecuteAction()
     {
         Need need = ChooseNeed();
-        if (need.name == "Survive")
-        {
-            Debug.Log("Chose need: Survive");
-        }
-        else if (need.name == "DamagePlayer")
-        {
-            Debug.Log("Chose need: DamagePlayer");
 
-        }
         UtilityAction action = ChooseAction(need);
+
+        if (action == null)
+        {
+            Debug.LogError("No action was chosen");
+            return;
+        }
 
         action.Execute(this);
     }
 
     protected Need ChooseNeed()
     {
-        float maxScore = float.MinValue;
+        float maxScore = -1;
         Need chosenNeed = null;
-        foreach (Need need in _needs)
+
+        if (Needs.Count == 0)
         {
-            if (need.GetUtilityScore() > maxScore)
+            Debug.LogError("No needs were added to agent");
+        }
+
+        foreach (Need need in Needs)
+        {
+            if (need.GetUtilityScore() >= maxScore)
             {
                 maxScore = need.GetUtilityScore();
                 chosenNeed = need;
             }
         }
-        return chosenNeed;
+
+        return chosenNeed ?? Needs.FirstOrDefault();
     }
+
 
     protected UtilityAction ChooseAction(Need need)
     {
+        if (need is null)
+        {
+            throw new ArgumentNullException(nameof(need));
+        }
 
-        List<UtilityAction> relevantActions = _actions.Where((action) => action.TargetNeed == need).ToList();
+        List<UtilityAction> relevantActions = Actions.Where((action) => action.TargetNeed == need).ToList();
+
+        if (relevantActions.Count == 0)
+        {
+            Debug.LogError($"No relevant actions were found for the need {need.name}");
+        }
 
         float maxScore = float.MinValue;
         UtilityAction chosenAction = null;
         foreach (UtilityAction action in relevantActions)
         {
-            if (need.GetUtilityScore() > maxScore)
+            float actionScore = action.GetUtilityScore();
+            if (actionScore >= maxScore)
             {
-                maxScore = need.GetUtilityScore();
+                maxScore = actionScore;
                 chosenAction = action;
             }
         }
@@ -92,3 +113,5 @@ public abstract class UtilityAgent : MonoBehaviour, IController
     }
 
 }
+
+

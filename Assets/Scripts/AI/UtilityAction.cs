@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.AI
@@ -7,7 +8,7 @@ namespace Assets.Scripts.AI
     {
         [SerializeField] Need _targetNeed;
 
-        public Need TargetNeed { get => _targetNeed; private set => _targetNeed = value; }
+        public Need TargetNeed { get => _targetNeed; protected set => _targetNeed = value; }
 
         public float GetUtilityScore()
         {
@@ -17,6 +18,7 @@ namespace Assets.Scripts.AI
         public abstract void Execute(UtilityAgent agent);
 
         protected abstract float CalculateUtilityScore();
+
 
     }
 }
