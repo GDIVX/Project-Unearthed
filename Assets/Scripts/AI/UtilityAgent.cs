@@ -44,6 +44,15 @@ public abstract class UtilityAgent : MonoBehaviour, IController
     public void ExecuteAction()
     {
         Need need = ChooseNeed();
+        if (need.name == "Survive")
+        {
+            Debug.Log("Chose need: Survive");
+        }
+        else if (need.name == "DamagePlayer")
+        {
+            Debug.Log("Chose need: DamagePlayer");
+
+        }
         UtilityAction action = ChooseAction(need);
 
         action.Execute(this);

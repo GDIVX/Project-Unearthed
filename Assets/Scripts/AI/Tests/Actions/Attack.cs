@@ -2,6 +2,8 @@ using Assets.Scripts.AI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System;
 
 [CreateAssetMenu(fileName = "Action", menuName = "UtilityAI/Actions/Attack")]
 public class Attack : UtilityAction
@@ -11,20 +13,38 @@ public class Attack : UtilityAction
         Debug.Log("Chose to attack");
     }
 
+
     protected override float CalculateUtilityScore()
     {
-        throw new System.NotImplementedException();
+        Type type = GetType();
+        MethodInfo[] methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+        int count = 0;
+        float total = 0f;
+        foreach (MethodInfo method in methods)
+        {
+            if (method.ReturnType == typeof(float) && method.Name != nameof(DamagePlayer))
+            {
+                total += (float)method.Invoke(this, null);
+                count++;
+            }
+        }
+
+        if (count > 0)
+        {
+            return total / count;
+        }
+        else
+        {
+            return 0f;
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public float FirstCondition()
     {
-        
+        return UnityEngine.Random.Range(0f, 1f);
     }
-
-    // Update is called once per frame
-    void Update()
+    public float SecondCondition()
     {
-        
+        return UnityEngine.Random.Range(0f, 1f);
     }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a61845a30f55348816436d15982349, type: 3}
   m_Name: Pursue Player
   m_EditorClassIdentifier: 
-  _targetNeed: {fileID: 0}
+  _targetNeed: {fileID: 11400000, guid: 5e58b845dd9a2874bb1da68b5c104fa4, type: 2}

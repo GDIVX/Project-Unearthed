@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5145dce7b791e40a30a37f2e4fb347, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  _targetNeed: {fileID: 0}
+  _targetNeed: {fileID: 11400000, guid: 6b238cfb87d5e29499be0260881704ff, type: 2}
