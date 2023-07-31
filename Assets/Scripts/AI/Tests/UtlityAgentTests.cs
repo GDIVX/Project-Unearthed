@@ -85,13 +85,15 @@ public class UtilityAgentTests : MonoBehaviour
         var action1 = ActionMock.Create(need, 0.5f);
         var action2 = ActionMock.Create(need, 0.5f);
 
+        _agent.Needs.Add(need);
         _agent.Actions.Add(action1);
         _agent.Actions.Add(action2);
 
         yield return new WaitForSeconds(0.1f);
 
         // Assert that at least one action is executed
-        Assert.IsTrue(action1.isExecuted || action2.isExecuted);
+        Assert.IsTrue(action2.isExecuted);
+        Assert.IsFalse(action1.isExecuted);
 
         yield return null;
     }

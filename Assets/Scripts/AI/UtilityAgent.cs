@@ -111,7 +111,6 @@ public class UtilityAgent : MonoBehaviour, IController
         }
         return chosenAction;
     }
-
 }
 
 
