@@ -62,7 +62,29 @@ public class UtilityAgentTests : MonoBehaviour
         var need1 = NeedMock.Create(0.4f);
         var action1 = ActionMock.Create(need1, 0.3f);
         var need2 = NeedMock.Create(0.6f);
-        var action2 = ActionMock.Create(need2, 0.7f);
+        var action2 = ActionMock.Create(need2, 0.1f);
+
+        _agent.Needs.Add(need1);
+        _agent.Actions.Add(action1);
+        _agent.Needs.Add(need2);
+        _agent.Actions.Add(action2);
+
+        yield return new WaitForSeconds(0.1f);
+
+        // Check that the agent selected and executed the correct action
+        Assert.IsTrue(action2.isExecuted);
+        Assert.IsFalse(action1.isExecuted);
+
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator ExecuteAction_ExecutesActionWhenNeedUtilityScoresAreEqual()
+    {
+        var need1 = NeedMock.Create(0.6f);
+        var action1 = ActionMock.Create(need1, 0.3f);
+        var need2 = NeedMock.Create(0.6f);
+        var action2 = ActionMock.Create(need2, 0.1f);
 
         _agent.Needs.Add(need1);
         _agent.Actions.Add(action1);
@@ -112,6 +134,24 @@ public class UtilityAgentTests : MonoBehaviour
 
         yield return null;
     }
+
+    [UnityTest]
+    public IEnumerator ExecuteAction_DoesNotExecuteActionWhenDeletingNeeds()
+    {
+        var need = NeedMock.Create(0.6f);
+        var action = ActionMock.Create(need, 0.5f);
+
+        _agent.Needs.Remove(need);
+        _agent.Actions.Add(action);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.IsFalse(action.isExecuted);
+
+        yield return null;
+    }
+
+
 
 
 
