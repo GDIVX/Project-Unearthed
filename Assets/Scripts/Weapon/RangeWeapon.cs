@@ -1,5 +1,6 @@
 using Assets.Scripts.CharacterAbilities;
 using Assets.Scripts.InventorySystem;
+using CharacterAbilities.Assets.Scripts.CharacterAbilities;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
@@ -44,7 +45,7 @@ namespace Assets.Scripts.Weapon
             StartCoroutine(Reload(0));
         }
 
-        public override void SetOwner(IController controller)
+        public override void SetOwner(IProjectileWeaponInput controller)
         {
             base.SetOwner(controller);
 
