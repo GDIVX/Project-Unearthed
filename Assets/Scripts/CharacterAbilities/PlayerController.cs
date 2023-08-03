@@ -1,10 +1,12 @@
-﻿using System;
+﻿using CharacterAbilities;
+using CharacterAbilities.Assets.Scripts.CharacterAbilities;
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.CharacterAbilities
 {
-    public class PlayerController : MonoBehaviour, IController
+    public class PlayerController : MonoBehaviour, IMovementInput, IProjectileWeaponInput, IAimPointInput
     {
         [SerializeField] LayerMask _mousePositionLayerMask;
         private bool isFiring;

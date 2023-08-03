@@ -1,3 +1,4 @@
+using CharacterAbilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -18,7 +19,7 @@ namespace Assets.Scripts.CharacterAbilities
         [SerializeField, ReadOnly] float accelerationTimer = 0f;
         [SerializeField, ReadOnly] float decelerationTimer = 0f;
 
-        [Inject] IController controller;
+        [Inject] IMovementInput controller;
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float AccelerationScalar { get => accelerationScalar; set => accelerationScalar = value; }
         public float DecelerationScalar { get => decelerationScalar; set => decelerationScalar = value; }
@@ -26,7 +27,7 @@ namespace Assets.Scripts.CharacterAbilities
         public AnimationCurve DecelerationCurve { get => decelerationCurve; set => decelerationCurve = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
         public float CurrentSpeed { get => currentSpeed; private set => currentSpeed = value; }
-        public IController Controller { get => controller; set => controller = value; }
+        public IMovementInput Controller { get => controller; set => controller = value; }
 
         private void Update()
         {

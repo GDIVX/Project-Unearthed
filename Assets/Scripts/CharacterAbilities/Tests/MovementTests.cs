@@ -1,4 +1,5 @@
 using Assets.Scripts.CharacterAbilities;
+using CharacterAbilities;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -112,7 +113,7 @@ namespace Tests
     }
 
     // Fake implementation of the IController interface for testing
-    public class FakeController : IController
+    public class FakeController : IMovementInput
     {
         private Vector2 movementVector;
 

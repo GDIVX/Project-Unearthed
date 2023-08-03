@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>CharacterAbilities</RootNamespace>
-    <ProjectGuid>{3CB93D02-C576-F688-D010-334095FF4E7B}</ProjectGuid>
+    <ProjectGuid>{C595FD02-0C9E-592B-DB63-137B5570013A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>CharacterAbilities</AssemblyName>
@@ -53,15 +53,17 @@
     <UnityVersion>2021.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CharacterAbilities\IController.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\DamageOnCollision.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\CharacterInstaller.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\Movement.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PickupPull.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\IMovementInput.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\IProjectileWeaponInput.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\IAimPointInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />
@@ -319,6 +321,9 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -402,6 +407,12 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -787,19 +798,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Stats.csproj">
-      <Project>{C940FD7F-547D-9DA5-ECE9-B321C8B287A1}</Project>
+      <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
       <Name>Stats</Name>
     </ProjectReference>
     <ProjectReference Include="Inventory.csproj">
-      <Project>{03A8053C-944C-F953-60D5-40F6DEF8BBA2}</Project>
+      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
       <Name>Inventory</Name>
     </ProjectReference>
     <ProjectReference Include="Camera.csproj">
-      <Project>{C0E7880C-D06E-BF89-7DA7-86138A256BA7}</Project>
+      <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
       <Name>Camera</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{D796B913-F513-7754-F8C3-D081C754BCB2}</Project>
+      <Project>{6FB59247-DAE2-60B0-948D-321AFC9EACE5}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
