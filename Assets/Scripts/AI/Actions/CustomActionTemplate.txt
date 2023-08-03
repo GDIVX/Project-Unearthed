@@ -1,0 +1,18 @@
+// CustomActionTemplate.txt
+using Assets.Scripts.AI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class #SCRIPTNAME# : #BASECLASS#
+{
+    public override void Execute(UtilityAgent agent)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override float CalculateUtilityScore()
+    {
+        throw new System.NotImplementedException();
+    }
+}
