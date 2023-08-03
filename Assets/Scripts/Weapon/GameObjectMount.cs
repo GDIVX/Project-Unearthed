@@ -1,4 +1,5 @@
 using Assets.Scripts.CharacterAbilities;
+using CharacterAbilities.Assets.Scripts.CharacterAbilities;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Weapon
         [SerializeField] private GameObject _mountedObject;
 
 
-        [Inject] private IController _controller;
+        [Inject] private IProjectileWeaponInput _controller;
         public Vector3 Offset
         {
             get => _offset;
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Weapon
         }
 
         public GameObject MountedObject { get => _mountedObject; private set => _mountedObject = value; }
-        public IController Controller { get => _controller; protected set => _controller = value; }
+        public IProjectileWeaponInput Controller { get => _controller; set => _controller = value; }
 
         private void Awake()
         {

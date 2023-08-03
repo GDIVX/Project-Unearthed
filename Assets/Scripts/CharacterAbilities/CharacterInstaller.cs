@@ -1,4 +1,5 @@
 using Assets.Scripts.CharacterAbilities;
+using CharacterAbilities.Assets.Scripts.CharacterAbilities;
 using UnityEngine;
 using Zenject;
 
@@ -8,8 +9,11 @@ namespace CharacterAbilities
     {
         public override void InstallBindings()
         {
-            Container.Bind<IController>()
-                .FromComponentSibling();
+            Container.Bind<IAimPointInput>().FromComponentSibling();
+
+            Container.Bind<IMovementInput>().FromComponentSibling();
+
+            Container.Bind<IProjectileWeaponInput>().FromComponentSibling();
         }
     }
 }

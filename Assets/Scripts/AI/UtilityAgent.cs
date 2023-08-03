@@ -6,44 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UtilityAgent : MonoBehaviour, IController
+public class UtilityAgent : MonoBehaviour
 {
     [SerializeField] List<UtilityAction> _actions;
     [SerializeField] List<Need> _needs;
 
-    public GameObject GameObject => gameObject;
+
 
     public List<UtilityAction> Actions { get => _actions; set => _actions = value; }
     public List<Need> Needs { get => _needs; set => _needs = value; }
 
-    public event Action onFire;
-    public event Action onReload;
-
-    public Vector3 GetAimPoint()
-    {
-        return CalculateAimPoint();
-    }
-
-    public Vector2 GetMovementVector()
-    {
-        return CalculateMovementVector();
-    }
-
-    protected virtual Vector3 CalculateAimPoint()
-    {
-        return default;
-    }
-
-    protected virtual Vector2 CalculateMovementVector()
-    {
-        return default;
-    }
 
     private void Update()
     {
         ExecuteAction();
     }
-
 
 
     private void ExecuteAction()
