@@ -608,19 +608,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: slots.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: slots.Array.data[0].item
       value: 
-      objectReference: {fileID: 11400000, guid: cac70ff5b4ad387459c8d0432a60eeeb, type: 2}
+      objectReference: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[3].item
+      value: 
+      objectReference: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
     - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: inventorySlots.Array.size
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: slots.Array.data[0].quantity
-      value: 6
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[1].quantity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[2].quantity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: slots.Array.data[3].quantity
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: inventorySlots.Array.data[0].item
