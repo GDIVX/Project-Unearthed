@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,26 +6,27 @@ using UnityEngine;
 
 public class StateMachine
 {
-    Dictionary<string, IState> _states;
+    [ShowInInspector] Dictionary<string, State> _states;
 
-    IState _currentState;
-    public IState CurrentState { get => _currentState; private set => _currentState = value; }
+    State _currentState;
+    public State CurrentState { get => _currentState; private set => _currentState = value; }
 
-    public StateMachine(IState initialState, string rootStateName)
+    public StateMachine Initialize(State initialState, string rootStateName)
     {
         CurrentState = initialState;
-        _states = new Dictionary<string, IState>();
+        _states = new Dictionary<string, State>();
 
         AddState(initialState, rootStateName);
+
+        return this;
     }
 
-
-    public void AddState(IState state, string name)
+    public void AddState(State state, string name)
     {
         _states.Add(name, state);
     }
 
-    public IState GetState(string name)
+    public State GetState(string name)
     {
         if (!_states.ContainsKey(name))
         {
@@ -49,6 +51,13 @@ public class StateMachine
 
     }
 
+    public void SetState(State state)
+    {
+        CurrentState?.Exit();
+        CurrentState = state;
+        CurrentState.Enter();
+    }
+
     public void ExecuteState()
     {
         if (_currentState == null)
@@ -58,5 +67,22 @@ public class StateMachine
         }
 
         _currentState.Execute();
+    }
+
+    public void AddTransition(string fromState, string toState, Func<bool> condition)
+    {
+        if (!_states.ContainsKey(fromState))
+        {
+            Debug.LogError($"State not found - name: {fromState}");
+            return;
+        }
+
+        if (!_states.ContainsKey(toState))
+        {
+            Debug.LogError($"State not found - name: {toState}");
+            return;
+        }
+
+        _states[fromState].AddTransition(_states[toState], condition);
     }
 }
