@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f630a029841ff5440973e77dfd291937, type: 2}
 --- !u!1 &603576278
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 603576280}
   - component: {fileID: 603576283}
   - component: {fileID: 603576282}
+  - component: {fileID: 603576285}
+  - component: {fileID: 603576284}
   - component: {fileID: 603576279}
   m_Layer: 0
   m_Name: NPC
@@ -209,9 +211,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: 58921deb4bc9fe343ad99e160b330ec8, type: 2}
+  - {fileID: 11400000, guid: 10effe2f752ae3943ad7d21175dec3a3, type: 2}
+  - {fileID: 11400000, guid: fa1be1494aa17d145bc03be8b132ddb1, type: 2}
+  - {fileID: 11400000, guid: b1b06c04bd2f9334ebb251d2e9cd7e0c, type: 2}
   _needs:
-  - {fileID: 11400000, guid: 1aa3422c346213f40b41ec9a3c234dc2, type: 2}
+  - {fileID: 11400000, guid: 3fe79af5eb2b7f745b0b8f34c237bdc5, type: 2}
+  - {fileID: 11400000, guid: 18fc3a462283c7a48b137759ca7532e4, type: 2}
+  - {fileID: 11400000, guid: 1e81b6e1cbc34084ea0ce3f3a2644812, type: 2}
+--- !u!195 &603576284
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603576278}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &603576285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603576278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b51acfb99486c743b68750aa85f69c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  accelerationScalar: 1
+  decelerationScalar: 1
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxVelocity: 10
+  currentSpeed: 0
+  accelerationTimer: 0
+  decelerationTimer: 0
 --- !u!1 &1071221268
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071221270}
   - component: {fileID: 1071221269}
+  - component: {fileID: 1071221271}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -260,6 +320,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1071221271
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071221268}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1401173176
 GameObject:
   m_ObjectHideFlags: 0

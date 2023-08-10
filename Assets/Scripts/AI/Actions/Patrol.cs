@@ -4,18 +4,18 @@ using UnityEngine;
 using Assets.Scripts.AI;
 
 /// <summary>
-/// Heal
+/// Patrol
 /// </summary>
-[CreateAssetMenu(fileName = "Heal", menuName = "AI/Actions/Heal")]
-public class Heal : UtilityAction
+[CreateAssetMenu(fileName = "Patrol", menuName = "AI/Actions/Patrol")]
+public class Patrol : UtilityAction
 {
     public override void Execute(UtilityAgent agent)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override float CalculateUtilityScore()
     {
-        throw new System.NotImplementedException();
+       throw new System.NotImplementedException();
     }        
 }

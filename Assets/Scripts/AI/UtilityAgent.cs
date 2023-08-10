@@ -12,10 +12,8 @@ public class UtilityAgent : MonoBehaviour
     [SerializeField] List<Need> _needs;
 
 
-
     public List<UtilityAction> Actions { get => _actions; set => _actions = value; }
     public List<Need> Needs { get => _needs; set => _needs = value; }
-
 
     private void Update()
     {

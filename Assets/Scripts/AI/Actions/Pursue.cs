@@ -4,19 +4,18 @@ using UnityEngine;
 using Assets.Scripts.AI;
 
 /// <summary>
-/// Fire
+/// Pursue
 /// </summary>
-[CreateAssetMenu(fileName = "Fire", menuName = "AI/Actions/Fire")]
-public class Fire : UtilityAction
+[CreateAssetMenu(fileName = "Pursue", menuName = "AI/Actions/Pursue")]
+public class Pursue : UtilityAction
 {
     public override void Execute(UtilityAgent agent)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override float CalculateUtilityScore()
     {
-        Debug.Log("A");
-        throw new System.NotImplementedException();
+       throw new System.NotImplementedException();
     }        
 }

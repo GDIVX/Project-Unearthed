@@ -4,18 +4,13 @@ using UnityEngine;
 using Assets.Scripts.AI;
 
 /// <summary>
-/// Walk
+/// Idle
 /// </summary>
-[CreateAssetMenu(fileName = "Walk", menuName = "AI/Actions/Walk")]
-public class Walk : UtilityAction
-{
-    public override void Execute(UtilityAgent agent)
-    {
-        throw new System.NotImplementedException();
-    }
-
+[CreateAssetMenu(fileName = "Idle", menuName = "AI/Needs/Idle")]
+public class Idle : Need
+{    
     protected override float CalculateUtilityScore()
     {
         throw new System.NotImplementedException();
-    }        
+    }
 }

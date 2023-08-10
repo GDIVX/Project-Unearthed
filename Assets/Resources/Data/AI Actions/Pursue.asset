@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82c71dd7f36d1df47b2bf45f7dcf577e, type: 3}
-  m_Name: Heal
+  m_Script: {fileID: 11500000, guid: 7015314b42319e04cac61c38d9503bd9, type: 3}
+  m_Name: Pursue
   m_EditorClassIdentifier: 
-  _targetNeed: {fileID: 11400000, guid: 1aa3422c346213f40b41ec9a3c234dc2, type: 2}
+  _targetNeed: {fileID: 11400000, guid: 1e81b6e1cbc34084ea0ce3f3a2644812, type: 2}
