@@ -8,17 +8,12 @@ public class StateMachine
 {
     [ShowInInspector] Dictionary<string, State> _states;
 
-    State _currentState;
+    [ShowInInspector] State _currentState;
     public State CurrentState { get => _currentState; private set => _currentState = value; }
 
-    public StateMachine Initialize(State initialState, string rootStateName)
+    public StateMachine()
     {
-        CurrentState = initialState;
         _states = new Dictionary<string, State>();
-
-        AddState(initialState, rootStateName);
-
-        return this;
     }
 
     public void AddState(State state, string name)

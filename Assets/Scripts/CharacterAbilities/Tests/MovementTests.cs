@@ -122,6 +122,7 @@ namespace Tests
 
         public event Action onFire;
         public event Action onReload;
+        public event Action OnDodge;
 
         public Vector3 GetAimPoint()
         {

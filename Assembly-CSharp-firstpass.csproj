@@ -914,6 +914,10 @@
       <Project>{F94D6195-88C7-2719-7184-EC5E896B9D3C}</Project>
       <Name>Projectiles</Name>
     </ProjectReference>
+    <ProjectReference Include="StateMachine.csproj">
+      <Project>{DC69A8E6-6DFE-C087-AA5C-8D1512D16CCE}</Project>
+      <Name>StateMachine</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{01FD864F-7E71-579D-3BE1-913E773CD57D}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -929,6 +933,10 @@
     <ProjectReference Include="AI.csproj">
       <Project>{99AF982B-B9AA-8AF6-C47D-943510703F9E}</Project>
       <Name>AI</Name>
+    </ProjectReference>
+    <ProjectReference Include="AbilitiesStates.csproj">
+      <Project>{64748B2A-3074-4D09-C37B-F0E60A08AD77}</Project>
+      <Name>AbilitiesStates</Name>
     </ProjectReference>
     <ProjectReference Include="Camera.csproj">
       <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
@@ -957,14 +965,6 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="StateMachine.csproj">
-      <Project>{DC69A8E6-6DFE-C087-AA5C-8D1512D16CCE}</Project>
-      <Name>StateMachine</Name>
-    </ProjectReference>
-    <ProjectReference Include="AbilitiesStates.csproj">
-      <Project>{64748B2A-3074-4D09-C37B-F0E60A08AD77}</Project>
-      <Name>AbilitiesStates</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

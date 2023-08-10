@@ -7,8 +7,14 @@ using UnityEngine;
 /// </summary>
 public class IdleState : State
 {
+    public IdleState(StateMachine parent) : base(parent)
+    {
+    }
+
     public override void Enter()
     {
+        base.Execute();
+
     }
 
     public override void Execute()
@@ -18,5 +24,7 @@ public class IdleState : State
 
     public override void Exit()
     {
+        base.Execute();
+
     }
 }

@@ -1,3 +1,17 @@
 {
-	"name": "AbilitiesStates"
+    "name": "AbilitiesStates",
+    "rootNamespace": "",
+    "references": [
+        "GUID:624c1a19e5969fa4e8069945fa6737c6",
+        "GUID:84fe2fffe62c4df4896e040ba4870e7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

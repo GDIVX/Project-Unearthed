@@ -31,4 +31,19 @@ public class Health : Stat
 
         Debug.Log("deal damage " + damageAmount);
     }
+
+    public void SetInvisibilityForSeconds(float sconds)
+    {
+        IsInvincible = true;
+        StartCoroutine(TimedInvisibilityCoroutine(sconds));
+    }
+
+    private IEnumerator TimedInvisibilityCoroutine(float sconds)
+    {
+        IsInvincible = true;
+
+        yield return new WaitForSeconds(sconds);
+
+        IsInvincible = false;
+    }
 }
