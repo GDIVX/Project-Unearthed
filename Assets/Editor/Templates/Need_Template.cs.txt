@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Assets.Scripts.AI;
+
+/// <summary>
+/// #NAME#
+/// </summary>
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "AI/Needs/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : Need
+{    
+    protected override float CalculateUtilityScore()
+    {
+        throw new System.NotImplementedException();
+    }
+}

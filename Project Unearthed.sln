@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-Editor", "Zenject-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{79E10B64-7DFF-5D47-BBBA-BED28B201444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3697533F-CC76-72AF-A015-77FAC08168BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,10 @@ Global
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79E10B64-7DFF-5D47-BBBA-BED28B201444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3697533F-CC76-72AF-A015-77FAC08168BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3697533F-CC76-72AF-A015-77FAC08168BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3697533F-CC76-72AF-A015-77FAC08168BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3697533F-CC76-72AF-A015-77FAC08168BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
