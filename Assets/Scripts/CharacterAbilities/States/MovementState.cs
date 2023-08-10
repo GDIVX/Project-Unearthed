@@ -1,34 +1,25 @@
 using Assets.Scripts.CharacterAbilities;
+using CharacterAbilities;
 
 public class MovementState : State
 {
     private Movement movementComponent;
     private bool enabledAtStart;
 
-    public MovementState(Movement movementComponent, StateMachine parent) : base(parent)
+    IMovementInput movementInput;
+    public MovementState(Movement movementComponent, IMovementInput movementInput, StateMachine parent) : base(parent)
     {
         this.movementComponent = movementComponent;
         this.enabledAtStart = movementComponent.enabled;
-    }
-
-    public override void Enter()
-    {
-        movementComponent.enabled = true;
-        base.Enter();
-
-    }
-
-    public override void Exit()
-    {
-
-        movementComponent.enabled = enabledAtStart;
-        base.Exit();
+        this.movementInput = movementInput;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        // Additional logic here if needed
+        movementComponent.Move(movementInput.GetMovementVector());
+
+
     }
 }

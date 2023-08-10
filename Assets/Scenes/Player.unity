@@ -602,6 +602,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: dodgeSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: dodgeCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: dodgeDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: invisibilityDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1453998029993772481, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: _mountedObject
       value: 

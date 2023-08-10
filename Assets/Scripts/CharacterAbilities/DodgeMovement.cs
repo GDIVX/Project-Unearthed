@@ -19,43 +19,54 @@ namespace Assets.Scripts.CharacterAbilities
         public event Action OnDodgeStart, OnDodgeEnd;
 
 
-        private bool isDodging = false;
-        private float lastDodgeTime = 0f;
+        [ShowInInspector] bool isDodging = false;
+        [ShowInInspector] float lastDodgeTime = 0f;
 
         public bool CanDodge => !isDodging && Time.time - lastDodgeTime > dodgeCooldown;
 
+
+        private Vector3 dodgeDirection;
+
+        private void Update()
+        {
+            if (!isDodging)
+            {
+                return;
+            }
+            transform.position += dodgeDirection * dodgeSpeed * Time.deltaTime;
+            if (Time.time - lastDodgeTime >= dodgeDuration)
+            {
+                EndDodge();
+            }
+        }
 
         public void Dodge(Vector3 direction)
         {
             if (!CanDodge) return;
 
-            isDodging = true;
-            lastDodgeTime = Time.time;
-
-            // You may want to normalize the direction and multiply by dodgeSpeed
-            Vector3 dodgeVector = direction.normalized * dodgeSpeed;
-
-            //set invisibility frames
-            health.SetInvisibilityForSeconds(invisibilityDuration);
-
-            // You can initiate a Coroutine to handle the dodge movement over time
-            StartCoroutine(DodgeCoroutine(dodgeVector));
-        }
-
-        private IEnumerator DodgeCoroutine(Vector3 dodgeVector)
-        {
-            float startTime = Time.time;
-            OnDodgeStart?.Invoke();
-
-            while (Time.time - startTime < dodgeDuration)
+            //if the direction is not on the xy plane, convert it
+            if (direction.y != 0)
             {
-                // Move the character in the dodge direction
-                transform.position += dodgeVector * Time.deltaTime;
-                yield return null;
+                direction = new Vector3(direction.x, 0, direction.y);
             }
 
-            OnDodgeEnd?.Invoke();
-            isDodging = false; // End the dodge
+            isDodging = true;
+            lastDodgeTime = Time.time;
+            dodgeDirection = direction.normalized;
+
+            health.SetInvisibilityForSeconds(invisibilityDuration);
+            OnDodgeStart?.Invoke();
         }
+
+        private void EndDodge()
+        {
+            OnDodgeEnd?.Invoke();
+            isDodging = false;
+        }
+
+
+
+
+
     }
 }

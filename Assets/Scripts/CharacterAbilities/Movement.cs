@@ -27,19 +27,8 @@ namespace Assets.Scripts.CharacterAbilities
         public AnimationCurve DecelerationCurve { get => decelerationCurve; set => decelerationCurve = value; }
         public float MaxVelocity { get => maxVelocity; set => maxVelocity = value; }
         public float CurrentSpeed { get => currentSpeed; private set => currentSpeed = value; }
-        public IMovementInput Controller { get => controller; set => controller = value; }
-
-        private void Update()
+        public void Move(Vector2 inputVector)
         {
-            //if there is no controller throw error and return
-            if (Controller == null)
-            {
-                Debug.LogError("No controller assigned to movement");
-                return;
-            }
-
-            //Read movement input from controller
-            Vector2 inputVector = Controller.GetMovementVector();
 
             // Check if input vector magnitude is greater than 1 and normalize it
             if (inputVector.magnitude > 1f)

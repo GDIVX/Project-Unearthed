@@ -39,7 +39,7 @@ public class MovementStateMachine : MonoBehaviour
         stateMachine = new();
 
         //Movement state
-        MovementState movementState = new(movement, stateMachine);
+        MovementState movementState = new(movement, movementInput, stateMachine);
         stateMachine.AddState(movementState, "Move");
 
         //set movement as the opening state
