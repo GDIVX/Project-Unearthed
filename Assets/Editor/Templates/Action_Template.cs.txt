@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Assets.Scripts.AI;
+
+/// <summary>
+/// #NAME#
+/// </summary>
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "AI/Actions/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : UtilityAction
+{
+    public override void Execute(UtilityAgent agent)
+    {
+       
+    }
+
+    protected override float CalculateUtilityScore()
+    {
+       throw new System.NotImplementedException();
+    }        
+}
