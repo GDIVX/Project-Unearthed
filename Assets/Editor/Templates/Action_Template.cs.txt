@@ -16,6 +16,6 @@ public class #SCRIPTNAME# : UtilityAction
 
     protected override float CalculateUtilityScore()
     {
-       
+       throw new System.NotImplementedException();
     }        
 }
