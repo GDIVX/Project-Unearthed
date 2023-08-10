@@ -920,6 +920,10 @@
       <Project>{C3650C8D-406F-A1A3-3105-30FFBCED4619}</Project>
       <Name>Random</Name>
     </ProjectReference>
+    <ProjectReference Include="AI.csproj">
+      <Project>{99F4052E-D7EE-E7F9-E540-78CC91D39CCC}</Project>
+      <Name>AI</Name>
+    </ProjectReference>
     <ProjectReference Include="Camera.csproj">
       <Project>{C0E7880C-D06E-BF89-7DA7-86138A256BA7}</Project>
       <Name>Camera</Name>
@@ -947,10 +951,6 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="AI.csproj">
-      <Project>{99F4052E-D7EE-E7F9-E540-78CC91D39CCC}</Project>
-      <Name>AI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
