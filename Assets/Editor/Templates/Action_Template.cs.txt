@@ -11,11 +11,11 @@ public class #SCRIPTNAME# : UtilityAction
 {
     public override void Execute(UtilityAgent agent)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override float CalculateUtilityScore()
     {
-        throw new System.NotImplementedException();
+       
     }        
 }
