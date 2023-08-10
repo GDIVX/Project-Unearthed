@@ -993,6 +993,14 @@
       <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="StateMachine.csproj">
+      <Project>{DC69A8E6-6DFE-C087-AA5C-8D1512D16CCE}</Project>
+      <Name>StateMachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="AbilitiesStates.csproj">
+      <Project>{64748B2A-3074-4D09-C37B-F0E60A08AD77}</Project>
+      <Name>AbilitiesStates</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

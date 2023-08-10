@@ -150,15 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a5d20aec17ed342b1e299a979bc726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlots:
-  - item: {fileID: 0}
-    quantity: 0
-  OnInventoryChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInventoryFull:
-    m_PersistentCalls:
-      m_Calls: []
+  capacity: 10
+  slots:
+  - item: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    quantity: 30
+  - item: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    quantity: 30
+  - item: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    quantity: 30
+  - item: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    quantity: 30
 --- !u!1 &5436704385346589958
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +206,8 @@ GameObject:
   - component: {fileID: 8418188474337938403}
   - component: {fileID: 1453998029993772481}
   - component: {fileID: 1686629667}
+  - component: {fileID: 8201517959064540124}
+  - component: {fileID: 1237900476614285933}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -415,6 +418,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 1684612750}
+--- !u!114 &8201517959064540124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835324181591090252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5137f8a7aae42414d857ceaf4c0772c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 7835324181591090255}
+  dodgeMovement: {fileID: 1237900476614285933}
+--- !u!114 &1237900476614285933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835324181591090252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c689341b0a3158e4c854214e92251563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeSpeed: 10
+  dodgeDuration: 1
+  dodgeCooldown: 3
+  health: {fileID: 378469108}
+  invisibilityDuration: 0.5
 --- !u!1001 &1238652419031190600
 PrefabInstance:
   m_ObjectHideFlags: 0

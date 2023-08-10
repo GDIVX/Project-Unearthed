@@ -22,7 +22,6 @@ namespace Tests
             // Create a fake controller and inject it into the Movement script
             fakeController = new FakeController();
             movementScript = gameObject.AddComponent<Movement>();
-            movementScript.Controller = fakeController;
 
             // Set initial values
             movementScript.MovementSpeed = 8f;
@@ -122,6 +121,7 @@ namespace Tests
 
         public event Action onFire;
         public event Action onReload;
+        public event Action OnDodge;
 
         public Vector3 GetAimPoint()
         {
