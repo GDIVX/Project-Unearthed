@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CharacterAbilities\IProjectileWeaponInput.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CharacterAbilities\PickupPull.cs" />
+    <Compile Include="Assets\Scripts\CharacterAbilities\DodgeMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\CharacterAbilities\CharacterAbilities.asmdef" />

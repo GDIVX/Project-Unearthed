@@ -15,6 +15,7 @@ namespace Assets.Scripts.CharacterAbilities
 
         public event Action onFire;
         public event Action onReload;
+        public event Action OnDodge;
 
         public Vector2 GetMovementVector()
         {
@@ -55,6 +56,11 @@ namespace Assets.Scripts.CharacterAbilities
             if (Input.GetButtonDown("Reload"))
             {
                 onReload?.Invoke();
+            }
+
+            if (Input.GetButtonDown("Dodge"))
+            {
+                OnDodge?.Invoke();
             }
         }
 
