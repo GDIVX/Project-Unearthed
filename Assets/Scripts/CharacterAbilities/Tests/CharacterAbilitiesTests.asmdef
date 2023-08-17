@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "CharacterAbilities",
         "Zenject",
-        "Zenject-TestFramework"
+        "Zenject-TestFramework",
+        "Stats"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

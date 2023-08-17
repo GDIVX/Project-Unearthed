@@ -22,10 +22,17 @@ namespace Assets.Scripts.CharacterAbilities
         [ShowInInspector] bool isDodging = false;
         [ShowInInspector] float lastDodgeTime = 0f;
 
-        public bool CanDodge => !isDodging && Time.time - lastDodgeTime > dodgeCooldown;
+        public bool CanDodge => !isDodging && !isOnCooldown;
 
+        public float DodgeSpeed { get => dodgeSpeed; set => dodgeSpeed = value; }
+        public float DodgeDuration { get => dodgeDuration; set => dodgeDuration = value; }
+        public float DodgeCooldown { get => dodgeCooldown; set => dodgeCooldown = value; }
+        public Health Health { get => health; set => health = value; }
+        public float InvisibilityDuration { get => invisibilityDuration; set => invisibilityDuration = value; }
 
         private Vector3 dodgeDirection;
+        private bool isOnCooldown = false;
+
 
         private void Update()
         {
@@ -33,8 +40,8 @@ namespace Assets.Scripts.CharacterAbilities
             {
                 return;
             }
-            transform.position += dodgeDirection * dodgeSpeed * Time.deltaTime;
-            if (Time.time - lastDodgeTime >= dodgeDuration)
+            transform.position += dodgeDirection * DodgeSpeed * Time.deltaTime;
+            if (Time.time - lastDodgeTime >= DodgeDuration)
             {
                 EndDodge();
             }
@@ -54,7 +61,9 @@ namespace Assets.Scripts.CharacterAbilities
             lastDodgeTime = Time.time;
             dodgeDirection = direction.normalized;
 
-            health.SetInvisibilityForSeconds(invisibilityDuration);
+            Health.SetInvisibilityForSeconds(InvisibilityDuration);
+
+            StartCoroutine(DodgeCooldownCoroutine());
             OnDodgeStart?.Invoke();
         }
 
@@ -64,7 +73,12 @@ namespace Assets.Scripts.CharacterAbilities
             isDodging = false;
         }
 
-
+        private IEnumerator DodgeCooldownCoroutine()
+        {
+            isOnCooldown = true;
+            yield return new WaitForSeconds(DodgeCooldown);
+            isOnCooldown = false;
+        }
 
 
 

@@ -7,9 +7,13 @@ using UnityEngine;
 public class StateMachine
 {
     [ShowInInspector] Dictionary<string, State> _states;
+    [ShowInInspector] Dictionary<State, string> _stateNames = new Dictionary<State, string>(); 
+
 
     [ShowInInspector] State _currentState;
     public State CurrentState { get => _currentState; private set => _currentState = value; }
+    public string CurrentStateName => _stateNames.ContainsKey(_currentState) ? _stateNames[_currentState] : null;
+
 
     public StateMachine()
     {
@@ -25,6 +29,7 @@ public class StateMachine
         }
 
         _states.Add(name, state);
+        _stateNames.Add(state, name); // New
     }
 
 
