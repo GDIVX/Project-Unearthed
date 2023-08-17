@@ -19,7 +19,6 @@ namespace Assets.Scripts.CharacterAbilities
         [SerializeField, ReadOnly] float accelerationTimer = 0f;
         [SerializeField, ReadOnly] float decelerationTimer = 0f;
 
-        [Inject] IMovementInput controller;
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float AccelerationScalar { get => accelerationScalar; set => accelerationScalar = value; }
         public float DecelerationScalar { get => decelerationScalar; set => decelerationScalar = value; }

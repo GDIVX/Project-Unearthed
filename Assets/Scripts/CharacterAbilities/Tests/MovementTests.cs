@@ -52,11 +52,19 @@ namespace Tests
 
             // Calculate the time it would take to move a distance of 1 unit
             float distance = 1f;
-            float timeToMove = distance / movementScript.MovementSpeed;
 
             Vector3 startPosition = movementScript.transform.localPosition;
 
-            yield return new WaitForSeconds(timeToMove);
+            //call for Move() for few frames
+
+
+            //call for Move() for few frames
+            for (int i = 0; i < 3; i++)
+            {
+                movementScript.Move(fakeController.GetMovementVector());
+                yield return null;
+            }
+
 
             // Assert that the position has changed
             Vector3 currentPosition = movementScript.transform.localPosition;
