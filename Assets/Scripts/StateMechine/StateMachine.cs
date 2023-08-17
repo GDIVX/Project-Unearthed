@@ -18,8 +18,15 @@ public class StateMachine
 
     public void AddState(State state, string name)
     {
+        if (_states.ContainsKey(name))
+        {
+            Debug.LogError($"State with the name: {name} already exists. Cannot add duplicate state.");
+            return;
+        }
+
         _states.Add(name, state);
     }
+
 
     public State GetState(string name)
     {
