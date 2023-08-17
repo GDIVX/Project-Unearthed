@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.AI;
-using UnityEngine.Events;
 using System;
 
 /// <summary>
-/// Pursue
+/// Pose
 /// </summary>
-[CreateAssetMenu(fileName = "Pursue", menuName = "AI/Actions/Pursue")]
-public class Pursue : UtilityAction
+[CreateAssetMenu(fileName = "Pose", menuName = "AI/Actions/Pose")]
+public class Pose : UtilityAction
 {
-    public override void Execute(Action action)
+    public override void Execute(Action agent)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override float CalculateUtilityScore()

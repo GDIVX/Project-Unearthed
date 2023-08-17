@@ -1,8 +1,10 @@
 using Assets.Scripts.AI;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.TestTools;
 
 public class UtilityAgentTests : MonoBehaviour
@@ -171,10 +173,12 @@ public class UtilityAgentTests : MonoBehaviour
             return mock;
         }
 
-        public override void Execute(UtilityAgent agent)
+        public override void Execute(Action action)
         {
-            isExecuted = true;
+            throw new System.NotImplementedException();
         }
+
+        
 
         protected override float CalculateUtilityScore()
         {

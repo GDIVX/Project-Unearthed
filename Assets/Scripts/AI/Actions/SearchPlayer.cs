@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.AI;
+using UnityEngine.Events;
+using System;
 
 /// <summary>
 /// SearchPlayer
@@ -9,9 +11,11 @@ using Assets.Scripts.AI;
 [CreateAssetMenu(fileName = "SearchPlayer", menuName = "AI/Actions/SearchPlayer")]
 public class SearchPlayer : UtilityAction
 {
-    public override void Execute(UtilityAgent agent)
+    
+
+    public override void Execute(Action action)
     {
-       
+        throw new System.NotImplementedException();
     }
 
     protected override float CalculateUtilityScore()
