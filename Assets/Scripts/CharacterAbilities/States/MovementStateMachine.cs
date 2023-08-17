@@ -22,13 +22,30 @@ public class MovementStateMachine : MonoBehaviour
 
     bool isDodging = false;
 
+    public Movement Movement { get => movement; set => movement = value; }
+    public DodgeMovement DodgeMovement { get => dodgeMovement; set => dodgeMovement = value; }
+    public StateMachine StateMachine { get => stateMachine; set => stateMachine = value; }
+    public IMovementInput MovementInput { get => movementInput; set => movementInput = value; }
+
     private void Awake()
     {
-        movement ??= GetComponent<Movement>();
+        Movement ??= GetComponent<Movement>();
+        DodgeMovement ??= GetComponent<DodgeMovement>();
+        movementInput ??= GetComponent<IMovementInput>();
 
-        if (movement == null)
+        if (Movement == null)
         {
             Debug.LogError("Movement component not found");
+        }
+
+        if (DodgeMovement == null)
+        {
+            Debug.LogError("DodgeMovement component not found");
+        }
+
+        if (MovementInput == null)
+        {
+            Debug.LogError("MovementInput component not found");
         }
 
         BuildStateMachine();
@@ -36,33 +53,33 @@ public class MovementStateMachine : MonoBehaviour
 
     private void BuildStateMachine()
     {
-        stateMachine = new();
+        StateMachine = new();
 
         //Movement state
-        MovementState movementState = new(movement, movementInput, stateMachine);
-        stateMachine.AddState(movementState, "Move");
+        MovementState movementState = new(Movement, MovementInput, StateMachine);
+        StateMachine.AddState(movementState, "Move");
 
         //set movement as the opening state
-        stateMachine.SetState(movementState);
+        StateMachine.SetState(movementState);
 
         //Dodge state
-        DodgeState dodgeState = new(dodgeMovement, movementInput, stateMachine);
-        stateMachine.AddState(dodgeState, "Dodge");
+        DodgeState dodgeState = new(DodgeMovement, MovementInput, StateMachine);
+        StateMachine.AddState(dodgeState, "Dodge");
 
         //when the player presses the dodge button, transition to the dodge state
-        movementInput.OnDodge += () => isDodging = true;
-        stateMachine.AddTransition("Move", "Dodge", () => isDodging);
+        MovementInput.OnDodge += () => isDodging = true;
+        StateMachine.AddTransition("Move", "Dodge", () => isDodging);
 
         //when the dodge state is finished, transition back to the move state
-        dodgeMovement.OnDodgeEnd += () => isDodging = false;
-        stateMachine.AddTransition("Dodge", "Move", () => !isDodging);
+        DodgeMovement.OnDodgeEnd += () => isDodging = false;
+        StateMachine.AddTransition("Dodge", "Move", () => !isDodging);
 
     }
 
     private void Update()
     {
-        if (stateMachine == null) return;
+        if (StateMachine == null) return;
 
-        stateMachine.ExecuteState();
+        StateMachine.ExecuteState();
     }
 }
