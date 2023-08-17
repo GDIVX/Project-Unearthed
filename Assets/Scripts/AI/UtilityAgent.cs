@@ -24,7 +24,6 @@ public class UtilityAgent : MonoBehaviour
     private void ExecuteAction()
     {
         Need need = ChooseNeed();
-
         UtilityAction action = ChooseAction(need);
 
         if (action == null)

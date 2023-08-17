@@ -7,7 +7,7 @@ namespace Assets.Scripts.AI
     public abstract class UtilityAction : ScriptableObject, IUtilityScoreProvider
     {
         [SerializeField] Need _targetNeed;
-
+        
         public Need TargetNeed { get => _targetNeed; protected set => _targetNeed = value; }
 
         public float GetUtilityScore()

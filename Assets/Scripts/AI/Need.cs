@@ -9,10 +9,6 @@ namespace Assets.Scripts.AI
         {
             return CalculateUtilityScore();
         }
-        public static Need CreateInstance()
-        {
-            return CreateInstance<Need>();
-        }
         protected abstract float CalculateUtilityScore();
     }
 }

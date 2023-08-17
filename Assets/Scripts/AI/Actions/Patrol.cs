@@ -11,11 +11,12 @@ public class Patrol : UtilityAction
 {
     public override void Execute(UtilityAgent agent)
     {
-       
+        //Debug.Log("patrolling");
     }
 
     protected override float CalculateUtilityScore()
     {
-       throw new System.NotImplementedException();
+        return 0;
+       //throw new System.NotImplementedException();
     }        
 }

@@ -11,6 +11,7 @@ public class Idle : Need
 {    
     protected override float CalculateUtilityScore()
     {
-        throw new System.NotImplementedException();
+        return 0;
+        //throw new System.NotImplementedException();
     }
 }
