@@ -104,6 +104,13 @@ public class MovementStateMachineTests
         // Act
         movementInput.SimulateDodgeInput();
         yield return null; // Wait for one frame
+        Assert.AreEqual("Dodge", movementStateMachine.StateMachine.CurrentStateName);
+
+
+        //try to dodge again
+        movementInput.SimulateDodgeInput();
+        yield return null; // Wait for one frame
+
 
         // Assert
         Assert.AreEqual("Move", movementStateMachine.StateMachine.CurrentStateName);
