@@ -67,7 +67,11 @@ public class MovementStateMachine : MonoBehaviour
         StateMachine.AddState(dodgeState, "Dodge");
 
         //when the player presses the dodge button, transition to the dodge state
-        MovementInput.OnDodge += () => isDodging = true;
+        MovementInput.OnDodge += () =>
+        {
+            //If we can dodge, we enter the state
+            isDodging = DodgeMovement.CanDodge;
+        };
         StateMachine.AddTransition("Move", "Dodge", () => isDodging);
 
         //when the dodge state is finished, transition back to the move state
