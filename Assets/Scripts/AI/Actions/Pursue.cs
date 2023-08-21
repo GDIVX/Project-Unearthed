@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.AI;
-using UnityEngine.Events;
-using System;
 
 /// <summary>
 /// Pursue
@@ -11,9 +9,9 @@ using System;
 [CreateAssetMenu(fileName = "Pursue", menuName = "AI/Actions/Pursue")]
 public class Pursue : UtilityAction
 {
-    public override void Execute(Action action)
+    public override void Execute(UtilityAgent agent)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     protected override float CalculateUtilityScore()

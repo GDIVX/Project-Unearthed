@@ -10,12 +10,10 @@ public class UtilityAgent : MonoBehaviour
 {
     [SerializeField] List<UtilityAction> _actions;
     [SerializeField] List<Need> _needs;
-    [SerializeField] NavTests navTests;
+
 
     public List<UtilityAction> Actions { get => _actions; set => _actions = value; }
     public List<Need> Needs { get => _needs; set => _needs = value; }
-
-    public Action EventToExecute;
 
     private void Update()
     {
@@ -27,14 +25,14 @@ public class UtilityAgent : MonoBehaviour
     {
         Need need = ChooseNeed();
         UtilityAction action = ChooseAction(need);
-        RegisterAction(need);
+
         if (action == null)
         {
             Debug.LogError("No action was chosen");
             return;
         }
 
-        action.Execute(EventToExecute);
+        action.Execute(this);
     }
 
     protected Need ChooseNeed()
@@ -87,26 +85,6 @@ public class UtilityAgent : MonoBehaviour
         }
         return chosenAction;
     }
-
-    void RegisterAction(Need need)
-    {
-        switch (need.NeedState)
-        {
-            case needEnum.Idle:
-                if(EventToExecute==navTests.NavPatrol)
-                EventToExecute += navTests.NavPatrol;
-                break;
-            case needEnum.AttackPlayer:
-
-                break;
-            case needEnum.PlayerAwareness:
-
-                break;
-            default:
-                break;
-        }
-    }
-
 }
 
 

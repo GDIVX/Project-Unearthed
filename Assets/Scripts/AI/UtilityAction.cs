@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.AI
 {
@@ -16,7 +15,7 @@ namespace Assets.Scripts.AI
             return CalculateUtilityScore();
         }
 
-        public abstract void Execute(Action action);
+        public abstract void Execute(UtilityAgent agent);
 
         protected abstract float CalculateUtilityScore();
 

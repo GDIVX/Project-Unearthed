@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Assets.Scripts.AI;
-using Assets.Scripts.CharacterAbilities;
-using System;
 
 /// <summary>
 /// Patrol
@@ -12,14 +9,14 @@ using System;
 [CreateAssetMenu(fileName = "Patrol", menuName = "AI/Actions/Patrol")]
 public class Patrol : UtilityAction
 {
-    public override void Execute(Action action)
+    public override void Execute(UtilityAgent agent)
     {
-        action?.Invoke();
+        //Debug.Log("patrolling");
     }
 
     protected override float CalculateUtilityScore()
     {
-        return 1;
+        return 0;
        //throw new System.NotImplementedException();
     }        
 }
