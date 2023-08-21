@@ -32,7 +32,7 @@ public class UtilityAgent : MonoBehaviour
             return;
         }
 
-        action.Execute(this);
+        action.Execute(gameObject);
     }
 
     protected Need ChooseNeed()

@@ -171,7 +171,7 @@ public class UtilityAgentTests : MonoBehaviour
             return mock;
         }
 
-        public override void Execute(UtilityAgent agent)
+        public override void Execute(GameObject agent)
         {
             isExecuted = true;
         }

@@ -1,9 +1,8 @@
 {
-    "name": "AI",
+    "name": "GameManagementt",
     "rootNamespace": "",
     "references": [
-        "GUID:624c1a19e5969fa4e8069945fa6737c6",
-        "GUID:da1749e47ca913e43a9f98456c1f5303"
+        "GUID:e86a973099c6c6a44b6cb1ce06e5f97b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

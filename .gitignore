@@ -71,3 +71,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .vs/Project Unearthed/v17/.suo
 .vs/Project Unearthed/v17/fileList.bin
+*.csproj

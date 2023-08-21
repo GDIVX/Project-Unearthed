@@ -9,7 +9,7 @@ using Assets.Scripts.AI;
 [CreateAssetMenu(fileName = "SearchPlayer", menuName = "AI/Actions/SearchPlayer")]
 public class SearchPlayer : UtilityAction
 {
-    public override void Execute(UtilityAgent agent)
+    public override void Execute(GameObject agent)
     {
        
     }
