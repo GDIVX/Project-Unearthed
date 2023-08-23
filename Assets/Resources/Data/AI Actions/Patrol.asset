@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: Patrol
   m_EditorClassIdentifier: 
   _targetNeed: {fileID: 11400000, guid: 3fe79af5eb2b7f745b0b8f34c237bdc5, type: 2}
+  _target: {fileID: 0}
+  _agentGameObject: {fileID: 0}
+  _score: 0
+  _agent: {fileID: 0}
+  _move: {fileID: 0}
+  _wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  _scanRadius: 6

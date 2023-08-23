@@ -8,10 +8,9 @@ using Assets.Scripts.AI;
 /// </summary>
 [CreateAssetMenu(fileName = "Idle", menuName = "AI/Needs/Idle")]
 public class Idle : Need
-{    
+{
     protected override float CalculateUtilityScore()
     {
-        return 0;
-        //throw new System.NotImplementedException();
+        return _score;
     }
 }

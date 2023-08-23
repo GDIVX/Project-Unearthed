@@ -11,6 +11,6 @@ public class AttackPlayer : Need
 {    
     protected override float CalculateUtilityScore()
     {
-        throw new System.NotImplementedException();
+        return _score;
     }
 }

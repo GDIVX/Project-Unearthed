@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55d4eab5bb284a44978c91caea255b0, type: 3}
   m_Name: PlayerAwareness
   m_EditorClassIdentifier: 
+  Score: 1

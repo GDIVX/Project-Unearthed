@@ -3,7 +3,12 @@ guid: dc5a111dfea43e24785518f435332148
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _targetNeed: {instanceID: 0}
+  - _target: {instanceID: 0}
+  - _agentGameObject: {instanceID: 0}
+  - _agent: {instanceID: 0}
+  - _move: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

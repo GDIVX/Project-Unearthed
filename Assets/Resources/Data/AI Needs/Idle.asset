@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ec794c03166674eb4e70972ac161f1, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
+  Score: 0

@@ -17,15 +17,20 @@ public class Patrol : UtilityAction
     [SerializeField] Transform[] _wayPoints;
     [SerializeField] float _scanRadius;
     int _wayPointIndex = 0;
-    int wayPointIndex { get { return _wayPointIndex; } set { _wayPointIndex = value; UpdateDestination(); } }  
+    int wayPointIndex { get { return _wayPointIndex; } set { _wayPointIndex = value; } }  
     Vector3 _targetWayPoint;
     public override void Execute(GameObject agent)
     {
-        _agent ??= agent.gameObject.GetComponent<NavMeshAgent>();
-        _move ??= agent.gameObject.GetComponent<Movement>();
         _agentGameObject = agent;
-        UpdateDestination();//fix
+        if(_move==null)
+        {
+            _move = agent.gameObject.GetComponent<Movement>();
+            _agent = agent.gameObject.GetComponent<NavMeshAgent>();
+            UpdateDestination();//fix
+        }
         GoToDestination();
+        Debug.Log("patroling");
+        Debug.Log($"_wayPointIndex: {_wayPointIndex}");
     }
 
     void GoToDestination()
@@ -33,11 +38,9 @@ public class Patrol : UtilityAction
         if (Vector3.Distance(_agentGameObject.transform.position, _targetWayPoint) < 1)
         {
             IterateWayPointIndex();
+            UpdateDestination();
         }
-        if (ScanForTarget())
-        {
-            _agent.SetDestination(_target.transform.position);
-        }
+        ScanForTarget();
     }
     void UpdateDestination()
     {
@@ -69,7 +72,12 @@ public class Patrol : UtilityAction
     }
     protected override float CalculateUtilityScore()
     {
-        return 0;
-       //throw new System.NotImplementedException();
+        if (_target!=null)
+            _score = 0;
+        else
+            _score = 1;
+        _score = Mathf.Clamp(_score, 0, 1);
+        return _score;
+        //throw new System.NotImplementedException();
     }        
 }

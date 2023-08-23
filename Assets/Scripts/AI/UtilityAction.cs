@@ -12,6 +12,7 @@ namespace Assets.Scripts.AI
         [SerializeField] Need _targetNeed;
         [SerializeField] protected GameObject _target;
         [SerializeField] protected GameObject _agentGameObject;
+        [SerializeField] protected float _score;
         public Need TargetNeed { get => _targetNeed; protected set => _targetNeed = value; }
 
         public float GetUtilityScore()
