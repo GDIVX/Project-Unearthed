@@ -5,6 +5,7 @@ using Assets.Scripts.AI;
 using UnityEngine.AI;
 using Assets.Scripts.CharacterAbilities;
 using System.Linq;
+using Assets.Scripts.GameManagers;
 /// <summary>
 /// Patrol
 /// </summary>
@@ -56,7 +57,7 @@ public class Patrol : UtilityAction
     bool ScanForTarget()//do this scan every 0.5 second or other number
     {
         Collider potentialTargets;
-        LayerMask layerMask = new LayerMask();
+        LayerMask layerMask = GameManager.Instance.AICanSee;
         potentialTargets = Physics.OverlapSphere(_agentGameObject.transform.position, _scanRadius, layerMask).FirstOrDefault();//PLAYER ONLY
         if(potentialTargets != null)
         {
