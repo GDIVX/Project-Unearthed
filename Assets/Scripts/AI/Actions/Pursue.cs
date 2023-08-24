@@ -16,6 +16,8 @@ public class Pursue : UtilityAction
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] Movement _move;
     [SerializeField] float _scanRadius;
+    
+
     public override void Execute(GameObject agent)
     {
         _agentGameObject = agent;
