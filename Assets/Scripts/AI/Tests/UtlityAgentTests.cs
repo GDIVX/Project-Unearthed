@@ -2,6 +2,7 @@ using Assets.Scripts.AI;
 using NUnit.Framework;
 using System.Collections;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -23,8 +24,8 @@ public class UtilityAgentTests : MonoBehaviour
         _agent.Actions = new();
 
         need = NeedMock.Create(0.6f);
-        action1 = ActionMock.Create(need, 0.3f);
-        action2 = ActionMock.Create(need, 0.7f);
+        action1 = ActionMock.Create(need, 0.3f,gameObject);
+        action2 = ActionMock.Create(need, 0.7f, gameObject);
 
         _agent.Needs.Add(need);
         _agent.Actions.Add(action1);
@@ -60,9 +61,9 @@ public class UtilityAgentTests : MonoBehaviour
     public IEnumerator Agent_CanFunctionWithMultipleNeedsAndActions()
     {
         var need1 = NeedMock.Create(0.4f);
-        var action1 = ActionMock.Create(need1, 0.3f);
+        var action1 = ActionMock.Create(need1, 0.3f, gameObject);
         var need2 = NeedMock.Create(0.6f);
-        var action2 = ActionMock.Create(need2, 0.1f);
+        var action2 = ActionMock.Create(need2, 0.1f, gameObject);
 
         _agent.Needs.Add(need1);
         _agent.Actions.Add(action1);
@@ -82,9 +83,9 @@ public class UtilityAgentTests : MonoBehaviour
     public IEnumerator ExecuteAction_ExecutesActionWhenNeedUtilityScoresAreEqual()
     {
         var need1 = NeedMock.Create(0.6f);
-        var action1 = ActionMock.Create(need1, 0.3f);
+        var action1 = ActionMock.Create(need1, 0.3f, gameObject);
         var need2 = NeedMock.Create(0.6f);
-        var action2 = ActionMock.Create(need2, 0.1f);
+        var action2 = ActionMock.Create(need2, 0.1f, gameObject);
 
         _agent.Needs.Add(need1);
         _agent.Actions.Add(action1);
@@ -104,8 +105,8 @@ public class UtilityAgentTests : MonoBehaviour
     public IEnumerator ExecuteAction_ExecutesActionWhenUtilityScoresAreEqual()
     {
         var need = NeedMock.Create(0.6f);
-        var action1 = ActionMock.Create(need, 0.5f);
-        var action2 = ActionMock.Create(need, 0.5f);
+        var action1 = ActionMock.Create(need, 0.5f, gameObject);
+        var action2 = ActionMock.Create(need, 0.5f, gameObject);
 
         _agent.Needs.Add(need);
         _agent.Actions.Add(action1);
@@ -124,7 +125,7 @@ public class UtilityAgentTests : MonoBehaviour
     public IEnumerator ExecuteAction_DoesNotExecuteActionWhenNoNeeds()
     {
         var need = NeedMock.Create(0.6f);
-        var action = ActionMock.Create(need, 0.5f);
+        var action = ActionMock.Create(need, 0.5f, gameObject);
 
         _agent.Actions.Add(action);
 
@@ -139,7 +140,7 @@ public class UtilityAgentTests : MonoBehaviour
     public IEnumerator ExecuteAction_DoesNotExecuteActionWhenDeletingNeeds()
     {
         var need = NeedMock.Create(0.6f);
-        var action = ActionMock.Create(need, 0.5f);
+        var action = ActionMock.Create(need, 0.5f, gameObject);
 
         _agent.Needs.Remove(need);
         _agent.Actions.Add(action);
@@ -155,32 +156,7 @@ public class UtilityAgentTests : MonoBehaviour
 
 
 
-    public class ActionMock : UtilityAction
-    {
-        public bool isExecuted = false;
-
-        public float utilityScore = 0;
-
-        public static ActionMock Create(Need need, float utilityScore)
-        {
-            ActionMock mock = ScriptableObject.CreateInstance<ActionMock>();
-
-            mock.TargetNeed = need;
-            mock.utilityScore = utilityScore;
-
-            return mock;
-        }
-
-        public override void Execute(GameObject agent)
-        {
-            isExecuted = true;
-        }
-
-        protected override float CalculateUtilityScore()
-        {
-            return utilityScore;
-        }
-    }
+    
 
     public class NeedMock : Need
     {
@@ -193,9 +169,5 @@ public class UtilityAgentTests : MonoBehaviour
             return mock;
         }
 
-        protected override float CalculateUtilityScore()
-        {
-            return utilityScore;
-        }
     }
 }

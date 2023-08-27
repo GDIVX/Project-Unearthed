@@ -6,10 +6,10 @@ using UnityEngine.AI;
 using Assets.Scripts.CharacterAbilities;
 using System.Linq;
 using Assets.Scripts.GameManagers;
+using Sirenix.OdinInspector;
 /// <summary>
 /// Patrol
 /// </summary>
-[CreateAssetMenu(fileName = "Patrol", menuName = "AI/Actions/Patrol")]
 public class Patrol : UtilityAction
 {
     [SerializeField] NavMeshAgent _agent;
@@ -17,30 +17,36 @@ public class Patrol : UtilityAction
     [SerializeField] Transform[] _wayPoints;
     [SerializeField] float _scanRadius;
     int _wayPointIndex = 0;
-    int wayPointIndex { get { return _wayPointIndex; } set { _wayPointIndex = value; } }  
-    Vector3 _targetWayPoint;
-    public override void Execute(GameObject agent)
+    int wayPointIndex { get { return _wayPointIndex; } set { _wayPointIndex = value; } }
+    protected override ValueDropdownList<string> myScoreValuesList { get; set; } = new ValueDropdownList<string>()
     {
-        _agentGameObject = agent;
+        { "HasTarget", "HasTarget"}
+    };
+    Vector3 _targetWayPoint;
+
+    public override void Execute(GameObject gameObject)
+    {
         if(_move==null)
         {
-            _move = agent.gameObject.GetComponent<Movement>();
-            _agent = agent.gameObject.GetComponent<NavMeshAgent>();
-            UpdateDestination();//fix
+            SetScoreValues();
+            _move = gameObject.GetComponent<Movement>();
+            _agent = gameObject.GetComponent<NavMeshAgent>();
+            UpdateDestination();
         }
         GoToDestination();
-        Debug.Log("patroling");
-        Debug.Log($"_wayPointIndex: {_wayPointIndex}");
+        //Debug.Log("patroling");
+        //Debug.Log($"_wayPointIndex: {_wayPointIndex}");
     }
 
     void GoToDestination()
     {
-        if (Vector3.Distance(_agentGameObject.transform.position, _targetWayPoint) < 1)
+        if (Vector3.Distance(_agent.transform.position, _targetWayPoint) < 1)
         {
             IterateWayPointIndex();
             UpdateDestination();
+            //Debug.Log("change target");
         }
-        ScanForTarget();
+    
     }
     void UpdateDestination()
     {
@@ -59,25 +65,35 @@ public class Patrol : UtilityAction
 
     bool ScanForTarget()//do this scan every 0.5 second or other number
     {
+        if(_agent==null)
+            return false;
         Collider potentialTargets;
         LayerMask layerMask = GameManager.Instance.AICanSee;
-        potentialTargets = Physics.OverlapSphere(_agentGameObject.transform.position, _scanRadius, layerMask).FirstOrDefault();//PLAYER ONLY
+        potentialTargets = Physics.OverlapSphere(_agent.transform.position, _scanRadius, layerMask).FirstOrDefault();//PLAYER ONLY
         if(potentialTargets != null)
         {
             _target = potentialTargets.gameObject;
-            return true;
+            return true;//found target
         }
-        return false;
+        return false; //didnt found target
 
     }
     protected override float CalculateUtilityScore()
     {
-        if (_target!=null)
-            _score = 0;
-        else
-            _score = 1;
-        _score = Mathf.Clamp(_score, 0, 1);
-        return _score;
-        //throw new System.NotImplementedException();
-    }        
+        if (myScoreValues == null && myScoreValues.Count == 0)
+            return 1;
+        float actionScore = ScanForTarget() ? 0f : 1f;
+        myScoreValues["HasTarget"] = actionScore;
+        //add here score values
+        _actionScore = myScoreValues.Values.Average();
+        if (_actionScore == 0)
+        {
+            _move = null;
+            _agent.GetComponent<UtilityAgent>().Needs.FirstOrDefault(c => c as PlayerAwareness).AnimationCurveSet(0.1f);
+            //_actionScore = _agent.GetComponent<UtilityAgent>().Needs.FirstOrDefault(c => c is PlayerAwareness).AnimationCurveSet(11);
+        }
+        TargetNeed.AnimationCurveSet(_actionScore);
+        return _scoreCurve.Evaluate(_actionScore);
+    }
+
 }

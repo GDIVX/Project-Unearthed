@@ -9,8 +9,4 @@ using Assets.Scripts.AI;
 [CreateAssetMenu(fileName = "Idle", menuName = "AI/Needs/Idle")]
 public class Idle : Need
 {
-    protected override float CalculateUtilityScore()
-    {
-        return _score;
-    }
 }

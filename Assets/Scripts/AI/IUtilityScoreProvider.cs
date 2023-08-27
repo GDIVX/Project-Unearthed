@@ -5,7 +5,7 @@ namespace Assets.Scripts.AI
 {
     public interface IUtilityScoreProvider
     {
-        public float GetUtilityScore();
+        public float GetUtilityScore(GameObject gameObject);
 
     }
 }

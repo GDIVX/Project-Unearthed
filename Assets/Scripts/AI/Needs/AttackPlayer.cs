@@ -9,8 +9,4 @@ using Assets.Scripts.AI;
 [CreateAssetMenu(fileName = "AttackPlayer", menuName = "AI/Needs/AttackPlayer")]
 public class AttackPlayer : Need
 {    
-    protected override float CalculateUtilityScore()
-    {
-        return _score;
-    }
 }

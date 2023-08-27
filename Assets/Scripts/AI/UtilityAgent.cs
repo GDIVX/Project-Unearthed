@@ -47,9 +47,9 @@ public class UtilityAgent : MonoBehaviour
 
         foreach (Need need in Needs)
         {
-            if (need.GetUtilityScore() >= maxScore)
+            if (need.GetUtilityScore(gameObject) >= maxScore)
             {
-                maxScore = need.GetUtilityScore();
+                maxScore = need.GetUtilityScore(gameObject);
                 chosenNeed = need;
             }
         }
@@ -76,7 +76,7 @@ public class UtilityAgent : MonoBehaviour
         UtilityAction chosenAction = null;
         foreach (UtilityAction action in relevantActions)
         {
-            float actionScore = action.GetUtilityScore();
+            float actionScore = action.GetUtilityScore(gameObject);
             if (actionScore >= maxScore)
             {
                 maxScore = actionScore;

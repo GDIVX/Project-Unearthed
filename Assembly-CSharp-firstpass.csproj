@@ -962,13 +962,13 @@
       <Project>{03A8053C-944C-F953-60D5-40F6DEF8BBA2}</Project>
       <Name>Inventory</Name>
     </ProjectReference>
-    <ProjectReference Include="ObjectPoolingAssembly.csproj">
-      <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
-      <Name>ObjectPoolingAssembly</Name>
-    </ProjectReference>
     <ProjectReference Include="GameManagers.csproj">
       <Project>{C2FBDBF7-70CC-8595-50BF-B5703BFD4EA1}</Project>
       <Name>GameManagers</Name>
+    </ProjectReference>
+    <ProjectReference Include="ObjectPoolingAssembly.csproj">
+      <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
+      <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
