@@ -61,7 +61,7 @@ namespace Assets.Scripts.CharacterAbilities
             lastDodgeTime = Time.time;
             dodgeDirection = direction.normalized;
 
-            Health.SetInvisibilityForSeconds(InvisibilityDuration);
+            Health.SetInvincibilityForSeconds(InvisibilityDuration);
 
             StartCoroutine(DodgeCooldownCoroutine());
             OnDodgeStart?.Invoke();

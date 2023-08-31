@@ -1,17 +1,18 @@
 using Assets.Scripts.Stats;
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Health : Stat
 {
     [SerializeField] bool _isInvincible;
+    [SerializeField, ReadOnly] bool _isDead;
 
     public UnityEvent<Health> OnDeath;
 
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     public override void OnValueChange()
     {
@@ -32,17 +33,22 @@ public class Health : Stat
         Debug.Log("deal damage " + damageAmount);
     }
 
-    public void SetInvisibilityForSeconds(float sconds)
+    public void Regenerate(int healAmount)
     {
-        IsInvincible = true;
-        StartCoroutine(TimedInvisibilityCoroutine(sconds));
+
     }
 
-    private IEnumerator TimedInvisibilityCoroutine(float sconds)
+    public void SetInvincibilityForSeconds(float seconds)
+    {
+        IsInvincible = true;
+        StartCoroutine(TimedInvincibilityCoroutine(seconds));
+    }
+
+    private IEnumerator TimedInvincibilityCoroutine(float seconds)
     {
         IsInvincible = true;
 
-        yield return new WaitForSeconds(sconds);
+        yield return new WaitForSeconds(seconds);
 
         IsInvincible = false;
     }
