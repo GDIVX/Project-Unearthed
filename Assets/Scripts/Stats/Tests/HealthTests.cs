@@ -48,6 +48,8 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_RegenerateNegativeHealth()
     {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue - 1;
         int currentHP = _hp.Value;
         int healAmount = -1;
         _hp.Regenerate(healAmount);
@@ -171,6 +173,71 @@ public class HealthTests : MonoBehaviour
         _hp.Value = 0;
         yield return new WaitForSeconds(0.5f);
         Assert.IsTrue(_hp.Value == 0);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_CanGainTemporaryHealthAboveMaxHealth()
+    {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue;
+        int tmpHP = 3;
+        _hp.AddTemporaryHealth(3);
+        Assert.IsTrue(_hp.Value + _hp.TempHealth == _hp.MaxValue + tmpHP);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_TemporaryHealthExceedingDamageTaken()
+    {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue;
+        int tmpHP = 3;
+        int currentHP = _hp.Value;
+        _hp.AddTemporaryHealth(3);
+        _hp.TakeDamage(tmpHP - 1);
+        Assert.IsTrue(_hp.Value == currentHP);
+        Assert.IsTrue(_hp.TempHealth == tmpHP - 2);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_TemporaryHealthLowerThanDamageTaken()
+    {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue;
+        int tmpHP = 3;
+        int currentHP = _hp.Value;
+        _hp.AddTemporaryHealth(tmpHP);
+        _hp.TakeDamage(tmpHP + 1);
+        Assert.IsTrue(_hp.Value < currentHP);
+        Assert.IsTrue(_hp.TempHealth == 0);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_NegativeDamageWithTemporaryHealth()
+    {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue;
+        int tmpHP = 3;
+        int currentHP = _hp.Value;
+        _hp.AddTemporaryHealth(tmpHP);
+        _hp.TakeDamage(-1);
+        Assert.IsTrue(_hp.Value == currentHP);
+        Assert.IsTrue(_hp.TempHealth == tmpHP);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_CannotGainNegativeTemporaryHealth()
+    {
+        _hp.MaxValue = 10;
+        _hp.Value = _hp.MaxValue;
+        _hp.TempHealth = 0;
+        int tmpHP = -3;
+        _hp.AddTemporaryHealth(tmpHP);
+        Assert.IsTrue(_hp.TempHealth == 0);
         yield return null;
     }
 }
