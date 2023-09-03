@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 2447301770119762294}
   - component: {fileID: 7835324181591090255}
   - component: {fileID: 378469108}
+  - component: {fileID: 8918677520485197435}
   - component: {fileID: 8418188474337938403}
   - component: {fileID: 1453998029993772481}
   - component: {fileID: 1686629667}
@@ -333,7 +334,10 @@ MonoBehaviour:
   OnValueChangeEvent:
     m_PersistentCalls:
       m_Calls: []
+  _regenRateInSeconds: 0
   _isInvincible: 0
+  _isDead: 0
+  _tempHealth: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -349,6 +353,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8918677520485197435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835324181591090252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15f6f049002aef48b51c042bf01d666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 0
+  _maxValue: 0
+  OnValueChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _regenRateInSeconds: 0
+  _isInvincible: 0
+  _isDead: 0
+  _tempHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &8418188474337938403
 Rigidbody:
   m_ObjectHideFlags: 0

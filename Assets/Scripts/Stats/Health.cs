@@ -6,9 +6,10 @@ using UnityEngine.Events;
 
 public class Health : Stat
 {
+    [SerializeField] float _regenRateInSeconds;
     [SerializeField, ReadOnly] bool _isInvincible;
     [SerializeField, ReadOnly] bool _isDead; ///////////////
-    [SerializeField, ReadOnly] int _tempHealth; /////////
+    [SerializeField, ReadOnly] int _tempHealth;
 
     public UnityEvent<Health> OnDeath;
 
@@ -21,6 +22,7 @@ public class Health : Stat
         //if (Value <= 0) then die
         if (Value <= 0)
         {
+            IsDead = true;
             OnDeath?.Invoke(this);
         }
 
@@ -29,7 +31,7 @@ public class Health : Stat
 
     public void TakeDamage(int damageAmount)
     {
-        if (IsInvincible) return;
+        if (IsInvincible || IsDead) return;
         int totalDamage = damageAmount;
         damageAmount = Mathf.Clamp(damageAmount - TempHealth, 0, damageAmount);
         TempHealth = Mathf.Clamp(TempHealth - totalDamage, 0, TempHealth);
@@ -37,15 +39,16 @@ public class Health : Stat
         Debug.Log("deal damage " + damageAmount);
     }
 
-    public IEnumerable Regenerate(int healAmount)
+    public IEnumerator Regenerate(int healAmount)
     {
         if (healAmount <= 0) yield break;
         int counter = 0;
         while(counter < healAmount)
         {
+            if (IsDead) yield break;
             counter++;
-            Value++;
-            yield return null;
+            if (Value < MaxValue) Value++;
+            yield return new WaitForSeconds(_regenRateInSeconds);
         }
         Debug.Log("finished regenerating!");
     }

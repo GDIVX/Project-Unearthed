@@ -32,6 +32,7 @@ public class HealthTests : MonoBehaviour
     public IEnumerator Health_DiesWhenHealthReachesZero()
     {
         _hp.Value = 0;
+        _hp.OnValueChange();
         Assert.IsTrue(_hp.IsDead);
         yield return null;
     }
@@ -61,10 +62,10 @@ public class HealthTests : MonoBehaviour
     public IEnumerator Health_HealingAmountAboveMaxHealth()
     {
         _hp.MaxValue = 10;
-        _hp.Value = _hp.MaxValue; 
         int healAmount = _hp.MaxValue + 1;
         _hp.Value = _hp.MaxValue - 1;
-        _hp.Regenerate(healAmount);
+        _hp.TakeDamage(1);
+        yield return _hp.Regenerate(healAmount);
         Assert.IsTrue(_hp.Value == _hp.MaxValue);
         yield return null;
     }
@@ -123,7 +124,7 @@ public class HealthTests : MonoBehaviour
         int amount = 1;
         _hp.Value = _hp.MaxValue - amount;
         _hp.IsInvincible = true;
-        _hp.Regenerate(amount);
+        yield return _hp.Regenerate(amount);
         Assert.IsTrue(_hp.Value == _hp.MaxValue);
         yield return null;
     }
@@ -135,7 +136,7 @@ public class HealthTests : MonoBehaviour
         _hp.Value = _hp.MaxValue - amount;
         int currentHP = _hp.Value;
         _hp.IsDead = true;
-        _hp.Regenerate(amount);
+        yield return _hp.Regenerate(amount);
         Assert.IsTrue(currentHP == _hp.Value);
         yield return null;
     }
@@ -146,7 +147,7 @@ public class HealthTests : MonoBehaviour
         int amount = -1;
         _hp.TakeDamage(-amount);
         int currentHP = _hp.Value;
-        _hp.Regenerate(amount);
+        yield return _hp.Regenerate(amount);
         Assert.IsTrue(currentHP == _hp.Value);
         yield return null;
     }
@@ -158,20 +159,23 @@ public class HealthTests : MonoBehaviour
         _hp.Value = _hp.MaxValue; 
         int damageAmount = _hp.MaxValue / 2;
         int healingAmount = _hp.MaxValue;
-        _hp.Regenerate(healingAmount);
+        //yield return _hp.Regenerate(healingAmount);
+        Debug.Log(_hp.Value);
+        var cor = StartCoroutine(_hp.Regenerate(healingAmount));
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log(_hp.Value);
         _hp.TakeDamage(damageAmount);
-        yield return new WaitForSeconds(0.5f);
+        yield return cor;
         Assert.IsTrue(_hp.Value == _hp.MaxValue);
         yield return null;
     }
     
     [UnityTest]
-    public IEnumerator Health_HealingWhenHealthReachesZeroMidway()
+    public IEnumerator Health_HealingWhenHealthReachesZeroMidway()/////////////
     {
         int healingAmount = 10;
-        _hp.Regenerate(healingAmount);
+        yield return _hp.Regenerate(healingAmount);
         _hp.Value = 0;
-        yield return new WaitForSeconds(0.5f);
         Assert.IsTrue(_hp.Value == 0);
         yield return null;
     }
