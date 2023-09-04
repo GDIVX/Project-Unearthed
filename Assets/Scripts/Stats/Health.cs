@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Health : Stat
 {
     [SerializeField] float _regenRateInSeconds;
+    [SerializeField] Armor _armor;
     [SerializeField, ReadOnly] bool _isInvincible;
     [SerializeField, ReadOnly] bool _isDead; ///////////////
     [SerializeField, ReadOnly] int _tempHealth;
@@ -32,11 +33,32 @@ public class Health : Stat
     public void TakeDamage(int damageAmount)
     {
         if (IsInvincible || IsDead) return;
+        if (damageAmount < 0) damageAmount = 0;
         int totalDamage = damageAmount;
-        damageAmount = Mathf.Clamp(damageAmount - TempHealth, 0, damageAmount);
-        TempHealth = Mathf.Clamp(TempHealth - totalDamage, 0, TempHealth);
+        if(_armor != null)
+        {
+            _armor.Value = SubtractValues(ref damageAmount, _armor.Value);
+        }
+        TempHealth = SubtractValues(ref damageAmount, TempHealth);
+        //damageAmount = Mathf.Clamp(damageAmount - TempHealth, 0, damageAmount);
+        //TempHealth = Mathf.Clamp(TempHealth - totalDamage, 0, TempHealth);
         Value -= damageAmount;
         Debug.Log("deal damage " + damageAmount);
+    }
+
+    private int SubtractValues(ref int firstValue, int secondValue)
+    {
+        if (firstValue < secondValue)
+        {
+            secondValue = secondValue - firstValue;
+            firstValue = 0;
+        }
+        else
+        {
+            firstValue = firstValue - secondValue;
+            secondValue = 0;
+        }
+        return secondValue;
     }
 
     public IEnumerator Regenerate(int healAmount)
