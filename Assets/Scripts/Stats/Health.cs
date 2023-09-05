@@ -4,7 +4,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health : Stat
+public class Health : RegeneratingStats
 {
     [SerializeField] float _regenRateInSeconds;
     [SerializeField] Armor _armor;
@@ -17,6 +17,8 @@ public class Health : Stat
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
     public bool IsDead { get => _isDead; set => _isDead = value; }
     public int TempHealth { get => _tempHealth; set => _tempHealth = value; }
+    public Armor Armor { get => _armor; set => _armor = value; }
+    protected override float RegenRateInSeconds { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public override void OnValueChange()
     {
@@ -40,8 +42,6 @@ public class Health : Stat
             _armor.Value = SubtractValues(ref damageAmount, _armor.Value);
         }
         TempHealth = SubtractValues(ref damageAmount, TempHealth);
-        //damageAmount = Mathf.Clamp(damageAmount - TempHealth, 0, damageAmount);
-        //TempHealth = Mathf.Clamp(TempHealth - totalDamage, 0, TempHealth);
         Value -= damageAmount;
         Debug.Log("deal damage " + damageAmount);
     }
@@ -61,11 +61,17 @@ public class Health : Stat
         return secondValue;
     }
 
-    public IEnumerator Regenerate(int healAmount)
+    public void AddTemporaryHealth(int healthAmount)
+    {
+        if (healthAmount <= 0) return;
+        TempHealth += healthAmount;
+    }
+
+    public override IEnumerator Regenerate(int healAmount)
     {
         if (healAmount <= 0) yield break;
         int counter = 0;
-        while(counter < healAmount)
+        while (counter < healAmount)
         {
             if (IsDead) yield break;
             counter++;
@@ -73,12 +79,6 @@ public class Health : Stat
             yield return new WaitForSeconds(_regenRateInSeconds);
         }
         Debug.Log("finished regenerating!");
-    }
-
-    public void AddTemporaryHealth(int healthAmount)
-    {
-        if (healthAmount <= 0) return;
-        TempHealth += healthAmount;
     }
 
     public void SetInvincibilityForSeconds(float seconds)
