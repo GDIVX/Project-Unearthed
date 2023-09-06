@@ -97,9 +97,10 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TakingDamageWhileInvincible()
     {
-        _hp.IsInvincible = true;
-        int currentHP = _hp.Value;
+        int seconds = 3;
         int damageAmount = 1;
+        int currentHP = _hp.Value;
+        _hp.SetInvincibilityForSeconds(seconds);
         _hp.TakeDamage(damageAmount);
         Assert.IsTrue(_hp.Value == currentHP); 
         yield return null;
@@ -122,10 +123,21 @@ public class HealthTests : MonoBehaviour
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue; 
         int amount = 1;
+        int seconds = 3;
         _hp.Value = _hp.MaxValue - amount;
-        _hp.IsInvincible = true;
+        _hp.SetInvincibilityForSeconds(seconds);
         yield return _hp.Regenerate(amount);
         Assert.IsTrue(_hp.Value == _hp.MaxValue);
+        yield return null;
+    }
+    
+    [UnityTest]
+    public IEnumerator Health_InvincibilityRunningOut()
+    {
+        int seconds = 3;
+        _hp.SetInvincibilityForSeconds(seconds);
+        yield return new WaitForSeconds(seconds);
+        Assert.IsFalse(_hp.IsInvincible);
         yield return null;
     }
     
@@ -153,20 +165,12 @@ public class HealthTests : MonoBehaviour
     }
     
     [UnityTest]
-    public IEnumerator Health_HealingWhenTakingDamage()
+    public IEnumerator Health_CanSetInvincibility()
     {
-        _hp.MaxValue = 10;
-        _hp.Value = _hp.MaxValue; 
-        int damageAmount = _hp.MaxValue / 2;
-        int healingAmount = _hp.MaxValue;
-        //yield return _hp.Regenerate(healingAmount);
-        Debug.Log(_hp.Value);
-        var cor = StartCoroutine(_hp.Regenerate(healingAmount));
-        yield return new WaitForSeconds(1.0f);
-        Debug.Log(_hp.Value);
-        _hp.TakeDamage(damageAmount);
-        yield return cor;
-        Assert.IsTrue(_hp.Value == _hp.MaxValue);
+        int seconds = 4;
+        Assert.IsFalse(_hp.IsInvincible);
+        _hp.SetInvincibilityForSeconds(seconds);
+        Assert.IsTrue(_hp.IsInvincible);
         yield return null;
     }
     

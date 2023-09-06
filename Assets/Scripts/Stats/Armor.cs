@@ -5,17 +5,22 @@ public class Armor : RegeneratingStats
 {
     [SerializeField] int _cooldownInSeconds = 2;
     
-    private Coroutine cooldownCoroutine;
+    private Coroutine _cooldownCoroutine;
+    private Coroutine _regeneratingCoroutine;
 
     protected override float RegenRateInSeconds { get; set; } = 0.5f;
 
     public override void OnValueChange()
     {
-        if (cooldownCoroutine != null)
+        if (_cooldownCoroutine != null)
         {
-            StopCoroutine(cooldownCoroutine);
+            StopCoroutine(_cooldownCoroutine);
         }
-        cooldownCoroutine = StartCoroutine(Cooldown());
+        if (_regeneratingCoroutine != null)
+        {
+            StopCoroutine(_regeneratingCoroutine);
+        }
+        _cooldownCoroutine = StartCoroutine(Cooldown());
         base.OnValueChange();
     }
 

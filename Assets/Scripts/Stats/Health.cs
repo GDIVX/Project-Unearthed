@@ -9,7 +9,7 @@ public class Health : RegeneratingStats
     [SerializeField] float _regenRateInSeconds;
     [SerializeField] Armor _armor;
     [SerializeField, ReadOnly] bool _isInvincible;
-    [SerializeField, ReadOnly] bool _isDead; ///////////////
+    [SerializeField, ReadOnly] bool _isDead;
     [SerializeField, ReadOnly] int _tempHealth;
 
     public UnityEvent<Health> OnDeath;
@@ -18,7 +18,7 @@ public class Health : RegeneratingStats
     public bool IsDead { get => _isDead; set => _isDead = value; }
     public int TempHealth { get => _tempHealth; set => _tempHealth = value; }
     public Armor Armor { get => _armor; set => _armor = value; }
-    protected override float RegenRateInSeconds { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    protected override float RegenRateInSeconds { get { return _regenRateInSeconds; } set { _regenRateInSeconds = value; } }
 
     public override void OnValueChange()
     {
@@ -36,7 +36,6 @@ public class Health : RegeneratingStats
     {
         if (IsInvincible || IsDead) return;
         if (damageAmount < 0) damageAmount = 0;
-        int totalDamage = damageAmount;
         if(_armor != null)
         {
             _armor.Value = SubtractValues(ref damageAmount, _armor.Value);
@@ -44,21 +43,6 @@ public class Health : RegeneratingStats
         TempHealth = SubtractValues(ref damageAmount, TempHealth);
         Value -= damageAmount;
         Debug.Log("deal damage " + damageAmount);
-    }
-
-    private int SubtractValues(ref int firstValue, int secondValue)
-    {
-        if (firstValue < secondValue)
-        {
-            secondValue = secondValue - firstValue;
-            firstValue = 0;
-        }
-        else
-        {
-            firstValue = firstValue - secondValue;
-            secondValue = 0;
-        }
-        return secondValue;
     }
 
     public void AddTemporaryHealth(int healthAmount)
@@ -94,5 +78,20 @@ public class Health : RegeneratingStats
         yield return new WaitForSeconds(seconds);
 
         IsInvincible = false;
+    }
+
+    private int SubtractValues(ref int firstValue, int secondValue)
+    {
+        if (firstValue < secondValue)
+        {
+            secondValue = secondValue - firstValue;
+            firstValue = 0;
+        }
+        else
+        {
+            firstValue = firstValue - secondValue;
+            secondValue = 0;
+        }
+        return secondValue;
     }
 }

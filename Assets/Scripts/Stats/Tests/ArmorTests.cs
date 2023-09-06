@@ -80,6 +80,16 @@ public class ArmorTests : MonoBehaviour
     }
     
     [UnityTest]
+    public IEnumerator Armor_RegeneratingAllArmorNotAboveMax()
+    {
+        _hp.TakeDamage(_hp.Armor.MaxValue);
+        Assert.IsTrue(_hp.Armor.Value == 0);
+        yield return new WaitForSeconds(_hp.Armor.MaxValue * 2);
+        Assert.IsTrue(_hp.Armor.Value == _hp.Armor.MaxValue);
+        yield return null;
+    }
+    
+    [UnityTest]
     public IEnumerator Armor_TakingDamageMultipleTimes()
     {
         int currentAP = _hp.Armor.Value;
@@ -105,8 +115,9 @@ public class ArmorTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Armor_TakingDamageWhenInvincible()
     {
-        _hp.IsInvincible = true;
+        int seconds = 5;
         int currentAP = _hp.Armor.Value;
+        _hp.SetInvincibilityForSeconds(seconds);
         _hp.TakeDamage(3);
         Assert.IsTrue(_hp.Armor.Value == currentAP);
         yield return null;
