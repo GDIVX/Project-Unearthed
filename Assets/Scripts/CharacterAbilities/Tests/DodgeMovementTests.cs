@@ -7,7 +7,7 @@ using System.Collections;
 public class DodgeMovementTests
 {
     private DodgeMovement dodgeMovement;
-    private Health health;
+    private DamageHandler damageHandler;
 
     [SetUp]
     public void Setup()
@@ -21,8 +21,8 @@ public class DodgeMovementTests
         dodgeMovement.DodgeCooldown = 2f;
         dodgeMovement.InvisibilityDuration = 0.5f;
 
-        health = gameObject.AddComponent<Health>();
-        dodgeMovement.Health = health;
+        damageHandler = gameObject.AddComponent<DamageHandler>();
+        dodgeMovement.DamageHandler = damageHandler;
     }
 
     [TearDown]

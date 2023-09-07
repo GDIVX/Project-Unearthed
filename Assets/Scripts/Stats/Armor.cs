@@ -9,7 +9,6 @@ public class Armor : RegeneratingStats, IDamageable
     private Coroutine _regeneratingCoroutine;
 
     protected override float RegenRateInSeconds { get; set; } = 0.5f;
-    public bool IsInvincible { get; set; }
 
     public override void OnValueChange()
     {
@@ -51,20 +50,6 @@ public class Armor : RegeneratingStats, IDamageable
         return damageAmount;
     }
     
-    public void SetInvincibilityForSeconds(float seconds)
-    {
-        IsInvincible = true;
-        StartCoroutine(TimedInvincibilityCoroutine(seconds));
-    }
-    public IEnumerator TimedInvincibilityCoroutine(float seconds)
-    {
-        IsInvincible = true;
-
-        yield return new WaitForSeconds(seconds);
-
-        IsInvincible = false;
-    }
-
     private int SubtractValues(ref int firstValue, int secondValue)
     {
         if (firstValue < secondValue)
