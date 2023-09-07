@@ -60,6 +60,8 @@
     <Compile Include="Assets\Scripts\Stats\Stat.cs" />
     <Compile Include="Assets\Scripts\Stats\Armor.cs" />
     <Compile Include="Assets\Scripts\Stats\RegeneratingStats.cs" />
+    <Compile Include="Assets\Scripts\Stats\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\Stats\DamageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Stats\Stats.asmdef" />

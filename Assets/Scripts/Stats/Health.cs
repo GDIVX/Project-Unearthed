@@ -1,23 +1,21 @@
-using Assets.Scripts.Stats;
 using System.Collections;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health : RegeneratingStats
+public class Health : RegeneratingStats, IDamageable
 {
     [SerializeField] float _regenRateInSeconds;
-    [SerializeField] Armor _armor;
+    //[SerializeField] Armor _armor;
     [SerializeField, ReadOnly] bool _isInvincible;
-    [SerializeField, ReadOnly] bool _isDead;
     [SerializeField, ReadOnly] int _tempHealth;
 
     public UnityEvent<Health> OnDeath;
 
     public bool IsInvincible { get => _isInvincible; set => _isInvincible = value; }
-    public bool IsDead { get => _isDead; set => _isDead = value; }
+    public bool IsDead => Value <= 0;
     public int TempHealth { get => _tempHealth; set => _tempHealth = value; }
-    public Armor Armor { get => _armor; set => _armor = value; }
+    //public Armor Armor { get => _armor; set => _armor = value; }
     protected override float RegenRateInSeconds { get { return _regenRateInSeconds; } set { _regenRateInSeconds = value; } }
 
     public override void OnValueChange()
@@ -25,24 +23,20 @@ public class Health : RegeneratingStats
         //if (Value <= 0) then die
         if (Value <= 0)
         {
-            IsDead = true;
             OnDeath?.Invoke(this);
         }
 
         base.OnValueChange();
     }
 
-    public void TakeDamage(int damageAmount)
+    public int TakeDamage(int damageAmount)
     {
-        if (IsInvincible || IsDead) return;
+        if (IsInvincible || IsDead) return -1;
         if (damageAmount < 0) damageAmount = 0;
-        if(_armor != null)
-        {
-            _armor.Value = SubtractValues(ref damageAmount, _armor.Value);
-        }
         TempHealth = SubtractValues(ref damageAmount, TempHealth);
-        Value -= damageAmount;
+        Value = SubtractValues(ref damageAmount, Value);
         Debug.Log("deal damage " + damageAmount);
+        return damageAmount;
     }
 
     public void AddTemporaryHealth(int healthAmount)
@@ -62,7 +56,6 @@ public class Health : RegeneratingStats
             if (Value < MaxValue) Value++;
             yield return new WaitForSeconds(_regenRateInSeconds);
         }
-        Debug.Log("finished regenerating!");
     }
 
     public void SetInvincibilityForSeconds(float seconds)
@@ -71,7 +64,7 @@ public class Health : RegeneratingStats
         StartCoroutine(TimedInvincibilityCoroutine(seconds));
     }
 
-    private IEnumerator TimedInvincibilityCoroutine(float seconds)
+    public IEnumerator TimedInvincibilityCoroutine(float seconds)
     {
         IsInvincible = true;
 

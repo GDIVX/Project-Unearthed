@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Armor : RegeneratingStats
+public class Armor : RegeneratingStats, IDamageable
 {
     [SerializeField] int _cooldownInSeconds = 2;
     
@@ -9,6 +9,7 @@ public class Armor : RegeneratingStats
     private Coroutine _regeneratingCoroutine;
 
     protected override float RegenRateInSeconds { get; set; } = 0.5f;
+    public bool IsInvincible { get; set; }
 
     public override void OnValueChange()
     {
@@ -27,7 +28,7 @@ public class Armor : RegeneratingStats
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(_cooldownInSeconds);
-        StartCoroutine(Regenerate(MaxValue - Value));
+        _regeneratingCoroutine = StartCoroutine(Regenerate(MaxValue - Value));
     }
 
     public override IEnumerator Regenerate(int healAmount)
@@ -40,6 +41,42 @@ public class Armor : RegeneratingStats
             if (Value < MaxValue) Value++;
             yield return new WaitForSeconds(RegenRateInSeconds);
         }
-        Debug.Log("finished regenerating!");
+    }
+
+    public int TakeDamage(int damageAmount)
+    {
+        if (damageAmount < 0) damageAmount = 0;
+        Value = SubtractValues(ref damageAmount, Value);
+        Debug.Log("deal damage " + damageAmount);
+        return damageAmount;
+    }
+    
+    public void SetInvincibilityForSeconds(float seconds)
+    {
+        IsInvincible = true;
+        StartCoroutine(TimedInvincibilityCoroutine(seconds));
+    }
+    public IEnumerator TimedInvincibilityCoroutine(float seconds)
+    {
+        IsInvincible = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        IsInvincible = false;
+    }
+
+    private int SubtractValues(ref int firstValue, int secondValue)
+    {
+        if (firstValue < secondValue)
+        {
+            secondValue = secondValue - firstValue;
+            firstValue = 0;
+        }
+        else
+        {
+            firstValue = firstValue - secondValue;
+            secondValue = 0;
+        }
+        return secondValue;
     }
 }
