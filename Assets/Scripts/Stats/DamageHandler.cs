@@ -1,18 +1,22 @@
+using System.Collections.Generic;
+
 public class DamageHandler
 {
-    private IDamageable[] damageables;
+    private List<IDamageable> damageables;
 
-    public DamageHandler(IDamageable[] damageable)
+    public DamageHandler(List<IDamageable> damageable)
     {
         this.damageables = damageable;
     }
 
-    public void TakeDamage(int damageAmount)
+    // This method takes an int, and goes through list of damageables
+    // and invokes TakeDamage on each one.
+    // TakeDamage returns an int representing the damage the next damageable needs to handle.
+    public void HandleTakingDamage(int damageAmount)
     {
         foreach (var damageable in damageables)
         {
-            if (damageAmount <= 0) return;
-            if (damageable.IsInvincible) continue;
+            if (damageAmount <= 0 || damageable.IsInvincible) return;
             damageAmount = damageable.TakeDamage(damageAmount);
         }
     }

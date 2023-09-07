@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -8,13 +9,14 @@ public class HealthTests : MonoBehaviour
     private Health _hp;
     private GameObject _character;
     private DamageHandler _damageHandler;
+    List<IDamageable> damageables = new List<IDamageable>();
 
     [UnitySetUp]
     public IEnumerator SetUp()
     {
         _character = new GameObject();
         _hp = _character.AddComponent<Health>();
-        IDamageable[] damageables = { _hp };
+        SetUpDamageableList();
         _damageHandler = new DamageHandler(damageables);
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue; 
@@ -63,10 +65,11 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_HealingAmountAboveMaxHealth()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         int healAmount = _hp.MaxValue + 1;
         _hp.Value = _hp.MaxValue - 1;
-        _damageHandler.TakeDamage(1);
+        _damageHandler.HandleTakingDamage(1);
         yield return _hp.Regenerate(healAmount);
         Assert.IsTrue(_hp.Value == _hp.MaxValue);
         yield return null;
@@ -75,11 +78,12 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TakeDamage()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue; 
         int currentHP = _hp.Value;
         int damageAmount = 1;
-        _damageHandler.TakeDamage(damageAmount);
+        _damageHandler.HandleTakingDamage(damageAmount);
         Assert.IsTrue(_hp.Value < currentHP);
         yield return null;
     }
@@ -87,11 +91,12 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TakeNegativeDamage()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue - 5;
         int currentHP = _hp.Value;
         int damageAmount = -1;
-        _damageHandler.TakeDamage(damageAmount);
+        _damageHandler.HandleTakingDamage(damageAmount);
         Assert.IsTrue(_hp.Value == currentHP);
         yield return null;
     }
@@ -99,11 +104,12 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TakingDamageWhileInvincible()
     {
+        SetUpDamageableList();
         int seconds = 3;
         int damageAmount = 1;
         int currentHP = _hp.Value;
         _hp.SetInvincibilityForSeconds(seconds);
-        _damageHandler.TakeDamage(damageAmount);
+        _damageHandler.HandleTakingDamage(damageAmount);
         Assert.IsTrue(_hp.Value == currentHP); 
         yield return null;
     }
@@ -111,9 +117,10 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TakingDamageWhileDead()
     {
+        SetUpDamageableList();
         _hp.Value = 0;
         int damageAmount = 1;
-        _damageHandler.TakeDamage(damageAmount);
+        _damageHandler.HandleTakingDamage(damageAmount);
         Assert.IsTrue(_hp.Value == 0);
         Assert.IsTrue(_hp.IsDead);
         yield return null;
@@ -146,7 +153,8 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_HealingWhileDead()
     {
-        _damageHandler.TakeDamage(_hp.MaxValue);
+        SetUpDamageableList();
+        _damageHandler.HandleTakingDamage(_hp.MaxValue);
         yield return _hp.Regenerate(1);
         Assert.IsTrue(_hp.Value == 0);
         yield return null;
@@ -156,7 +164,7 @@ public class HealthTests : MonoBehaviour
     public IEnumerator Health_HealingNegativeAmount()
     {
         int amount = -1;
-        _damageHandler.TakeDamage(-amount);
+        _damageHandler.HandleTakingDamage(-amount);
         int currentHP = _hp.Value;
         yield return _hp.Regenerate(amount);
         Assert.IsTrue(currentHP == _hp.Value);
@@ -197,12 +205,13 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TemporaryHealthExceedingDamageTaken()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue;
         int tmpHP = 3;
         int currentHP = _hp.Value;
         _hp.AddTemporaryHealth(3);
-        _damageHandler.TakeDamage(tmpHP - 1);
+        _damageHandler.HandleTakingDamage(tmpHP - 1);
         Assert.IsTrue(_hp.Value == currentHP);
         Assert.IsTrue(_hp.TempHealth == tmpHP - 2);
         yield return null;
@@ -211,12 +220,13 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TemporaryHealthLowerThanDamageTaken()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue;
         int tmpHP = 3;
         int currentHP = _hp.Value;
         _hp.AddTemporaryHealth(tmpHP);
-        _damageHandler.TakeDamage(tmpHP + 1);
+        _damageHandler.HandleTakingDamage(tmpHP + 1);
         Assert.IsTrue(_hp.Value < currentHP);
         Assert.IsTrue(_hp.TempHealth == 0);
         yield return null;
@@ -225,12 +235,13 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_NegativeDamageWithTemporaryHealth()
     {
+        SetUpDamageableList();
         _hp.MaxValue = 10;
         _hp.Value = _hp.MaxValue;
         int tmpHP = 3;
         int currentHP = _hp.Value;
         _hp.AddTemporaryHealth(tmpHP);
-        _damageHandler.TakeDamage(-1);
+        _damageHandler.HandleTakingDamage(-1);
         Assert.IsTrue(_hp.Value == currentHP);
         Assert.IsTrue(_hp.TempHealth == tmpHP);
         yield return null;
@@ -246,5 +257,11 @@ public class HealthTests : MonoBehaviour
         _hp.AddTemporaryHealth(tmpHP);
         Assert.IsTrue(_hp.TempHealth == 0);
         yield return null;
+    }
+
+    private void SetUpDamageableList()
+    {
+        damageables.Clear();
+        damageables.Add(_hp);
     }
 }

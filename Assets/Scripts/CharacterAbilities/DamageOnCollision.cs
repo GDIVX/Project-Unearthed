@@ -14,10 +14,10 @@ public class DamageOnCollision : MonoBehaviour
 
     public virtual void OnCollision(Collider other)
     {
-        if (!other.TryGetComponent<Health>(out var health)) // Check if the collided object has a Health component
+        if (!other.TryGetComponent<DamageHandler>(out var damageHandler)) // Check if the collided object has a Health component
         {
             return;
         }
-        health.TakeDamage(damageAmount); // Call the TakeDamage method on the Health component to deal damage
+        damageHandler.HandleTakingDamage(damageAmount); // Call the TakeDamage method on the Health component to deal damage
     }
 }
