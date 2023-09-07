@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class DamageHandler
+public class DamageHandler : MonoBehaviour
 {
-    private List<IDamageable> damageables;
+    [SerializeField] private List<IDamageable> damageables;
+    [SerializeField] int a;
 
     public DamageHandler(List<IDamageable> damageable)
     {
