@@ -622,6 +622,18 @@ PrefabInstance:
       propertyPath: _mountedObject
       value: 
       objectReference: {fileID: 755876111}
+    - target: {fileID: 3671646021769779405, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671646021769779405, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.504
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671646021769779405, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.072
+      objectReference: {fileID: 0}
     - target: {fileID: 7835324181591090249, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: m_RootOrder
       value: 4
