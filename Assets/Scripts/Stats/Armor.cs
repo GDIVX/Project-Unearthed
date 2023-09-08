@@ -44,8 +44,10 @@ public class Armor : RegeneratingStats, IDamageable
 
     public int TakeDamage(int damageAmount)
     {
+        Debug.Log("detected incoming damage: " + damageAmount);
         if (damageAmount < 0) damageAmount = 0;
         Value = SubtractValues(ref damageAmount, Value);
+        Debug.Log("Armor after taking damage: " + Value);
         Debug.Log("deal damage " + damageAmount);
         return damageAmount;
     }
