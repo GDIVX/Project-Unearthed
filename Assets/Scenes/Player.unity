@@ -363,9 +363,12 @@ GameObject:
   m_Component:
   - component: {fileID: 937833443}
   - component: {fileID: 937833442}
+  - component: {fileID: 937833445}
+  - component: {fileID: 937833444}
+  - component: {fileID: 937833446}
   m_Layer: 0
   m_Name: Dummy
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5441af420ad5142b812160b637fca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _armor: {fileID: 0}
-  _health: {fileID: 0}
+  _armor: {fileID: 937833444}
+  _health: {fileID: 937833445}
 --- !u!4 &937833443
 Transform:
   m_ObjectHideFlags: 0
@@ -392,61 +395,80 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937833441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.69, z: -4.78}
+  m_LocalPosition: {x: 0, y: 0, z: -4.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1479195439}
-  - {fileID: 1112074114}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1112074113
-GameObject:
+--- !u!114 &937833444
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1112074114}
-  - component: {fileID: 1112074115}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1112074114
-Transform:
+  m_GameObject: {fileID: 937833441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15f6f049002aef48b51c042bf01d666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 5
+  _maxValue: 5
+  OnValueChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _cooldownInSeconds: 2
+--- !u!114 &937833445
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112074113}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 937833443}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1112074115
+  m_GameObject: {fileID: 937833441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fc85e81f4150947957e62df3795606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 10
+  _maxValue: 10
+  OnValueChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _regenRateInSeconds: 1
+  _tempHealth: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 937833441}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!136 &937833446
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112074113}
+  m_GameObject: {fileID: 937833441}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.7
+  m_Height: 2.49
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1237836943
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +722,6 @@ GameObject:
   - component: {fileID: 1479195439}
   - component: {fileID: 1479195442}
   - component: {fileID: 1479195441}
-  - component: {fileID: 1479195440}
   m_Layer: 0
   m_Name: Dummy Model
   m_TagString: Untagged
@@ -723,20 +744,6 @@ Transform:
   m_Father: {fileID: 937833443}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1479195440
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479195438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1479195441
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -787,6 +794,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479195438}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1485422768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7835324181591090252, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+  m_PrefabInstance: {fileID: 1686629663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686629663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -798,6 +810,10 @@ PrefabInstance:
       propertyPath: dodgeSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: damageHandler
+      value: 
+      objectReference: {fileID: 1686629674}
     - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: dodgeCooldown
       value: 1
@@ -869,3 +885,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7835324181591090249, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
   m_PrefabInstance: {fileID: 1686629663}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1686629674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485422768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5441af420ad5142b812160b637fca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armor: {fileID: 0}
+  _health: {fileID: 0}
