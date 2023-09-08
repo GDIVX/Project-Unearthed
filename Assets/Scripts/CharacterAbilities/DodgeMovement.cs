@@ -13,7 +13,7 @@ namespace Assets.Scripts.CharacterAbilities
         [SerializeField, BoxGroup("Movement")] float dodgeDuration = 0.5f;  // Duration of the dodge
         [SerializeField, BoxGroup("Movement")] float dodgeCooldown = 2f;    // Cooldown time before the next dodge can be initiated
 
-        [SerializeField, BoxGroup("Invisibility Frames")] Health health;
+        [SerializeField, BoxGroup("Invisibility Frames")] DamageHandler damageHandler;
         [SerializeField, BoxGroup("Invisibility Frames")] float invisibilityDuration;
 
         public event Action OnDodgeStart, OnDodgeEnd;
@@ -27,7 +27,7 @@ namespace Assets.Scripts.CharacterAbilities
         public float DodgeSpeed { get => dodgeSpeed; set => dodgeSpeed = value; }
         public float DodgeDuration { get => dodgeDuration; set => dodgeDuration = value; }
         public float DodgeCooldown { get => dodgeCooldown; set => dodgeCooldown = value; }
-        public Health Health { get => health; set => health = value; }
+        public DamageHandler DamageHandler { get => damageHandler; set => damageHandler = value; }
         public float InvisibilityDuration { get => invisibilityDuration; set => invisibilityDuration = value; }
 
         private Vector3 dodgeDirection;
@@ -61,7 +61,7 @@ namespace Assets.Scripts.CharacterAbilities
             lastDodgeTime = Time.time;
             dodgeDirection = direction.normalized;
 
-            Health.SetInvisibilityForSeconds(InvisibilityDuration);
+            DamageHandler.SetInvincibilityForSeconds(InvisibilityDuration);
 
             StartCoroutine(DodgeCooldownCoroutine());
             OnDodgeStart?.Invoke();

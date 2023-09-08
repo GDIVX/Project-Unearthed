@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>Unearthed</RootNamespace>
-    <ProjectGuid>{3697533F-CC76-72AF-A015-77FAC08168BF}</ProjectGuid>
+    <ProjectGuid>{F5D273FB-B6B5-2CA8-6B87-D47F91484139}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -53,7 +53,7 @@
     <UnityVersion>2021.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\Templates\CreateActionFromTemplate.cs" />
@@ -319,9 +319,6 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -408,12 +405,6 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -934,71 +925,71 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{A93E1EFD-334C-5899-454C-8EAE40BC51B9}</Project>
+      <Project>{D4B18206-E99B-AE0A-78A4-465B6016DE7A}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{DFB16454-741C-1BBC-BA9B-082FCEE25933}</Project>
+      <Project>{595DCA8C-93CC-4BFE-BF80-64973F39CD54}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj">
-      <Project>{79E10B64-7DFF-5D47-BBBA-BED28B201444}</Project>
+      <Project>{938F2AD9-F092-D09B-05BC-4AFD3F6D7FA9}</Project>
       <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Projectiles.csproj">
-      <Project>{F94D6195-88C7-2719-7184-EC5E896B9D3C}</Project>
+      <Project>{C1268DBE-51FA-C3FC-F3B5-03F3EA09B115}</Project>
       <Name>Projectiles</Name>
     </ProjectReference>
     <ProjectReference Include="StateMachine.csproj">
-      <Project>{DC69A8E6-6DFE-C087-AA5C-8D1512D16CCE}</Project>
+      <Project>{008FA9A0-ADE3-0A5C-C9C4-A0DB119F9E6C}</Project>
       <Name>StateMachine</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{01FD864F-7E71-579D-3BE1-913E773CD57D}</Project>
+      <Project>{1DD93612-D347-A8B8-7A95-96EA0F14A9FB}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{6FB59247-DAE2-60B0-948D-321AFC9EACE5}</Project>
+      <Project>{D796B913-F513-7754-F8C3-D081C754BCB2}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
     <ProjectReference Include="Random.csproj">
-      <Project>{40337708-E7B8-5F9A-375E-563A60E662E4}</Project>
+      <Project>{C3650C8D-406F-A1A3-3105-30FFBCED4619}</Project>
       <Name>Random</Name>
     </ProjectReference>
     <ProjectReference Include="AI.csproj">
-      <Project>{99AF982B-B9AA-8AF6-C47D-943510703F9E}</Project>
+      <Project>{99F4052E-D7EE-E7F9-E540-78CC91D39CCC}</Project>
       <Name>AI</Name>
     </ProjectReference>
     <ProjectReference Include="AbilitiesStates.csproj">
-      <Project>{64748B2A-3074-4D09-C37B-F0E60A08AD77}</Project>
+      <Project>{927A0DF1-BC15-3CA6-29CE-5D28404295D6}</Project>
       <Name>AbilitiesStates</Name>
     </ProjectReference>
     <ProjectReference Include="Camera.csproj">
-      <Project>{3A54D67C-AC30-79B7-7F66-74E53254C8E0}</Project>
+      <Project>{C0E7880C-D06E-BF89-7DA7-86138A256BA7}</Project>
       <Name>Camera</Name>
     </ProjectReference>
     <ProjectReference Include="CharacterAbilities.csproj">
-      <Project>{C595FD02-0C9E-592B-DB63-137B5570013A}</Project>
+      <Project>{3CB93D02-C576-F688-D010-334095FF4E7B}</Project>
       <Name>CharacterAbilities</Name>
     </ProjectReference>
     <ProjectReference Include="Weapon.csproj">
-      <Project>{098C5D6C-8F74-D3C7-AB6F-34A74A2057B5}</Project>
+      <Project>{D9A7E481-7452-ECD3-8FC9-1CE84F996E95}</Project>
       <Name>Weapon</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{D1E507EC-2E15-FA63-5EDC-8171A414BA62}</Project>
+      <Project>{971C94C0-D423-C88E-EE37-CA96F6F8C7D3}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Stats.csproj">
-      <Project>{989EB68C-FCA9-C7FD-3DB6-B50F9F992ACF}</Project>
+      <Project>{C940FD7F-547D-9DA5-ECE9-B321C8B287A1}</Project>
       <Name>Stats</Name>
     </ProjectReference>
     <ProjectReference Include="Inventory.csproj">
-      <Project>{686D1676-4DBE-026F-5A17-24E1BF4865A3}</Project>
+      <Project>{03A8053C-944C-F953-60D5-40F6DEF8BBA2}</Project>
       <Name>Inventory</Name>
     </ProjectReference>
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
-      <Project>{1CC3F7E9-D898-0B6F-3901-7CDE84C54C1D}</Project>
+      <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
   </ItemGroup>

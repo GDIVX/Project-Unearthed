@@ -36,7 +36,7 @@ public class MovementStateMachineTests
         dodgeMovement.DodgeDuration = 0.5f;
         dodgeMovement.DodgeCooldown = 2f;
         dodgeMovement.InvisibilityDuration = 1f;
-        dodgeMovement.Health = gameObject.AddComponent<Health>(); // Assuming Health component is required
+        dodgeMovement.DamageHandler = gameObject.AddComponent<DamageHandler>(); // Assuming Health component is required
 
         //Set Dodge initial values
 
