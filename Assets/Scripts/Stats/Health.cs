@@ -5,15 +5,17 @@ using UnityEngine.Events;
 
 public class Health : RegeneratingStats, IDamageable
 {
-    [SerializeField] float _regenRateInSeconds;
-    [SerializeField, ReadOnly] int _tempHealth;
+    [SerializeField, Min(0)] float _regenRateInSeconds;
+    [SerializeField, Min(0)] float _drainRateInSeconds;
+    [SerializeField, Min(0)] int _drainAmount = 1;
+    [SerializeField, ReadOnly, Min(0)] int _tempHealth;
 
     public UnityEvent<Health> OnDeath;
 
     public bool IsDead => Value <= 0;
     public int TempHealth { get => _tempHealth; set => _tempHealth = value; }
-    //public Armor Armor { get => _armor; set => _armor = value; }
-    protected override float RegenRateInSeconds { get { return _regenRateInSeconds; } set { _regenRateInSeconds = value; } }
+    public float DrainRateInSeconds { get { return _drainRateInSeconds; } set { _drainRateInSeconds = value; } }
+    public override float RegenRateInSeconds { get { return _regenRateInSeconds; } set { _regenRateInSeconds = value; } }
 
     public override void OnValueChange()
     {
@@ -40,6 +42,7 @@ public class Health : RegeneratingStats, IDamageable
     {
         if (healthAmount <= 0) return;
         TempHealth += healthAmount;
+        StartCoroutine(DrainTemporaryHealthOverTime());
     }
 
     public override IEnumerator Regenerate(int healAmount)
@@ -51,7 +54,16 @@ public class Health : RegeneratingStats, IDamageable
             if (IsDead) yield break;
             counter++;
             if (Value < MaxValue) Value++;
-            yield return new WaitForSeconds(_regenRateInSeconds);
+            yield return new WaitForSeconds(RegenRateInSeconds);
+        }
+    }
+
+    private IEnumerator DrainTemporaryHealthOverTime()
+    {
+        while(TempHealth > 0)
+        {
+            yield return new WaitForSeconds(DrainRateInSeconds);
+            TempHealth -= _drainAmount;
         }
     }
 

@@ -17,7 +17,8 @@ public class HealthTests : MonoBehaviour
         _damageHandler = _character.AddComponent<DamageHandler>();
         _damageHandler.Health = _health;
         _health.MaxValue = 10;
-        _health.Value = _health.MaxValue; 
+        _health.Value = _health.MaxValue;
+        _health.DrainRateInSeconds = 1;
         yield return null;
     }
 
@@ -179,7 +180,7 @@ public class HealthTests : MonoBehaviour
     }
     
     [UnityTest]
-    public IEnumerator Health_HealingWhenHealthReachesZeroMidway()/////////////
+    public IEnumerator Health_HealingWhenHealthReachesZeroMidway()
     {
         int healingAmount = 10;
         yield return _health.Regenerate(healingAmount);
@@ -193,6 +194,7 @@ public class HealthTests : MonoBehaviour
     {
         _health.MaxValue = 10;
         _health.Value = _health.MaxValue;
+        _health.DrainRateInSeconds = 1;
         int tmpHP = 3;
         _health.AddTemporaryHealth(3);
         Assert.IsTrue(_health.Value + _health.TempHealth == _health.MaxValue + tmpHP);
@@ -202,7 +204,6 @@ public class HealthTests : MonoBehaviour
     [UnityTest]
     public IEnumerator Health_TemporaryHealthExceedingDamageTaken()
     {
-
         _health.MaxValue = 10;
         _health.Value = _health.MaxValue;
         int tmpHP = 3;
@@ -253,6 +254,57 @@ public class HealthTests : MonoBehaviour
         int tmpHP = -3;
         _health.AddTemporaryHealth(tmpHP);
         Assert.IsTrue(_health.TempHealth == 0);
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator Health_DrainTemporaryHealth()
+    {
+        _health.MaxValue = 10;
+        _health.Value = _health.MaxValue;
+        _health.TempHealth = 0;
+        _health.DrainRateInSeconds = 1;
+        int tmpHP = 3;
+        _health.AddTemporaryHealth(tmpHP);
+        Assert.IsTrue(_health.TempHealth > 0);
+        yield return new WaitForSeconds(tmpHP * _health.DrainRateInSeconds + _health.DrainRateInSeconds);
+        Assert.IsTrue(_health.TempHealth == 0);
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator Health_HealingNegativeHealth()
+    {
+        _health.MaxValue = 10;
+        _health.Value = _health.MaxValue; 
+        int healAmount = -1;
+        _damageHandler.HandleTakingDamage(1);
+        _health.Heal(healAmount);
+        Assert.IsTrue(_health.Value < _health.MaxValue); 
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator Health_HealingAboveMaxHealth()
+    {
+        _health.MaxValue = 10;
+        _health.Value = _health.MaxValue;
+        int healAmount = 1;
+        _health.Heal(healAmount);
+        Assert.IsTrue(_health.Value == _health.MaxValue);
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator Health_TakingDamageThenHealing()
+    {
+        _health.MaxValue = 10;
+        _health.Value = _health.MaxValue;
+        int healAmount = 1;
+        int damageAmount = healAmount;
+        _damageHandler.HandleTakingDamage(damageAmount);
+        _health.Heal(healAmount);
+        Assert.IsTrue(_health.Value == _health.MaxValue);
         yield return null;
     }
 }
