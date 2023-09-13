@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AdrenalinePack : MonoBehaviour
+public class AdrenalinePack : InstantEffectPickup
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] string _playerTag;
+    [SerializeField] int _tempHealthAmount;
+
+    Health _playerHealth;
+
+    private void DestroyHealthPack()
     {
-        
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void CauseEffect(Collider playerCollision)
     {
-        
+        _playerHealth = playerCollision.GetComponentInParent<Health>();
+        if (_playerHealth == null) return;
+        _playerHealth.AddTemporaryHealth(_tempHealthAmount);
+        DestroyHealthPack();
     }
 }

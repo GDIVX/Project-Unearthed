@@ -190,28 +190,31 @@ public class HealthTests : MonoBehaviour
     }
     
     [UnityTest]
-    public IEnumerator Health_CanGainTemporaryHealthAboveMaxHealth()
+    public IEnumerator Health_CannotGainTemporaryHealthAboveMaxHealth()
     {
         _health.MaxValue = 10;
-        _health.Value = _health.MaxValue;
+        _health.Value = _health.MaxValue - 3;
         _health.DrainRateInSeconds = 1;
-        int tmpHP = 3;
-        _health.AddTemporaryHealth(3);
-        Assert.IsTrue(_health.Value + _health.TempHealth == _health.MaxValue + tmpHP);
+        _health.AddTemporaryHealth(5);
+        Assert.IsTrue(_health.Value == _health.MaxValue);
         yield return null;
     }
     
     [UnityTest]
-    public IEnumerator Health_TemporaryHealthExceedingDamageTaken()
+    public IEnumerator Health_GainningTemporaryHealthMultipleTimes()
     {
         _health.MaxValue = 10;
         _health.Value = _health.MaxValue;
-        int tmpHP = 3;
-        int currentHP = _health.Value;
-        _health.AddTemporaryHealth(3);
-        _damageHandler.HandleTakingDamage(tmpHP - 1);
-        Assert.IsTrue(_health.Value == currentHP);
-        Assert.IsTrue(_health.TempHealth == tmpHP - 2);
+        _health.DrainRateInSeconds = 1;
+        int amount = 1;
+        _damageHandler.HandleTakingDamage(amount * 3);
+        _health.AddTemporaryHealth(amount);
+        _health.AddTemporaryHealth(amount);
+        _health.AddTemporaryHealth(amount);
+        yield return new WaitForSeconds(_health.DrainRateInSeconds);
+        Assert.IsTrue(_health.Value == _health.MaxValue - amount);
+        yield return new WaitForSeconds(_health.DrainRateInSeconds * 3);
+        Assert.IsTrue(_health.Value == _health.MaxValue - 3);
         yield return null;
     }
     
@@ -235,13 +238,13 @@ public class HealthTests : MonoBehaviour
     {
 
         _health.MaxValue = 10;
-        _health.Value = _health.MaxValue;
-        int tmpHP = 3;
+        _health.Value = _health.MaxValue - 1;
+        int tmpHP = 1;
         int currentHP = _health.Value;
         _health.AddTemporaryHealth(tmpHP);
         _damageHandler.HandleTakingDamage(-1);
-        Assert.IsTrue(_health.Value == currentHP);
-        Assert.IsTrue(_health.TempHealth == tmpHP);
+        Assert.IsTrue(_health.Value > currentHP);
+        Assert.IsTrue(_health.Value == _health.MaxValue);
         yield return null;
     }
     
@@ -249,11 +252,10 @@ public class HealthTests : MonoBehaviour
     public IEnumerator Health_CannotGainNegativeTemporaryHealth()
     {
         _health.MaxValue = 10;
-        _health.Value = _health.MaxValue;
-        _health.TempHealth = 0;
-        int tmpHP = -3;
+        _health.Value = _health.MaxValue - 1;
+        int tmpHP = -1;
         _health.AddTemporaryHealth(tmpHP);
-        Assert.IsTrue(_health.TempHealth == 0);
+        Assert.IsTrue(_health.Value == _health.MaxValue - 1);
         yield return null;
     }
 
@@ -262,13 +264,15 @@ public class HealthTests : MonoBehaviour
     {
         _health.MaxValue = 10;
         _health.Value = _health.MaxValue;
-        _health.TempHealth = 0;
         _health.DrainRateInSeconds = 1;
-        int tmpHP = 3;
-        _health.AddTemporaryHealth(tmpHP);
-        Assert.IsTrue(_health.TempHealth > 0);
-        yield return new WaitForSeconds(tmpHP * _health.DrainRateInSeconds + _health.DrainRateInSeconds);
-        Assert.IsTrue(_health.TempHealth == 0);
+        int healthAmount = 3;
+        _damageHandler.HandleTakingDamage(healthAmount);
+        int currentHealth = _health.Value;
+        _health.AddTemporaryHealth(healthAmount);
+        yield return new WaitForSeconds(healthAmount * _health.DrainRateInSeconds);
+        Assert.IsTrue(_health.Value > currentHealth);
+        yield return new WaitForSeconds(_health.DrainRateInSeconds);
+        Assert.IsTrue(_health.Value == currentHealth);
         yield return null;
     }
 

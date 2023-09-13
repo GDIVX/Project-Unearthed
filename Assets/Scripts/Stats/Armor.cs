@@ -37,7 +37,7 @@ public class Armor : RegeneratingStats, IDamageable
         while (counter < healAmount)
         {
             counter++;
-            if (Value < MaxValue) Value++;
+            if (Value < MaxValue) Heal(1);
             yield return new WaitForSeconds(RegenRateInSeconds);
         }
     }
