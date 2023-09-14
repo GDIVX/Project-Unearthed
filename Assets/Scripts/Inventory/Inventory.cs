@@ -18,6 +18,8 @@ namespace Assets.Scripts.InventorySystem
 
         public bool IsFull => CountFullSlots() == capacity;
 
+        public int Width;
+        public int Height;
 
         public int Capacity { get => capacity; set => capacity = value; }
 

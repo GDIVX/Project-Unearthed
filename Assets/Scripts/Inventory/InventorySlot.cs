@@ -13,7 +13,6 @@ namespace Assets.Scripts.InventorySystem
         public Item Item { get => item; set => item = value; }
         public int Quantity { get => quantity; set => SetQuantity(value); }
         public bool IsEmpty => Item == null || Quantity == 0;
-
         public bool IsFull => Item != null && Quantity == Item.ItemMaxAmount;
 
         public InventorySlot(Item item, int quantity)

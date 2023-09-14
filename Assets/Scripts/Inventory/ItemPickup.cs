@@ -17,6 +17,8 @@ namespace Assets.Scripts.InventorySystem
 
         public InventorySlot Content { get => content; set => content = value; }
 
+
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
