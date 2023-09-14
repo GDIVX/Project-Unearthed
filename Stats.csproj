@@ -62,11 +62,7 @@
     <Compile Include="Assets\Scripts\Stats\Armor.cs" />
     <Compile Include="Assets\Scripts\Stats\Health.cs" />
     <Compile Include="Assets\Scripts\Stats\Stat.cs" />
-    <Compile Include="Assets\Scripts\Stats\HealthDrop.cs" />
-    <Compile Include="Assets\Scripts\Stats\AdrenalinePack.cs" />
-    <Compile Include="Assets\Scripts\Stats\HealthPack.cs" />
     <Compile Include="Assets\Scripts\Stats\IHealthItems.cs" />
-    <Compile Include="Assets\Scripts\Stats\InstantEffectPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Stats\Stats.asmdef" />

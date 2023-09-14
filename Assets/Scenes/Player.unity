@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0818d1002c111f04fb74e2da3b1805af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: Player
   _playerTag: Player
   _healAmount: 4
 --- !u!135 &794058190
@@ -1058,6 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4fe83497e9d5742b6b3ec7f16c613a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: Player
   _playerTag: Player
   _tempHealthAmount: 5
 --- !u!135 &1591543675

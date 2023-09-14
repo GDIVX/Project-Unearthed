@@ -960,6 +960,10 @@
       <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="HealingItems.csproj">
+      <Project>{4378831D-4E14-0227-AB32-34AF46278E4C}</Project>
+      <Name>HealingItems</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
