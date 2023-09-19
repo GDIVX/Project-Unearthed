@@ -1,9 +1,9 @@
 using Assets.Scripts.InventorySystem;
+using ObjectPooling;
 using UnityEngine;
 
 public class HealthDrop : InstantEffectPickup, IPickup
 {
-    [SerializeField] string _playerTag = "Player";
     [SerializeField] int _healingPercentage = 10;
 
     Health _playerHealth;
@@ -16,7 +16,7 @@ public class HealthDrop : InstantEffectPickup, IPickup
 
     private void DestroyHealthDrop()
     {
-        Destroy(gameObject);
+        Destroy(_gameObject);
     }
 
     protected override void CauseEffect(Collider playerCollision)
@@ -32,5 +32,15 @@ public class HealthDrop : InstantEffectPickup, IPickup
     {
         throw new System.NotImplementedException();
         //return inventory.CanAdd(content.Item, content.Quantity);
+    }
+
+    public void OnGet()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnReturn()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -9,7 +9,7 @@ public class HealthPack : InstantEffectPickup
 
     private void DestroyHealthPack()
     {
-        Destroy(gameObject);
+        Destroy(_gameObject);
     }
 
     protected override void CauseEffect(Collider playerCollision)
