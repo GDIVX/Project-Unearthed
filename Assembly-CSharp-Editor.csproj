@@ -928,10 +928,6 @@
       <Project>{D4B18206-E99B-AE0A-78A4-465B6016DE7A}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{34BABE6E-E5BC-0DD1-9F1B-8EA4CB3ABF0C}</Project>
-      <Name>Assembly-CSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
       <Project>{595DCA8C-93CC-4BFE-BF80-64973F39CD54}</Project>
       <Name>Zenject-Editor</Name>
@@ -995,6 +991,10 @@
     <ProjectReference Include="ObjectPoolingAssembly.csproj">
       <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="HUD.csproj">
+      <Project>{EBAA0226-B874-DF70-7FB0-24370C1F1E68}</Project>
+      <Name>HUD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

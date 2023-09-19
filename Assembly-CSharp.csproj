@@ -61,6 +61,9 @@
     <Compile Include="Assets\Scripts\Hud\ArmorBar.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\Hud\CharacterAbilities.asmdef" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

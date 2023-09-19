@@ -960,6 +960,10 @@
       <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
+    <ProjectReference Include="HUD.csproj">
+      <Project>{EBAA0226-B874-DF70-7FB0-24370C1F1E68}</Project>
+      <Name>HUD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
