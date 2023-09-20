@@ -12,8 +12,8 @@ public class ItemFactory : IObjectFactory<InstantEffectPickup>
 
     public InstantEffectPickup Create()
     {
-        GameObject projectileObject = Object.Instantiate(_prefab.gameObject);
-        InstantEffectPickup item = projectileObject.GetComponent<HealthDrop>();
+        GameObject itemToCreate = Object.Instantiate(_prefab.gameObject);
+        InstantEffectPickup item = itemToCreate.GetComponent<InstantEffectPickup>();
         return item;
     }
 }

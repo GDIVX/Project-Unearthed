@@ -1,5 +1,4 @@
 using ObjectPooling;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -15,7 +14,6 @@ public class ObjectSpawner : MonoBehaviour
         _objectSpawnManager = new SpawnManager<InstantEffectPickup>(new ItemFactory(_prefab), _initialAmmount);
     }
 
-    //[Button]
     public void Spawn()
     {
         InstantEffectPickup objectToSpawn = _objectSpawnManager.Get();
@@ -27,11 +25,11 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns a Projectile object to the pool.
+    /// Returns an object to the pool.
     /// </summary>
-    /// <param name="projectile">The Projectile object to return.</param>
-    public void Return(InstantEffectPickup projectile)
+    /// <param name="item">The Projectile object to return.</param>
+    public void Return(InstantEffectPickup item)
     {
-        _objectSpawnManager.Return(projectile);
+        _objectSpawnManager.Return(item);
     }
 }

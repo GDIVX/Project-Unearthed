@@ -1,22 +1,12 @@
 using UnityEngine;
 
-public class AdrenalinePack : InstantEffectPickup
+public class AdrenalinePack : MonoBehaviour, IHealingItem
 {
-    [SerializeField] string _playerTag;
-    [SerializeField] int _tempHealthAmount;
+    public int HealAmount { get; set; }
 
-    Health _playerHealth;
-
-    private void DestroyHealthPack()
+    public void ItemEffect(Health playerHealth)
     {
-        Destroy(_gameObject);
-    }
-
-    protected override void CauseEffect(Collider playerCollision)
-    {
-        _playerHealth = playerCollision.GetComponentInParent<Health>();
-        if (_playerHealth == null) return;
-        _playerHealth.AddTemporaryHealth(_tempHealthAmount);
-        DestroyHealthPack();
+        if (playerHealth == null) return;
+        playerHealth.AddTemporaryHealth(HealAmount);
     }
 }

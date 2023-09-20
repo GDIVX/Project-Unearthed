@@ -62,7 +62,6 @@
     <Compile Include="Assets\Scripts\Stats\Armor.cs" />
     <Compile Include="Assets\Scripts\Stats\Health.cs" />
     <Compile Include="Assets\Scripts\Stats\Stat.cs" />
-    <Compile Include="Assets\Scripts\Stats\IHealthItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Stats\Stats.asmdef" />
