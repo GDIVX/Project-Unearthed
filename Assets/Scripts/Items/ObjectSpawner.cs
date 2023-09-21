@@ -1,4 +1,5 @@
 using ObjectPooling;
+using System;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -16,12 +17,17 @@ public class ObjectSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        if (!DropChanceDeterminer.IsItemDrop(_prefab)) return;
+        if (!IsItemDrop(_prefab)) return;
         InstantEffectPickup objectToSpawn = _objectSpawnManager.Get();
         //set up the transform of the projectile
         objectToSpawn.transform.position = _spawnPoint.position;
 
         objectToSpawn.Spawner = this;
+    }
+
+    private bool IsItemDrop(InstantEffectPickup prefab)
+    {
+        return prefab.WillDrop();
     }
 
     /// <summary>
