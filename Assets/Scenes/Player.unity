@@ -822,7 +822,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 378469108, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: _value
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 378469108, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: _drainRateInSeconds

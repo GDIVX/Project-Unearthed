@@ -16,8 +16,8 @@ public class ObjectSpawner : MonoBehaviour
 
     public void Spawn()
     {
+        if (!DropChanceDeterminer.IsItemDrop(_prefab)) return;
         InstantEffectPickup objectToSpawn = _objectSpawnManager.Get();
-
         //set up the transform of the projectile
         objectToSpawn.transform.position = _spawnPoint.position;
 

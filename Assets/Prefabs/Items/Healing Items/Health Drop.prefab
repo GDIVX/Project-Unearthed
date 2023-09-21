@@ -128,3 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTag: Player
   _healingPercentage: 10
+  _playerHealth: {fileID: 0}

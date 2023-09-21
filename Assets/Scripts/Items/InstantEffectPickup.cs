@@ -1,7 +1,7 @@
 using ObjectPooling;
 using UnityEngine;
 
-public abstract class InstantEffectPickup : MonoBehaviour, IPoolable
+public abstract class InstantEffectPickup : MonoBehaviour, IPoolable, IEnemyDropItem
 {
     [SerializeField] string _playerTag;
     protected GameObject _gameObject { get; }
@@ -36,4 +36,6 @@ public abstract class InstantEffectPickup : MonoBehaviour, IPoolable
     {
         
     }
+
+    public abstract bool WillDrop();
 }
