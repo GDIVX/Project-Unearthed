@@ -8,7 +8,7 @@ public class Armor : RegeneratingStats, IDamageable
     private Coroutine _cooldownCoroutine;
     private Coroutine _regeneratingCoroutine;
 
-    protected override float RegenRateInSeconds { get; set; } = 0.5f;
+    public override float RegenRateInSeconds { get; set; } = 0.5f;
 
     public override void OnValueChange()
     {
@@ -37,7 +37,7 @@ public class Armor : RegeneratingStats, IDamageable
         while (counter < healAmount)
         {
             counter++;
-            if (Value < MaxValue) Value++;
+            if (Value < MaxValue) Heal(1);
             yield return new WaitForSeconds(RegenRateInSeconds);
         }
     }
