@@ -502,11 +502,11 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Debug Horizontal
+    m_Name: Switch Weapon
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: 1
+    positiveButton: 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
