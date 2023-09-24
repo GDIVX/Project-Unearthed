@@ -7,8 +7,8 @@ namespace Unearthed
         private void OnValidate()
         {
             PlayerController playerController = FindObjectOfType<PlayerController>();
-            Value = playerController.GetComponent<Health>().Value;
             MaxValue = playerController.GetComponent<Health>().MaxValue;
+            ChangeValue(playerController.GetComponent<Health>());
         }
     }
 }

@@ -960,13 +960,17 @@
       <Project>{808A094F-9AC4-9611-5470-310EB2B927BA}</Project>
       <Name>ObjectPoolingAssembly</Name>
     </ProjectReference>
-    <ProjectReference Include="HealingItems.csproj">
-      <Project>{4378831D-4E14-0227-AB32-34AF46278E4C}</Project>
-      <Name>HealingItems</Name>
+    <ProjectReference Include="HUD.csproj">
+      <Project>{EBAA0226-B874-DF70-7FB0-24370C1F1E68}</Project>
+      <Name>HUD</Name>
     </ProjectReference>
     <ProjectReference Include="Items.csproj">
       <Project>{CD2F76C3-9FFD-014B-2C10-354391F10194}</Project>
       <Name>Items</Name>
+    </ProjectReference>
+    <ProjectReference Include="HealingItems.csproj">
+      <Project>{4378831D-4E14-0227-AB32-34AF46278E4C}</Project>
+      <Name>HealingItems</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
