@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEquipper.cs" />
     <Compile Include="Assets\Scripts\Weapon\Recoil.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponInventory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Weapon\Weapon.asmdef" />

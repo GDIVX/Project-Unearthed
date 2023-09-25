@@ -9,6 +9,7 @@ namespace CharacterAbilities.Assets.Scripts.CharacterAbilities
         GameObject GameObject { get; }
         event Action onFire;
         event Action onReload;
+        event Action OnSwap;
 
         Vector3 GetAimPoint();
 

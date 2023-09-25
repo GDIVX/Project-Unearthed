@@ -13,13 +13,13 @@ namespace Assets.Scripts.InventorySystem
     [System.Serializable]
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private int capacity = 0;
-        [SerializeField] List<InventorySlot> slots = new List<InventorySlot>();
+        [SerializeField] private int _capacity = 0;
+        [SerializeField] List<InventorySlot> _slots = new List<InventorySlot>();
 
-        public bool IsFull => CountFullSlots() == capacity;
+        public bool IsFull => CountFullSlots() == _capacity;
 
 
-        public int Capacity { get => capacity; set => capacity = value; }
+        public int Capacity { get => _capacity; set => _capacity = value; }
 
         public Action OnInventoryChanged;
         public Action OnInventoryFull;
@@ -84,7 +84,7 @@ namespace Assets.Scripts.InventorySystem
 
             if (validSlot == null)
             {
-                if (slots.Count < capacity && quantity > 0)
+                if (_slots.Count < _capacity && quantity > 0)
                 {
                     validSlot = CreateNewSlot(item, quantity);
                     //Check for overflow
@@ -99,7 +99,7 @@ namespace Assets.Scripts.InventorySystem
             if (validSlot.Item == null)
             {
                 //we need to remove that slot as it is empty
-                slots.Remove(validSlot);
+                _slots.Remove(validSlot);
                 return (int)MathF.Min(quantity, 0);
             }
 
@@ -112,10 +112,10 @@ namespace Assets.Scripts.InventorySystem
         [Button]
         public int Count(Item item)
         {
-            if (slots.Count == 0) return 0;
+            if (_slots.Count == 0) return 0;
 
             int count = 0;
-            foreach (var slot in slots)
+            foreach (var slot in _slots)
             {
                 if (slot.Item != null && slot.Item.Equals(item))
                 {
@@ -131,15 +131,15 @@ namespace Assets.Scripts.InventorySystem
         {
 
             InventorySlot newSlot = new InventorySlot(item, quantity);
-            slots.Add(newSlot);
+            _slots.Add(newSlot);
             return newSlot;
         }
 
         public InventorySlot GetInventorySlot(int index)
         {
-            if (index >= 0 && index < slots.Count)
+            if (index >= 0 && index < _slots.Count)
             {
-                return slots[index];
+                return _slots[index];
             }
 
             return null; // Invalid index
@@ -147,7 +147,7 @@ namespace Assets.Scripts.InventorySystem
 
         public void EmptyInventory()
         {
-            slots.Clear();
+            _slots.Clear();
         }
 
 
@@ -169,7 +169,7 @@ namespace Assets.Scripts.InventorySystem
 
         private InventorySlot FindSlotFor(Item item, int quantity)
         {
-            foreach (var slot in slots)
+            foreach (var slot in _slots)
             {
                 if (item != slot.Item) continue;
 
@@ -185,7 +185,7 @@ namespace Assets.Scripts.InventorySystem
 
         private int CountFullSlots()
         {
-            return (from slot in slots
+            return (from slot in _slots
                     where slot.IsFull
                     select slot).Count();
         }

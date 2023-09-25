@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684612749}
   - component: {fileID: 1684612750}
+  - component: {fileID: 5847640636435763462}
   m_Layer: 2
   m_Name: Inventory
   m_TagString: Untagged
@@ -160,6 +161,18 @@ MonoBehaviour:
     quantity: 30
   - item: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
     quantity: 30
+--- !u!114 &5847640636435763462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684612748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69cff035d15bee74cb515d358971d1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5436704385346589958
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +348,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _regenRateInSeconds: 0
-  _isInvincible: 0
-  _isDead: 0
   _tempHealth: 0
   OnDeath:
     m_PersistentCalls:
@@ -370,13 +381,7 @@ MonoBehaviour:
   OnValueChangeEvent:
     m_PersistentCalls:
       m_Calls: []
-  _regenRateInSeconds: 0
-  _isInvincible: 0
-  _isDead: 0
-  _tempHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  _cooldownInSeconds: 2
 --- !u!54 &8418188474337938403
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -475,7 +480,7 @@ MonoBehaviour:
   dodgeSpeed: 10
   dodgeDuration: 1
   dodgeCooldown: 3
-  health: {fileID: 378469108}
+  damageHandler: {fileID: 0}
   invisibilityDuration: 0.5
 --- !u!1001 &1238652419031190600
 PrefabInstance:
