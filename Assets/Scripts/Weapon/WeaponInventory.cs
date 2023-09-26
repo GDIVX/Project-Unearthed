@@ -24,15 +24,16 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    public void AddWeaponToList(GameObject weapon)
+    public bool AddWeaponToList(GameObject weapon)
     {
-        if (weapon == null) return;
-        if (_inventorySlots >= WeaponsInInventory.Count)
+        if (weapon == null) return false;
+        if (_inventorySlots <= WeaponsInInventory.Count)
         {
             Debug.Log("Exceeding weapon slots in inventory");
-            return;
+            return false;
         }
         WeaponsInInventory.Add(weapon);
+        return true;
     }
 
     public void IncreaseWeaponSlots(int numberOfSlotsToAdd)

@@ -7,7 +7,8 @@
         "Cinemachine",
         "Random",
         "Camera",
-        "Inventory"
+        "Inventory",
+        "Items"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
