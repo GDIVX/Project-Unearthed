@@ -5,9 +5,10 @@ using UnityEngine;
 public class WeaponInventory : MonoBehaviour
 {
     [SerializeField, Min(0)] private int _inventorySlots = 2;
-    [SerializeField] List<Weapon> _weaponsInInventory = new List<Weapon>();
+    [SerializeField] List<GameObject> _weaponsInInventory = new List<GameObject>();
+    [SerializeField] protected WeaponEquipper _weaponEquipper;
 
-    public List<Weapon> WeaponsInInventory { get => _weaponsInInventory; private set => _weaponsInInventory = value; }
+    public List<GameObject> WeaponsInInventory { get => _weaponsInInventory; private set => _weaponsInInventory = value; }
 
     public static WeaponInventory PlayerWeaponInventory;
 
@@ -23,7 +24,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    public void AddWeaponToList(Weapon weapon)
+    public void AddWeaponToList(GameObject weapon)
     {
         if (weapon == null) return;
         if (_inventorySlots >= WeaponsInInventory.Count)
@@ -44,13 +45,22 @@ public class WeaponInventory : MonoBehaviour
         _inventorySlots -= numberOfSlotsToRemove;
     }
 
-    public Weapon ReturnNextWeapon(Weapon currentWeapon)
+    public GameObject ReturnNextWeapon(GameObject currentWeapon)
     {
-        Debug.Log(currentWeapon);
         if (currentWeapon == null || !WeaponsInInventory.Contains(currentWeapon)) return null;
         int currentWeaponIndex = WeaponsInInventory.IndexOf(currentWeapon);
         if (currentWeaponIndex >= WeaponsInInventory.Count - 1) return WeaponsInInventory[0]; //if it's the last weapon in list, wrap around to start of list
-        Debug.Log(WeaponsInInventory[currentWeaponIndex]);
         return WeaponsInInventory[currentWeaponIndex + 1];
+    }
+
+    public void SwapWeapon(GameObject currentWeapon)
+    {
+        GameObject nextWeapon = PlayerWeaponInventory.ReturnNextWeapon(currentWeapon);
+        if (nextWeapon == null)
+        {
+            Debug.Log("No next Weapon");
+            return;
+        }
+        _weaponEquipper.Mount(nextWeapon);
     }
 }

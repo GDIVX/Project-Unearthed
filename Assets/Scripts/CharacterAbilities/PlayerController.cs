@@ -66,7 +66,6 @@ namespace Assets.Scripts.CharacterAbilities
 
             if (Input.GetButtonDown("SwapWeapon"))
             {
-                Debug.Log("swap");
                 OnSwap?.Invoke();
             }
         }

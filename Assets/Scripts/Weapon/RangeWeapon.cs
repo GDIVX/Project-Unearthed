@@ -51,6 +51,7 @@ namespace Assets.Scripts.Weapon
 
             _controller.onFire += Fire;
             _controller.onReload += () => StartCoroutine(Reload(_reloadTime));
+            _controller.OnSwap += () => WeaponInventory.PlayerWeaponInventory.SwapWeapon(gameObject);
 
             //Set Recoil target
             _recoil.RecoilTarget = controller.GameObject.transform;
@@ -145,7 +146,6 @@ namespace Assets.Scripts.Weapon
         }
         #endregion
 
-
         private void Shake()
         {
             //get the direction of the outgoing projectile based on the rotation of the weapon
@@ -154,10 +154,5 @@ namespace Assets.Scripts.Weapon
             //start the shake
             CameraShake.Instance.Shake(_shakeTime, _shakeIntensity, _shakeCurve, direction);
         }
-
-
-
     }
-
-
 }

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &268741223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4049990725263321409, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+  m_PrefabInstance: {fileID: 925144323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484010761
 GameObject:
   m_ObjectHideFlags: 3
@@ -563,6 +568,10 @@ PrefabInstance:
       propertyPath: _ammoType
       value: 
       objectReference: {fileID: 11400000, guid: cac70ff5b4ad387459c8d0432a60eeeb, type: 2}
+    - target: {fileID: 4049990724605596281, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
+      propertyPath: _weaponEquipper
+      value: 
+      objectReference: {fileID: 1686629684}
     - target: {fileID: 4049990725263321409, guid: 8aaead62c868e494697ff3352c2dd0f5, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -1085,6 +1094,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8452378729829227923, guid: 47cde95a9e832f547afc90fca2c88264, type: 3}
+      propertyPath: _weaponEquipper
+      value: 
+      objectReference: {fileID: 1686629684}
     - target: {fileID: 8452378731594770085, guid: 47cde95a9e832f547afc90fca2c88264, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1347,6 +1360,30 @@ PrefabInstance:
       propertyPath: OnValueChangeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Assets.Scripts.Stats.Stat, Stats
       objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _capacity
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _slots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _slots.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: f59f4c68be6e583409e113d46fb9240c, type: 2}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _slots.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: cac70ff5b4ad387459c8d0432a60eeeb, type: 2}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _slots.Array.data[0].quantity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684612750, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _slots.Array.data[1].quantity
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1237900476614285933, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: dodgeSpeed
       value: 12
@@ -1369,6 +1406,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1453998029993772481, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
       propertyPath: _mountedObject
+      value: 
+      objectReference: {fileID: 755876111}
+    - target: {fileID: 5847640636435763462, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _weaponEquipper
+      value: 
+      objectReference: {fileID: 1686629684}
+    - target: {fileID: 5847640636435763462, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _weaponsInInventory.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847640636435763462, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _weaponsInInventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 268741223}
+    - target: {fileID: 5847640636435763462, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+      propertyPath: _weaponsInInventory.Array.data[1]
       value: 
       objectReference: {fileID: 755876111}
     - target: {fileID: 7835324181591090249, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
@@ -1500,6 +1553,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b15f6f049002aef48b51c042bf01d666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1686629684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1453998029993772481, guid: 7fb91db2bb2e80b4ea71a33ec5828cc0, type: 3}
+  m_PrefabInstance: {fileID: 1686629663}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485422768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27cf199a71e5642bfe3fe87625c7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2064390539
