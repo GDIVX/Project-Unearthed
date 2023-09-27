@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class InstantEffectPickup : MonoBehaviour, IPoolable, IEnemyDropItem
 {
     [SerializeField] string _playerTag;
-    protected GameObject _gameObject { get; }
+    //protected GameObject _gameObject { get; }
 
     ObjectSpawner spawner;
 
@@ -37,5 +37,9 @@ public abstract class InstantEffectPickup : MonoBehaviour, IPoolable, IEnemyDrop
         
     }
 
+    protected virtual void RemoveItemFromScene()
+    {
+        Destroy(gameObject);
+    }
     public abstract bool WillDrop();
 }

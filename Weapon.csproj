@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\Weapon\RangeWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEquipper.cs" />
     <Compile Include="Assets\Scripts\Weapon\Recoil.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponInventory.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Weapon\Weapon.asmdef" />
@@ -807,6 +809,10 @@
     <ProjectReference Include="Inventory.csproj">
       <Project>{03A8053C-944C-F953-60D5-40F6DEF8BBA2}</Project>
       <Name>Inventory</Name>
+    </ProjectReference>
+    <ProjectReference Include="Items.csproj">
+      <Project>{CD2F76C3-9FFD-014B-2C10-354391F10194}</Project>
+      <Name>Items</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
