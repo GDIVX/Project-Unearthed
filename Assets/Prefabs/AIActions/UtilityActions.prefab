@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4019104538385226091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43,26 +43,6 @@ PrefabInstance:
     - target: {fileID: 1320760846660080268, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
       propertyPath: m_Name
       value: PatrolAction
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320760846660080270, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
-      propertyPath: _scanRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320760846660080270, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
-      propertyPath: _targetNeed
-      value: 
-      objectReference: {fileID: 11400000, guid: 3fe79af5eb2b7f745b0b8f34c237bdc5, type: 2}
-    - target: {fileID: 1320760846660080270, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
-      propertyPath: _wayPoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320760846660080270, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
-      propertyPath: _scoreParameters.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320760846660080270, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
-      propertyPath: _scoreParameters.Array.data[0]
-      value: HasTarget
       objectReference: {fileID: 0}
     - target: {fileID: 1320760846660080271, guid: c75f4310b1b5f9a4691f0ec1f56ec189, type: 3}
       propertyPath: m_RootOrder
@@ -169,18 +149,6 @@ PrefabInstance:
     - target: {fileID: 8016222972252208974, guid: 138c1637b5d175142831dad032e17ac0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016222972252208975, guid: 138c1637b5d175142831dad032e17ac0, type: 3}
-      propertyPath: _scanRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016222972252208975, guid: 138c1637b5d175142831dad032e17ac0, type: 3}
-      propertyPath: _scoreParameters.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8016222972252208975, guid: 138c1637b5d175142831dad032e17ac0, type: 3}
-      propertyPath: _scoreParameters.Array.data[0]
-      value: Distance
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 138c1637b5d175142831dad032e17ac0, type: 3}
