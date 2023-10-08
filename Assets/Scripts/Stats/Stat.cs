@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,8 @@ namespace Assets.Scripts.Stats
         [SerializeField, Min(1)] int _maxValue;
 
         public UnityEvent<Stat> OnValueChangeEvent;
-
+        
+        [ShowInInspector]
         public int Value
         {
             get => _value;
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Stats
         {
             OnValueChangeEvent?.Invoke(this);
         }
-
+        [ShowInInspector]
         public int MaxValue { get => _maxValue; set => _maxValue = value; }
     }
 }
